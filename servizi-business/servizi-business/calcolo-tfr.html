@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcola il TFR (Trattamento di Fine Rapporto) maturato. Scopri quanto hai accumulato negli anni di lavoro come dipendente.">
+    <meta name="keywords" content="calcolo TFR, trattamento fine rapporto, liquidazione, TFR online, calcolo liquidazione">
+    <title>Calcolo TFR - Trattamento di Fine Rapporto | Calcolatore Gratuito</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-sm">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <i class="fas fa-calculator text-blue-600 text-2xl"></i>
+                    <span class="text-xl font-bold text-gray-800">Servizi Business</span>
+                </a>
+                <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">
+                    <i class="fas fa-home mr-2"></i>Home
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <div class="mb-6">
+            <a href="index.html" class="text-blue-600 hover:underline">Home</a>
+            <span class="text-gray-400 mx-2">/</span>
+            <span class="text-gray-600">Calcolo TFR</span>
+        </div>
+
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4">Calcolo TFR</h1>
+                <p class="text-xl text-gray-600">Calcola il tuo Trattamento di Fine Rapporto maturato</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">Anni di Servizio</label>
+                        <input type="number" id="years" class="w-full px-4 py-4 text-2xl border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none" placeholder="10" min="0" max="50" value="10">
+                        <p class="text-sm text-gray-500 mt-2">Anni di lavoro completi</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">Mesi Aggiuntivi</label>
+                        <input type="number" id="months" class="w-full px-4 py-4 text-2xl border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none" placeholder="6" min="0" max="11" value="0">
+                        <p class="text-sm text-gray-500 mt-2">Mesi oltre gli anni completi</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">Stipendio Annuo Lordo (€)</label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-4 text-gray-400 text-xl">€</span>
+                            <input type="number" id="salary" class="w-full pl-10 pr-4 py-4 text-2xl border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none" placeholder="30000" step="1000" min="0" value="30000">
+                        </div>
+                        <p class="text-sm text-gray-500 mt-2">RAL media attuale</p>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-8 mb-6">
+                    <div class="text-center">
+                        <div class="text-sm text-gray-600 mb-3">TFR Totale Maturato</div>
+                        <div id="totalTfr" class="text-5xl font-bold text-orange-700 mb-6">€ 25.641</div>
+                        
+                        <div class="grid md:grid-cols-3 gap-6 mt-6">
+                            <div class="bg-white bg-opacity-60 rounded-lg p-4">
+                                <div class="text-xs text-gray-600 mb-1">TFR Annuale</div>
+                                <div id="yearlyTfr" class="text-xl font-bold text-gray-800">€ 2.564</div>
+                            </div>
+                            <div class="bg-white bg-opacity-60 rounded-lg p-4">
+                                <div class="text-xs text-gray-600 mb-1">TFR Mensile</div>
+                                <div id="monthlyTfr" class="text-xl font-bold text-gray-800">€ 214</div>
+                            </div>
+                            <div class="bg-white bg-opacity-60 rounded-lg p-4">
+                                <div class="text-xs text-gray-600 mb-1">Periodo Totale</div>
+                                <div id="totalPeriod" class="text-xl font-bold text-gray-800">10 anni</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-6 mb-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">
+                        <i class="fas fa-chart-line text-orange-600 mr-2"></i>Dettaglio Calcolo
+                    </h3>
+                    
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-gray-700">Stipendio Annuo Lordo</span>
+                            <span id="displaySalary" class="font-semibold text-gray-800">€ 30.000</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-gray-700">Quota TFR (7.41% annuo)</span>
+                            <span id="tfrQuota" class="font-semibold text-gray-800">€ 2.223</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-gray-700">Rivalutazione stimata (1.5% annuo)</span>
+                            <span id="revaluation" class="font-semibold text-green-600">+ € 341</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-gray-700">Anni di servizio</span>
+                            <span id="serviceYears" class="font-semibold text-gray-800">10 anni</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 bg-white rounded-lg px-4 mt-4">
+                            <span class="text-lg font-bold text-gray-800">TFR Totale Lordo</span>
+                            <span id="grossTfr" class="text-2xl font-bold text-orange-700">€ 25.641</span>
+                        </div>
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-4">
+                            <p class="text-sm text-gray-700">
+                                <strong>Tassazione TFR:</strong> Circa 23-30% (tassazione separata).
+                                <span id="netTfr" class="block mt-2 font-bold">TFR Netto stimato: € 18.500</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <button id="resetBtn" class="flex-1 bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition">
+                        <i class="fas fa-redo mr-2"></i>Reset
+                    </button>
+                    <button id="copyBtn" class="flex-1 bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition">
+                        <i class="fas fa-copy mr-2"></i>Copia Dettagli
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-info-circle text-blue-600 mr-2"></i>Cos'è il TFR?
+                </h2>
+                
+                <div class="space-y-4 text-gray-700">
+                    <p><strong>Il TFR (Trattamento di Fine Rapporto)</strong>, comunemente chiamato "liquidazione", è una somma che ogni lavoratore dipendente matura durante il rapporto di lavoro e riceve alla cessazione del contratto.</p>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg my-4">
+                        <h3 class="font-bold text-blue-800 mb-2">Come si calcola?</h3>
+                        <p class="text-sm mb-2">Il TFR si calcola così:</p>
+                        <ul class="text-sm space-y-1 ml-4">
+                            <li><strong>1.</strong> Retribuzione lorda annua / 13,5 = Quota TFR annuale</li>
+                            <li><strong>2.</strong> La quota viene accantonata ogni anno</li>
+                            <li><strong>3.</strong> Ogni anno viene rivalutata in base all'inflazione</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-green-800 mb-2">Quando si riceve il TFR?</h3>
+                        <ul class="text-sm space-y-1 ml-4">
+                            <li>• Cessazione del rapporto di lavoro (dimissioni, licenziamento, pensione)</li>
+                            <li>• Anticipazione parziale (max 70%) per acquisto prima casa o spese sanitarie</li>
+                            <li>• In caso di aziende con +50 dipendenti, può essere versato in un fondo pensione</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-orange-50 border-l-4 border-orange-400 p-4">
+                        <h3 class="font-bold mb-2"><i class="fas fa-exclamation-circle mr-2"></i>Nota:</h3>
+                        <p class="text-sm">Questo è un calcolo semplificato. Il TFR reale può variare in base a: aumenti salariali, premi, mensilità aggiuntive, inflazione effettiva, e scelte del lavoratore (TFR in azienda vs fondo pensione).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-100 border-2 border-dashed border-gray-300 rounded-xl p-8 text-center mb-8">
+                <p class="text-gray-500">
+                    <i class="fas fa-ad text-4xl mb-4 block"></i>
+                    Spazio pubblicitario Google AdSense
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Servizi Business Italia. Tutti i diritti riservati.</p>
+            <div class="mt-4">
+                <a href="index.html" class="text-gray-400 hover:text-white mx-2">Home</a>
+                <a href="#" class="text-gray-400 hover:text-white mx-2">Privacy</a>
+                <a href="#" class="text-gray-400 hover:text-white mx-2">Contatti</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const elements = {
+            years: document.getElementById('years'),
+            months: document.getElementById('months'),
+            salary: document.getElementById('salary'),
+            totalTfr: document.getElementById('totalTfr'),
+            yearlyTfr: document.getElementById('yearlyTfr'),
+            monthlyTfr: document.getElementById('monthlyTfr'),
+            totalPeriod: document.getElementById('totalPeriod'),
+            displaySalary: document.getElementById('displaySalary'),
+            tfrQuota: document.getElementById('tfrQuota'),
+            revaluation: document.getElementById('revaluation'),
+            serviceYears: document.getElementById('serviceYears'),
+            grossTfr: document.getElementById('grossTfr'),
+            netTfr: document.getElementById('netTfr'),
+            resetBtn: document.getElementById('resetBtn'),
+            copyBtn: document.getElementById('copyBtn')
+        };
+
+        function calculate() {
+            const years = parseFloat(elements.years.value) || 0;
+            const months = parseFloat(elements.months.value) || 0;
+            const salary = parseFloat(elements.salary.value) || 0;
+
+            const totalYears = years + (months / 12);
+            const yearlyQuota = salary / 13.5;
+            const revaluationRate = 0.015;
+            
+            let totalTfr = 0;
+            for (let i = 0; i < totalYears; i++) {
+                const yearContribution = yearlyQuota * (1 + revaluationRate * i);
+                totalTfr += yearContribution;
+            }
+
+            const monthlyTfrValue = totalTfr / (totalYears * 12);
+            const revaluationTotal = totalTfr - (yearlyQuota * totalYears);
+            const netTfrEstimate = totalTfr * 0.72;
+
+            elements.displaySalary.textContent = formatCurrency(salary);
+            elements.tfrQuota.textContent = formatCurrency(yearlyQuota);
+            elements.revaluation.textContent = '+ ' + formatCurrency(revaluationTotal);
+            elements.serviceYears.textContent = years + (months > 0 ? ` anni e ${months} mesi` : ' anni');
+            elements.grossTfr.textContent = formatCurrency(totalTfr);
+            elements.totalTfr.textContent = formatCurrency(totalTfr);
+            elements.yearlyTfr.textContent = formatCurrency(yearlyQuota);
+            elements.monthlyTfr.textContent = formatCurrency(monthlyTfrValue);
+            elements.totalPeriod.textContent = years + (months > 0 ? ` anni ${months} mesi` : ' anni');
+            elements.netTfr.textContent = 'TFR Netto stimato: ' + formatCurrency(netTfrEstimate);
+        }
+
+        function formatCurrency(value) {
+            return '€ ' + Math.round(value).toLocaleString('it-IT');
+        }
+
+        function reset() {
+            elements.years.value = '10';
+            elements.months.value = '0';
+            elements.salary.value = '30000';
+            calculate();
+        }
+
+        function copy() {
+            const years = elements.years.value;
+            const months = elements.months.value;
+            const salary = elements.salary.value;
+            const totalTfr = elements.totalTfr.textContent;
+            const netTfr = elements.netTfr.textContent;
+
+            const text = `Calcolo TFR\n\n` +
+                        `Periodo: ${years} anni ${months > 0 ? 'e ' + months + ' mesi' : ''}\n` +
+                        `Stipendio annuo: ${formatCurrency(parseFloat(salary))}\n` +
+                        `TFR Lordo maturato: ${totalTfr}\n` +
+                        `${netTfr}`;
+
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = elements.copyBtn.innerHTML;
+                elements.copyBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Copiato!';
+                elements.copyBtn.classList.add('bg-green-600');
+                elements.copyBtn.classList.remove('bg-orange-600');
+                
+                setTimeout(() => {
+                    elements.copyBtn.innerHTML = originalText;
+                    elements.copyBtn.classList.remove('bg-green-600');
+                    elements.copyBtn.classList.add('bg-orange-600');
+                }, 2000);
+            });
+        }
+
+        elements.years.addEventListener('input', calculate);
+        elements.months.addEventListener('input', calculate);
+        elements.salary.addEventListener('input', calculate);
+        elements.resetBtn.addEventListener('click', reset);
+        elements.copyBtn.addEventListener('click', copy);
+
+        calculate();
+    </script>
+</body>
+</html>
