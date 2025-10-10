@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Genera codici QR gratuiti online. Crea QR code per URL, testo, email, telefono, WiFi e molto altro. Scarica in PNG ad alta qualità.">
+    <meta name="keywords" content="QR code generator, generatore QR, codice QR gratis, QR online">
+    <title>Generatore QR Code Gratuito - Crea Codici QR Online</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9F1LD82S0S"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9F1LD82S0S');
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <i class="fas fa-calculator text-blue-600 text-2xl"></i>
+                    <span class="text-xl font-bold text-gray-800">Servizi Business</span>
+                </a>
+                <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">
+                    <i class="fas fa-home mr-2"></i>Home
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Breadcrumb -->
+        <div class="mb-6">
+            <a href="index.html" class="text-blue-600 hover:underline">Home</a>
+            <span class="text-gray-400 mx-2">/</span>
+            <span class="text-gray-600">Generatore QR Code</span>
+        </div>
+
+        <div class="max-w-5xl mx-auto">
+            <!-- Title -->
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4">Generatore QR Code</h1>
+                <p class="text-xl text-gray-600">Crea codici QR gratuiti per qualsiasi scopo</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Generator Section -->
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <!-- Type Selector -->
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-semibold mb-3">Tipo di QR Code</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button class="qr-type-btn active" data-type="url">
+                                <i class="fas fa-link mb-2"></i>
+                                <span>URL</span>
+                            </button>
+                            <button class="qr-type-btn" data-type="text">
+                                <i class="fas fa-font mb-2"></i>
+                                <span>Testo</span>
+                            </button>
+                            <button class="qr-type-btn" data-type="email">
+                                <i class="fas fa-envelope mb-2"></i>
+                                <span>Email</span>
+                            </button>
+                            <button class="qr-type-btn" data-type="phone">
+                                <i class="fas fa-phone mb-2"></i>
+                                <span>Telefono</span>
+                            </button>
+                            <button class="qr-type-btn" data-type="sms">
+                                <i class="fas fa-comment mb-2"></i>
+                                <span>SMS</span>
+                            </button>
+                            <button class="qr-type-btn" data-type="wifi">
+                                <i class="fas fa-wifi mb-2"></i>
+                                <span>WiFi</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- URL Form -->
+                    <div id="urlForm" class="qr-form">
+                        <label class="block text-gray-700 font-semibold mb-2">Inserisci URL</label>
+                        <input type="url" id="urlInput" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none" placeholder="https://esempio.it">
+                    </div>
+
+                    <!-- Text Form -->
+                    <div id="textForm" class="qr-form hidden">
+                        <label class="block text-gray-700 font-semibold mb-2">Inserisci Testo</label>
+                        <textarea id="textInput" rows="4" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none" placeholder="Scrivi il tuo testo qui..."></textarea>
+                    </div>
+
+                    <!-- Email Form -->
+                    <div id="emailForm" class="qr-form hidden">
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Email Destinatario</label>
+                                <input type="email" id="emailInput" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none" placeholder="esempio@email.it">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Oggetto (opzionale)</label>
+                                <input type="text" id="emailSubject" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none" placeholder="Oggetto email">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Messaggio (opzionale)</label>
+                                <textarea id="emailBody" rows="3" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none" placeholder="Testo email..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phone Form -->
+                    <div id="phoneForm" class="qr-form hidden">
+                        <label class="block text-gray-700 font-semibold mb-2">Numero di Telefono</label>
+                        <input type="tel" id="phoneInput" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none" placeholder="+39 123 456 7890">
+                    </div>
+
+                    <!-- SMS Form -->
+                    <div id="smsForm" class="qr-form hidden">
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Numero Telefono</label>
+                                <input type="tel" id="smsPhone" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none" placeholder="+39 123 456 7890">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Messaggio</label>
+                                <textarea id="smsMessage" rows="3" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none" placeholder="Testo SMS..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WiFi Form -->
+                    <div id="wifiForm" class="qr-form hidden">
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Nome Rete (SSID)</label>
+                                <input type="text" id="wifiSSID" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none" placeholder="Nome WiFi">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Password</label>
+                                <input type="text" id="wifiPassword" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none" placeholder="Password WiFi">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Tipo Sicurezza</label>
+                                <select id="wifiEncryption" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none">
+                                    <option value="WPA">WPA/WPA2</option>
+                                    <option value="WEP">WEP</option>
+                                    <option value="">Nessuna</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Size Settings -->
+                    <div class="mt-6">
+                        <label class="block text-gray-700 font-semibold mb-2">Dimensione QR Code</label>
+                        <input type="range" id="qrSize" min="128" max="512" value="256" step="64" class="w-full">
+                        <div class="text-center text-sm text-gray-600 mt-1">
+                            <span id="sizeValue">256</span> x <span id="sizeValue2">256</span> px
+                        </div>
+                    </div>
+
+                    <!-- Generate Button -->
+                    <button id="generateBtn" class="w-full mt-6 bg-blue-600 text-white px-6 py-4 rounded-lg hover:bg-blue-700 transition font-semibold text-lg">
+                        <i class="fas fa-qrcode mr-2"></i>Genera QR Code
+                    </button>
+                </div>
+
+                <!-- Preview Section -->
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6 text-center">Anteprima QR Code</h2>
+                    
+                    <div id="qrcodeContainer" class="flex justify-center items-center mb-6 min-h-[256px] bg-gray-50 rounded-lg p-8">
+                        <div class="text-center text-gray-400">
+                            <i class="fas fa-qrcode text-6xl mb-4"></i>
+                            <p>Il QR code apparirà qui</p>
+                        </div>
+                    </div>
+
+                    <div id="downloadSection" class="hidden space-y-3">
+                        <button id="downloadBtn" class="w-full bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition font-semibold">
+                            <i class="fas fa-download mr-2"></i>Scarica PNG
+                        </button>
+                        <button id="resetBtn" class="w-full bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition font-semibold">
+                            <i class="fas fa-redo mr-2"></i>Crea Nuovo
+                        </button>
+                    </div>
+
+                    <!-- Info -->
+                    <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+                        <p class="text-sm text-blue-800">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            Il QR code viene generato localmente nel tuo browser. Nessun dato viene inviato a server esterni.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <div class="bg-white rounded-xl shadow-lg p-8 mt-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-info-circle text-blue-600 mr-2"></i>Come usare i QR Code
+                </h2>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg">
+                        <i class="fas fa-link text-blue-600 text-3xl mb-3"></i>
+                        <h3 class="font-bold text-blue-900 mb-2">URL</h3>
+                        <p class="text-sm text-blue-800">Perfetto per siti web, menu digitali, biglietti da visita digitali</p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg">
+                        <i class="fas fa-wifi text-green-600 text-3xl mb-3"></i>
+                        <h3 class="font-bold text-green-900 mb-2">WiFi</h3>
+                        <p class="text-sm text-green-800">I clienti si connettono al WiFi scansionando il codice, senza digitare password</p>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg">
+                        <i class="fas fa-envelope text-purple-600 text-3xl mb-3"></i>
+                        <h3 class="font-bold text-purple-900 mb-2">Email</h3>
+                        <p class="text-sm text-purple-800">Facilita il contatto via email con oggetto e messaggio precompilati</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                    <p class="text-sm text-gray-700">
+                        <strong><i class="fas fa-lightbulb mr-2"></i>Suggerimento:</strong> 
+                        Testa sempre il QR code con uno smartphone prima di stamparlo o condividerlo!
+                    </p>
+                </div>
+            </div>
+
+            <!-- AdSense Placeholder -->
+            <div class="bg-gray-100 border-2 border-dashed border-gray-300 rounded-xl p-8 text-center mt-8">
+                <p class="text-gray-500">
+                    <i class="fas fa-ad text-4xl mb-4 block"></i>
+                    Spazio pubblicitario Google AdSense
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Servizi Business Italia. Tutti i diritti riservati.</p>
+            <div class="mt-4">
+                <a href="index.html" class="text-gray-400 hover:text-white mx-2">Home</a>
+                <a href="#" class="text-gray-400 hover:text-white mx-2">Privacy</a>
+                <a href="#" class="text-gray-400 hover:text-white mx-2">Contatti</a>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        .qr-type-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.5rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        .qr-type-btn:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        .qr-type-btn.active {
+            border-color: #3b82f6;
+            background: #3b82f6;
+            color: white;
+        }
+        .qr-type-btn i {
+            font-size: 1.5rem;
+        }
+    </style>
+
+    <script>
+        let currentType = 'url';
+        let qrcode = null;
+
+        // Type selector
+        document.querySelectorAll('.qr-type-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.qr-type-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentType = this.dataset.type;
+                
+                // Hide all forms
+                document.querySelectorAll('.qr-form').forEach(form => form.classList.add('hidden'));
+                // Show selected form
+                document.getElementById(currentType + 'Form').classList.remove('hidden');
+            });
+        });
+
+        // Size slider
+        document.getElementById('qrSize').addEventListener('input', function() {
+            document.getElementById('sizeValue').textContent = this.value;
+            document.getElementById('sizeValue2').textContent = this.value;
+        });
+
+        // Generate QR
+        document.getElementById('generateBtn').addEventListener('click', generateQR);
+
+        // Reset
+        document.getElementById('resetBtn').addEventListener('click', function() {
+            document.getElementById('qrcodeContainer').innerHTML = '<div class="text-center text-gray-400"><i class="fas fa-qrcode text-6xl mb-4"></i><p>Il QR code apparirà qui</p></div>';
+            document.getElementById('downloadSection').classList.add('hidden');
+            qrcode = null;
+        });
+
+        // Download
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const canvas = document.querySelector('#qrcodeContainer canvas');
+            if (canvas) {
+                const link = document.createElement('a');
+                link.download = 'qrcode.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            }
+        });
+
+        function generateQR() {
+            let text = '';
+            
+            switch(currentType) {
+                case 'url':
+                    text = document.getElementById('urlInput').value;
+                    if (!text) {
+                        alert('Inserisci un URL');
+                        return;
+                    }
+                    break;
+                case 'text':
+                    text = document.getElementById('textInput').value;
+                    if (!text) {
+                        alert('Inserisci un testo');
+                        return;
+                    }
+                    break;
+                case 'email':
+                    const email = document.getElementById('emailInput').value;
+                    const subject = document.getElementById('emailSubject').value;
+                    const body = document.getElementById('emailBody').value;
+                    if (!email) {
+                        alert('Inserisci un indirizzo email');
+                        return;
+                    }
+                    text = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    break;
+                case 'phone':
+                    const phone = document.getElementById('phoneInput').value;
+                    if (!phone) {
+                        alert('Inserisci un numero di telefono');
+                        return;
+                    }
+                    text = `tel:${phone}`;
+                    break;
+                case 'sms':
+                    const smsPhone = document.getElementById('smsPhone').value;
+                    const smsMsg = document.getElementById('smsMessage').value;
+                    if (!smsPhone) {
+                        alert('Inserisci un numero di telefono');
+                        return;
+                    }
+                    text = `sms:${smsPhone}?body=${encodeURIComponent(smsMsg)}`;
+                    break;
+                case 'wifi':
+                    const ssid = document.getElementById('wifiSSID').value;
+                    const pass = document.getElementById('wifiPassword').value;
+                    const enc = document.getElementById('wifiEncryption').value;
+                    if (!ssid) {
+                        alert('Inserisci il nome della rete WiFi');
+                        return;
+                    }
+                    text = `WIFI:T:${enc};S:${ssid};P:${pass};;`;
+                    break;
+            }
+
+            const size = parseInt(document.getElementById('qrSize').value);
+            
+            // Clear previous QR
+            document.getElementById('qrcodeContainer').innerHTML = '';
+            
+            // Generate new QR
+            qrcode = new QRCode(document.getElementById('qrcodeContainer'), {
+                text: text,
+                width: size,
+                height: size,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+            document.getElementById('downloadSection').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
