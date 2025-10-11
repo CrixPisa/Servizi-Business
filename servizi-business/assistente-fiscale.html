@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Assistente fiscale AI per scadenze IVA, F24, contributi INPS. Calendario adempimenti 2025 per partite IVA.">
+    <title>Assistente Scadenze Fiscali - Servizi Business</title>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9F1LD82S0S"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9F1LD82S0S');
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <i class="fas fa-calculator text-blue-600 text-2xl"></i>
+                    <span class="text-xl font-bold text-gray-800">Servizi Business</span>
+                </a>
+                <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">
+                    <i class="fas fa-home mr-2"></i>Home
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-5xl mx-auto">
+            <!-- Title -->
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4">
+                    🤖 Assistente Scadenze Fiscali
+                </h1>
+                <p class="text-xl text-gray-600">
+                    Chiedi quando devi pagare IVA, F24, INPS e altri adempimenti
+                </p>
+            </div>
+
+            <!-- Quick Info Cards -->
+            <div class="grid md:grid-cols-3 gap-4 mb-8">
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-calendar-check text-blue-600 text-2xl mr-3"></i>
+                        <h3 class="font-bold text-gray-800">Oggi</h3>
+                    </div>
+                    <p id="todayDate" class="text-gray-600 text-sm"></p>
+                    <p id="todayDeadline" class="text-blue-800 font-semibold mt-2"></p>
+                </div>
+
+                <div class="bg-orange-50 border-l-4 border-orange-500 p-4 rounded-lg">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-exclamation-triangle text-orange-600 text-2xl mr-3"></i>
+                        <h3 class="font-bold text-gray-800">Prossima scadenza</h3>
+                    </div>
+                    <p id="nextDeadline" class="text-orange-800 font-semibold"></p>
+                </div>
+
+                <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-lg">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-clock text-green-600 text-2xl mr-3"></i>
+                        <h3 class="font-bold text-gray-800">Questo mese</h3>
+                    </div>
+                    <p id="monthDeadlines" class="text-green-800 font-semibold"></p>
+                </div>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 rounded-lg">
+                <p class="text-sm text-gray-700">
+                    ⚠️ <strong>Importante:</strong> Questo assistente fornisce informazioni generiche sulle scadenze fiscali 2025. 
+                    Le date possono variare per situazioni specifiche. Verifica sempre con il tuo commercialista.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Chat Container -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-2xl shadow-xl">
+                        <!-- Chat Messages -->
+                        <div id="chatMessages" class="h-[500px] overflow-y-auto p-6 space-y-4">
+                            <!-- Welcome Message -->
+                            <div class="flex items-start space-x-3">
+                                <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="bg-blue-50 rounded-lg p-4 max-w-lg">
+                                    <p class="text-gray-800 font-semibold mb-2">👋 Ciao! Sono il tuo assistente per le scadenze fiscali!</p>
+                                    <p class="text-gray-700 text-sm mb-3">Posso aiutarti con:</p>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>📅 Quando pagare l'IVA (mensile/trimestrale)</li>
+                                        <li>💰 Scadenze F24 e acconti</li>
+                                        <li>🏦 Contributi INPS</li>
+                                        <li>📊 Dichiarazioni annuali</li>
+                                        <li>📋 Calendario completo 2025</li>
+                                    </ul>
+                                    <p class="text-gray-800 mt-3">💬 Cosa vuoi sapere?</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Input Area -->
+                        <div class="border-t p-4">
+                            <div class="flex space-x-3">
+                                <input 
+                                    type="text" 
+                                    id="userInput" 
+                                    placeholder="Es: quando devo versare l'IVA?"
+                                    class="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none"
+                                    onkeypress="if(event.key === 'Enter') sendMessage()"
+                                >
+                                <button 
+                                    onclick="sendMessage()"
+                                    class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-semibold"
+                                >
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Questions Sidebar -->
+                <div class="space-y-4">
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="font-bold text-gray-800 mb-4">
+                            <i class="fas fa-bolt text-yellow-500 mr-2"></i>Domande rapide
+                        </h3>
+                        <div class="space-y-2">
+                            <button onclick="askQuestion('Quando devo versare IVA mensile?')" 
+                                    class="w-full text-left bg-gray-50 hover:bg-blue-50 p-3 rounded-lg transition border border-gray-200 hover:border-blue-300 text-sm">
+                                📅 IVA mensile
+                            </button>
+                            <button onclick="askQuestion('Quando devo versare IVA trimestrale?')" 
+                                    class="w-full text-left bg-gray-50 hover:bg-blue-50 p-3 rounded-lg transition border border-gray-200 hover:border-blue-300 text-sm">
+                                📊 IVA trimestrale
+                            </button>
+                            <button onclick="askQuestion('Quando pago contributi INPS?')" 
+                                    class="w-full text-left bg-gray-50 hover:bg-blue-50 p-3 rounded-lg transition border border-gray-200 hover:border-blue-300 text-sm">
+                                🏦 INPS
+                            </button>
+                            <button onclick="askQuestion('Quando si pagano gli acconti?')" 
+                                    class="w-full text-left bg-gray-50 hover:bg-blue-50 p-3 rounded-lg transition border border-gray-200 hover:border-blue-300 text-sm">
+                                💰 Acconti imposte
+                            </button>
+                            <button onclick="askQuestion('Scadenze dichiarazione redditi?')" 
+                                    class="w-full text-left bg-gray-50 hover:bg-blue-50 p-3 rounded-lg transition border border-gray-200 hover:border-blue-300 text-sm">
+                                📋 Dichiarazione
+                            </button>
+                            <button onclick="askQuestion('Calendario completo 2025')" 
+                                    class="w-full text-left bg-gray-50 hover:bg-blue-50 p-3 rounded-lg transition border border-gray-200 hover:border-blue-300 text-sm">
+                                📅 Calendario 2025
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Servizi Business Italia. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <script src="assistente-script.js"></script>
+</body>
+</html>
