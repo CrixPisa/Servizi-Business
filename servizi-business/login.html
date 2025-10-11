@@ -72,7 +72,7 @@
                                 <input type="checkbox" class="mr-2">
                                 <span class="text-gray-600">Ricordami</span>
                             </label>
-                            <a href="#" class="text-blue-600 hover:text-blue-700">Password dimenticata?</a>
+                            <button type="button" onclick="resetPassword()" class="text-blue-600 hover:text-blue-700">Password dimenticata?</button>
                         </div>
 
                         <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold text-lg">
@@ -285,6 +285,40 @@
                 }
             }
         });
+
+        // RESET PASSWORD FUNCTION
+        async function resetPassword() {
+            const email = document.getElementById('loginEmail').value;
+            
+            if (!email) {
+                alert('⚠️ Inserisci la tua email prima di richiedere il reset della password!');
+                document.getElementById('loginEmail').focus();
+                return;
+            }
+            
+            if (!email.includes('@')) {
+                alert('❌ Inserisci un indirizzo email valido!');
+                return;
+            }
+            
+            const confirmed = confirm(`📧 Invieremo un'email a:\n${email}\n\nPer reimpostare la password.\n\nContinuare?`);
+            
+            if (!confirmed) return;
+            
+            try {
+                const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+                    redirectTo: window.location.origin + '/login.html?reset=true',
+                });
+                
+                if (error) {
+                    alert('❌ Errore: ' + error.message);
+                } else {
+                    alert('✅ Email inviata!\n\nControlla la tua casella di posta e clicca sul link per reimpostare la password.');
+                }
+            } catch (error) {
+                alert('❌ Errore di connessione. Riprova.');
+            }
+        }
     </script>
 </body>
 </html>
