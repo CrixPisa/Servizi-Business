@@ -72,7 +72,7 @@
                                 <input type="checkbox" class="mr-2">
                                 <span class="text-gray-600">Ricordami</span>
                             </label>
-                            <button type="button" onclick="resetPassword()" class="text-blue-600 hover:text-blue-700">Password dimenticata?</button>
+                            <span class="text-gray-400 text-xs">Password dimenticata? Contatta info@servizi-business.com</span>
                         </div>
 
                         <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold text-lg">
@@ -311,12 +311,17 @@
                 });
                 
                 if (error) {
-                    alert('❌ Errore: ' + error.message);
+                    // Errore specifico
+                    if (error.message.includes('Email') || error.message.includes('SMTP')) {
+                        alert('⚠️ Sistema email temporaneamente non disponibile.\n\nContatta il supporto: info@servizi-business.com\n\nOppure crea un nuovo account.');
+                    } else {
+                        alert('❌ Errore: ' + error.message);
+                    }
                 } else {
-                    alert('✅ Email inviata!\n\nControlla la tua casella di posta e clicca sul link per reimpostare la password.');
+                    alert('✅ Email inviata!\n\nControlla la tua casella di posta (anche spam) e clicca sul link per reimpostare la password.\n\nSe non ricevi l\'email entro 5 minuti, contattaci: info@servizi-business.com');
                 }
             } catch (error) {
-                alert('❌ Errore di connessione. Riprova.');
+                alert('⚠️ Sistema email temporaneamente non disponibile.\n\nPer assistenza: info@servizi-business.com\n\nOppure crea un nuovo account se hai dimenticato i dati.');
             }
         }
     </script>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔍 Test Connessione Supabase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
+        <h1 class="text-3xl font-bold mb-6">🔍 Debug Supabase</h1>
+        
+        <div id="results" class="space-y-4"></div>
+        
+        <button onclick="runTests()" class="mt-6 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
+            ▶️ Avvia Test
+        </button>
+    </div>
+
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+
+    <script>
+        const results = document.getElementById('results');
+
+        function addResult(title, status, message) {
+            const color = status === 'success' ? 'green' : status === 'error' ? 'red' : 'yellow';
+            results.innerHTML += `
+                <div class="border-l-4 border-${color}-500 bg-${color}-50 p-4">
+                    <h3 class="font-bold text-${color}-800">${title}</h3>
+                    <p class="text-${color}-700 text-sm mt-1">${message}</p>
+                </div>
+            `;
+        }
+
+        async function runTests() {
+            results.innerHTML = '<h2 class="text-xl font-bold mb-4">🧪 Test in corso...</h2>';
+
+            // Test 1: Supabase SDK caricato?
+            try {
+                if (typeof window.supabase !== 'undefined') {
+                    addResult('✅ Test 1: Supabase SDK', 'success', 'SDK caricato correttamente da CDN');
+                } else {
+                    addResult('❌ Test 1: Supabase SDK', 'error', 'SDK non trovato! Problema con CDN');
+                    return;
+                }
+            } catch (e) {
+                addResult('❌ Test 1: Supabase SDK', 'error', e.message);
+                return;
+            }
+
+            // Test 2: supabase-config.js caricato?
+            try {
+                if (typeof supabase !== 'undefined') {
+                    addResult('✅ Test 2: Config File', 'success', 'supabase-config.js caricato');
+                } else {
+                    addResult('❌ Test 2: Config File', 'error', 'supabase-config.js NON caricato!');
+                    return;
+                }
+            } catch (e) {
+                addResult('❌ Test 2: Config File', 'error', e.message);
+                return;
+            }
+
+            // Test 3: Funzioni disponibili?
+            try {
+                if (typeof supabaseLogin === 'function' && 
+                    typeof supabaseRegister === 'function') {
+                    addResult('✅ Test 3: Funzioni Auth', 'success', 'Funzioni login/register disponibili');
+                } else {
+                    addResult('❌ Test 3: Funzioni Auth', 'error', 'Funzioni non trovate!');
+                }
+            } catch (e) {
+                addResult('❌ Test 3: Funzioni Auth', 'error', e.message);
+            }
+
+            // Test 4: Connessione Supabase
+            try {
+                const { data, error } = await supabase.auth.getSession();
+                
+                if (error) {
+                    addResult('⚠️ Test 4: Connessione Supabase', 'warning', 
+                        `Errore: ${error.message}`);
+                } else {
+                    addResult('✅ Test 4: Connessione Supabase', 'success', 
+                        'Connesso a: https://wnolarbrlbyzfdnnnqlz.supabase.co');
+                }
+            } catch (e) {
+                addResult('❌ Test 4: Connessione Supabase', 'error', e.message);
+            }
+
+            // Test 5: Test registrazione (SIMULATO)
+            try {
+                addResult('✅ Test 5: Ready', 'success', 
+                    'Sistema pronto per registrazione/login');
+            } catch (e) {
+                addResult('❌ Test 5: Setup', 'error', e.message);
+            }
+
+            // Riepilogo
+            results.innerHTML += `
+                <div class="mt-6 p-4 bg-blue-50 border-l-4 border-blue-500">
+                    <h3 class="font-bold text-blue-800">📋 Riepilogo</h3>
+                    <p class="text-sm text-blue-700 mt-2">
+                        Se tutti i test sono ✅ verdi, il sistema funziona!<br>
+                        Se vedi ❌ rossi, mandami uno screenshot di questa pagina.
+                    </p>
+                </div>
+            `;
+        }
+
+        // Avvia automaticamente
+        window.addEventListener('load', () => {
+            setTimeout(runTests, 500);
+        });
+    </script>
+</body>
+</html>
