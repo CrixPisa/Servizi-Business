@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <script src="dashboard.js"></script>
 </head>
 <body class="bg-gray-50" data-protected="true">
     <!-- Header -->
@@ -280,21 +281,5 @@
     </main>
 
     <script src="fatture.js"></script>
-    <script>
-        // Controllo autenticazione all'avvio (eseguito una sola volta)
-        (function checkAuthOnLoad() {
-            if (typeof supabaseIsLoggedIn === 'function') {
-                supabaseIsLoggedIn().then(isLoggedIn => {
-                    if (!isLoggedIn) {
-                        alert('⚠️ Devi essere registrato per usare il generatore fatture!\n\nRegistrazione GRATUITA.');
-                        window.location.href = 'login.html';
-                    }
-                }).catch(err => {
-                    console.log('Auth check skipped:', err);
-                    window.location.href = 'login.html';
-                });
-            }
-        })();
-    </script>
 </body>
 </html>
