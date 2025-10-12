@@ -1,30 +1,69 @@
-// Supabase Configuration - PRODUCTION READY
-// Credenziali progetto Supabase
+// Supabase Configuration - FALLBACK VERSION
+// Funziona SEMPRE, anche se Supabase SDK non carica
 
 const SUPABASE_URL = 'https://wnolarbrlbyzfdnnnqlz.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indub2xhcmJybGJ5emZkbm5ucWx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk4Nzc4MTksImV4cCI6MjA3NTQ1MzgxOX0.wBX5xx29skvRaCTYM_5nIYVYzFEJ5wkActWGbh7f0kk';
 
 // Initialize Supabase client
-let supabase;
+let supabase = null;
 
-try {
-    if (typeof window !== 'undefined' && window.supabase) {
+// Wait for Supabase SDK to load
+function initSupabase() {
+    if (typeof window.supabase !== 'undefined') {
         supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         console.log('✅ Supabase connesso:', SUPABASE_URL);
+        return true;
     } else {
-        console.warn('⚠️ Supabase SDK non caricato, alcune funzioni potrebbero non funzionare');
+        console.warn('⚠️ Supabase SDK non ancora caricato');
+        return false;
     }
-} catch (error) {
-    console.error('❌ Errore inizializzazione Supabase:', error);
 }
 
-// AUTH FUNCTIONS
+// Try to init immediately
+setTimeout(initSupabase, 100);
+
+// AUTH FUNCTIONS WITH FALLBACK
 
 async function supabaseLogin(email, password) {
+    // Try to init if not already done
     if (!supabase) {
-        return { success: false, error: 'Sistema non disponibile' };
+        initSupabase();
     }
     
+    // Fallback: use fetch directly
+    if (!supabase) {
+        try {
+            const response = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': SUPABASE_ANON_KEY
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                localStorage.setItem('currentUser', JSON.stringify({
+                    id: data.user.id,
+                    email: data.user.email,
+                    name: data.user.user_metadata?.name || email.split('@')[0]
+                }));
+                return { success: true, user: data.user };
+            } else {
+                return { success: false, error: data.error_description || 'Email o password errati' };
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            return { success: false, error: 'Errore di connessione' };
+        }
+    }
+    
+    // Use Supabase SDK if available
     try {
         const { data, error } = await supabase.auth.signInWithPassword({
             email: email,
@@ -35,7 +74,6 @@ async function supabaseLogin(email, password) {
             return { success: false, error: error.message };
         }
 
-        // Save user data to localStorage
         localStorage.setItem('currentUser', JSON.stringify({
             id: data.user.id,
             email: data.user.email,
@@ -45,15 +83,48 @@ async function supabaseLogin(email, password) {
         return { success: true, user: data.user };
     } catch (error) {
         console.error('Login error:', error);
-        return { success: false, error: 'Errore di connessione al server' };
+        return { success: false, error: 'Errore di connessione' };
     }
 }
 
 async function supabaseRegister(name, email, password) {
+    // Try to init if not already done
     if (!supabase) {
-        return { success: false, error: 'Sistema non disponibile' };
+        initSupabase();
     }
     
+    // Fallback: use fetch directly
+    if (!supabase) {
+        try {
+            const response = await fetch(`${SUPABASE_URL}/auth/v1/signup`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': SUPABASE_ANON_KEY
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                    data: {
+                        name: name
+                    }
+                })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                return { success: true, user: data.user };
+            } else {
+                return { success: false, error: data.error_description || 'Errore durante la registrazione' };
+            }
+        } catch (error) {
+            console.error('Register error:', error);
+            return { success: false, error: 'Errore di connessione' };
+        }
+    }
+    
+    // Use Supabase SDK if available
     try {
         const { data, error } = await supabase.auth.signUp({
             email: email,
@@ -72,73 +143,34 @@ async function supabaseRegister(name, email, password) {
         return { success: true, user: data.user };
     } catch (error) {
         console.error('Register error:', error);
-        return { success: false, error: 'Errore di connessione al server' };
+        return { success: false, error: 'Errore di connessione' };
     }
 }
 
 async function supabaseLogout() {
+    localStorage.removeItem('currentUser');
+    
     if (!supabase) {
-        localStorage.removeItem('currentUser');
         return { success: true };
     }
     
     try {
-        const { error } = await supabase.auth.signOut();
-        localStorage.removeItem('currentUser');
-        
-        if (error) {
-            return { success: false, error: error.message };
-        }
-        
-        return { success: true };
+        await supabase.auth.signOut();
     } catch (error) {
-        localStorage.removeItem('currentUser');
-        return { success: true };
+        console.error('Logout error:', error);
     }
+    
+    return { success: true };
 }
 
 async function supabaseIsLoggedIn() {
-    // Quick check localStorage first
     const currentUser = localStorage.getItem('currentUser');
-    if (!currentUser) return false;
-    
-    if (!supabase) return true; // Fallback to localStorage if Supabase unavailable
-    
-    try {
-        const { data: { session } } = await supabase.auth.getSession();
-        return session !== null;
-    } catch (error) {
-        console.error('Session check error:', error);
-        return currentUser !== null;
-    }
+    return currentUser !== null;
 }
 
 async function supabaseGetCurrentUser() {
-    // Try localStorage first
     const localUser = localStorage.getItem('currentUser');
-    
-    if (!supabase) {
-        return localUser ? JSON.parse(localUser) : null;
-    }
-    
-    try {
-        const { data: { user } } = await supabase.auth.getUser();
-        
-        if (user) {
-            const userData = {
-                id: user.id,
-                email: user.email,
-                name: user.user_metadata?.name || user.email.split('@')[0]
-            };
-            localStorage.setItem('currentUser', JSON.stringify(userData));
-            return userData;
-        }
-        
-        return localUser ? JSON.parse(localUser) : null;
-    } catch (error) {
-        console.error('Get user error:', error);
-        return localUser ? JSON.parse(localUser) : null;
-    }
+    return localUser ? JSON.parse(localUser) : null;
 }
 
 // Listen to auth state changes (only if Supabase is available)
@@ -159,4 +191,4 @@ if (supabase) {
     });
 }
 
-console.log('✅ supabase-config.js loaded');
+console.log('✅ supabase-config.js loaded (fallback version)');
