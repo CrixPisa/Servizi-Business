@@ -72,7 +72,7 @@
                                 <input type="checkbox" class="mr-2">
                                 <span class="text-gray-600">Ricordami</span>
                             </label>
-                            <span class="text-gray-500 text-xs italic">Password dimenticata? Crea un nuovo account</span>
+                            <a href="#" onclick="resetPassword()" class="text-blue-600 hover:underline text-sm">Hai dimenticato la password?</a>
                         </div>
 
                         <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold text-lg">
@@ -147,10 +147,6 @@
                     </li>
                     <li class="flex items-center">
                         <i class="fas fa-check-circle text-green-600 mr-3"></i>
-                        Salvataggio clienti e dati azienda
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-check-circle text-green-600 mr-3"></i>
                         Scarica PDF di fatture e preventivi
                     </li>
                     <li class="flex items-center">
@@ -197,6 +193,55 @@
         registerTab.addEventListener('click', showRegister);
         switchToRegister.addEventListener('click', showRegister);
         switchToLogin.addEventListener('click', showLogin);
+
+        // Gestione del reset password
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('reset') === 'true') {
+            const newPasswordForm = document.createElement('div');
+            newPasswordForm.innerHTML = `
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Reimposta Password</h2>
+                <form id="resetPasswordForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Nuova Password</label>
+                        <input type="password" id="newPassword" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none" placeholder="••••••••" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Conferma Nuova Password</label>
+                        <input type="password" id="newPasswordConfirm" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold text-lg">
+                        <i class="fas fa-lock mr-2"></i>Reimposta Password
+                    </button>
+                </form>
+            `;
+            document.getElementById('loginForm').innerHTML = '';
+            document.getElementById('loginForm').appendChild(newPasswordForm);
+
+            document.getElementById('resetPasswordForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const newPassword = document.getElementById('newPassword').value;
+                const newPasswordConfirm = document.getElementById('newPasswordConfirm').value;
+                if (newPassword !== newPasswordConfirm) {
+                    alert('❌ Le password non corrispondono!');
+                    return;
+                }
+                if (newPassword.length < 6) {
+                    alert('❌ La password deve essere di almeno 6 caratteri!');
+                    return;
+                }
+                try {
+                    const { error } = await supabase.auth.updateUser({ password: newPassword });
+                    if (error) {
+                        alert('❌ Errore: ' + error.message);
+                    } else {
+                        alert('✅ Password aggiornata con successo!');
+                        window.location.href = 'login.html';
+                    }
+                } catch (error) {
+                    alert('❌ Errore di connessione: ' + error.message);
+                }
+            });
+        }
 
         // LOGIN CON SUPABASE
         document.getElementById('loginFormSubmit').addEventListener('submit', async function(e) {
