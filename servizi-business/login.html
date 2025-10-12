@@ -14,17 +14,8 @@
       gtag('config', 'G-9F1LD82S0S');
     </script>
     
-    <!-- Supabase SDK - VERSIONE STABILE -->
-    <script src="https://unpkg.com/@supabase/supabase-js@2.39.0/dist/umd/supabase.js"></script>
-    <script>
-        // Verifica caricamento
-        if (typeof window.supabase === 'undefined') {
-            console.error('❌ Supabase SDK non caricato!');
-            alert('Errore di caricamento. Ricarica la pagina.');
-        } else {
-            console.log('✅ Supabase SDK caricato');
-        }
-    </script>
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-config.js"></script>
     
     <script src="https://cdn.tailwindcss.com"></script>
