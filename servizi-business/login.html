@@ -322,18 +322,21 @@
             }
         });
 
-        // Check if already logged in
-        if (typeof supabaseIsLoggedIn === 'function') {
-            supabaseIsLoggedIn().then(isLoggedIn => {
-                if (isLoggedIn) {
-                    if (confirm('Sei già loggato. Vuoi andare al generatore fatture?')) {
-                        window.location.href = 'genera-fatture.html';
+        // Controllo autenticazione all'avvio (eseguito una sola volta)
+        (function checkAuthOnLoad() {
+            if (typeof supabaseIsLoggedIn === 'function') {
+                supabaseIsLoggedIn().then(isLoggedIn => {
+                    if (isLoggedIn && !urlParams.get('reset')) {
+                        const goToDashboard = confirm('Sei già loggato. Vuoi andare al generatore fatture?');
+                        if (goToDashboard) {
+                            window.location.href = 'genera-fatture.html';
+                        }
                     }
-                }
-            }).catch(err => {
-                console.log('Auth check skipped:', err);
-            });
-        }
+                }).catch(err => {
+                    console.log('Auth check skipped:', err);
+                });
+            }
+        })();
 
         // RESET PASSWORD FUNCTION
         async function resetPassword() {
@@ -360,7 +363,6 @@
                 });
                 
                 if (error) {
-                    // Errore specifico
                     if (error.message.includes('Email') || error.message.includes('SMTP')) {
                         alert('⚠️ Sistema email temporaneamente non disponibile.\n\nContatta il supporto: info@servizi-business.com\n\nOppure crea un nuovo account.');
                     } else {
