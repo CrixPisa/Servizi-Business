@@ -278,13 +278,17 @@
         });
 
         // Check if already logged in
-        supabaseIsLoggedIn().then(isLoggedIn => {
-            if (isLoggedIn) {
-                if (confirm('Sei già loggato. Vuoi andare al generatore fatture?')) {
-                    window.location.href = 'genera-fatture.html';
+        if (typeof supabaseIsLoggedIn === 'function') {
+            supabaseIsLoggedIn().then(isLoggedIn => {
+                if (isLoggedIn) {
+                    if (confirm('Sei già loggato. Vuoi andare al generatore fatture?')) {
+                        window.location.href = 'genera-fatture.html';
+                    }
                 }
-            }
-        });
+            }).catch(err => {
+                console.log('Auth check skipped:', err);
+            });
+        }
 
         // RESET PASSWORD FUNCTION
         async function resetPassword() {
