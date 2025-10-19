@@ -1,0 +1,326 @@
+// TRADUZIONI AGGIUNTIVE PER TUTTI I TOOL
+// Da aggiungere al file i18n.js esistente
+
+// ITALIANO (IT) - Chiavi aggiuntive per tool
+const IT_TOOLS = {
+    // Calcolo IVA
+    ivaCalculatorTitle: "Calcolo IVA Online - Calcola l'IVA in un Click",
+    ivaDescription: "Calcola l'IVA su qualsiasi importo con tutte le aliquote italiane",
+    amount: "Importo",
+    vatRate: "Aliquota IVA",
+    calculate: "Calcola",
+    result: "Risultato",
+    amountWithoutVat: "Importo senza IVA",
+    vatAmount: "IVA",
+    amountWithVat: "Importo con IVA",
+    
+    // Calcolo Stipendio
+    salaryCalculatorTitle: "Calcolo Stipendio Netto - Da Lordo a Netto",
+    salaryDescription: "Scopri quanto guadagnerai effettivamente",
+    grossSalary: "Stipendio Lordo Annuale",
+    netSalary: "Stipendio Netto",
+    monthlyNet: "Netto Mensile",
+    yearlyNet: "Netto Annuale",
+    taxes: "Tasse",
+    contributions: "Contributi",
+    
+    // Calcolo TFR
+    tfrCalculatorTitle: "Calcolo TFR - Trattamento di Fine Rapporto",
+    tfrDescription: "Calcola il TFR maturato negli anni",
+    yearsWorked: "Anni Lavorati",
+    tfrAmount: "TFR Maturato",
+    
+    // Calcolo Ritenuta
+    withholdingCalculatorTitle: "Calcolo Ritenuta d'Acconto - 20%",
+    withholdingDescription: "Calcola la ritenuta per professionisti",
+    grossAmount: "Importo Lordo",
+    withholdingAmount: "Ritenuta (20%)",
+    netAmount: "Netto da Incassare",
+    
+    // QR Generator
+    qrGeneratorTitle: "Generatore QR Code Gratuito",
+    qrDescription: "Crea QR code per link, testo, email e altro",
+    qrContent: "Contenuto QR Code",
+    qrType: "Tipo",
+    generateQR: "Genera QR Code",
+    downloadQR: "Scarica QR Code",
+    
+    // Common
+    back: "Indietro",
+    close: "Chiudi",
+    save: "Salva",
+    cancel: "Annulla",
+    confirm: "Conferma",
+    delete: "Elimina",
+    edit: "Modifica",
+    add: "Aggiungi",
+    remove: "Rimuovi",
+    search: "Cerca",
+    filter: "Filtra",
+    sort: "Ordina",
+    export: "Esporta",
+    print: "Stampa",
+    share: "Condividi",
+    copy: "Copia",
+    paste: "Incolla",
+    cut: "Taglia",
+    undo: "Annulla",
+    redo: "Ripeti",
+    selectAll: "Seleziona Tutto",
+    clear: "Pulisci",
+    refresh: "Aggiorna",
+    load: "Carica",
+    loading: "Caricamento...",
+    success: "Operazione completata!",
+    error: "Errore",
+    warning: "Attenzione",
+    info: "Informazione",
+    required: "Obbligatorio",
+    optional: "Opzionale",
+    yes: "Sì",
+    no: "No",
+    ok: "OK",
+    apply: "Applica",
+    submit: "Invia",
+    next: "Avanti",
+    previous: "Indietro",
+    finish: "Fine",
+    skip: "Salta"
+};
+
+// ENGLISH (EN) - Additional keys
+const EN_TOOLS = {
+    // VAT Calculator
+    ivaCalculatorTitle: "VAT Calculator Online - Calculate VAT Instantly",
+    ivaDescription: "Calculate VAT on any amount with all standard rates",
+    amount: "Amount",
+    vatRate: "VAT Rate",
+    calculate: "Calculate",
+    result: "Result",
+    amountWithoutVat: "Amount without VAT",
+    vatAmount: "VAT",
+    amountWithVat: "Amount with VAT",
+    
+    // Salary Calculator
+    salaryCalculatorTitle: "Net Salary Calculator - Gross to Net",
+    salaryDescription: "Find out your actual take-home pay",
+    grossSalary: "Gross Annual Salary",
+    netSalary: "Net Salary",
+    monthlyNet: "Monthly Net",
+    yearlyNet: "Yearly Net",
+    taxes: "Taxes",
+    contributions: "Contributions",
+    
+    // TFR Calculator
+    tfrCalculatorTitle: "Severance Pay Calculator",
+    tfrDescription: "Calculate accrued severance over years",
+    yearsWorked: "Years Worked",
+    tfrAmount: "Severance Amount",
+    
+    // Withholding Calculator
+    withholdingCalculatorTitle: "Withholding Tax Calculator - 20%",
+    withholdingDescription: "Calculate withholding for professionals",
+    grossAmount: "Gross Amount",
+    withholdingAmount: "Withholding (20%)",
+    netAmount: "Net Amount",
+    
+    // QR Generator
+    qrGeneratorTitle: "Free QR Code Generator",
+    qrDescription: "Create QR codes for links, text, email and more",
+    qrContent: "QR Code Content",
+    qrType: "Type",
+    generateQR: "Generate QR Code",
+    downloadQR: "Download QR Code",
+    
+    // Common
+    back: "Back",
+    close: "Close",
+    save: "Save",
+    cancel: "Cancel",
+    confirm: "Confirm",
+    delete: "Delete",
+    edit: "Edit",
+    add: "Add",
+    remove: "Remove",
+    search: "Search",
+    filter: "Filter",
+    sort: "Sort",
+    export: "Export",
+    print: "Print",
+    share: "Share",
+    copy: "Copy",
+    paste: "Paste",
+    cut: "Cut",
+    undo: "Undo",
+    redo: "Redo",
+    selectAll: "Select All",
+    clear: "Clear",
+    refresh: "Refresh",
+    load: "Load",
+    loading: "Loading...",
+    success: "Success!",
+    error: "Error",
+    warning: "Warning",
+    info: "Information",
+    required: "Required",
+    optional: "Optional",
+    yes: "Yes",
+    no: "No",
+    ok: "OK",
+    apply: "Apply",
+    submit: "Submit",
+    next: "Next",
+    previous: "Previous",
+    finish: "Finish",
+    skip: "Skip"
+};
+
+// DEUTSCH (DE)
+const DE_TOOLS = {
+    ivaCalculatorTitle: "MwSt-Rechner Online - MwSt Sofort Berechnen",
+    ivaDescription: "Berechnen Sie die MwSt auf jeden Betrag",
+    amount: "Betrag",
+    vatRate: "MwSt-Satz",
+    calculate: "Berechnen",
+    result: "Ergebnis",
+    amountWithoutVat: "Betrag ohne MwSt",
+    vatAmount: "MwSt",
+    amountWithVat: "Betrag mit MwSt",
+    
+    salaryCalculatorTitle: "Nettogehalt-Rechner - Brutto zu Netto",
+    salaryDescription: "Finden Sie Ihr tatsächliches Gehalt heraus",
+    grossSalary: "Brutto Jahresgehalt",
+    netSalary: "Nettogehalt",
+    monthlyNet: "Monatliches Netto",
+    yearlyNet: "Jährliches Netto",
+    taxes: "Steuern",
+    contributions: "Beiträge",
+    
+    tfrCalculatorTitle: "Abfindungsrechner",
+    tfrDescription: "Berechnen Sie die aufgelaufene Abfindung",
+    yearsWorked: "Arbeitsjahre",
+    tfrAmount: "Abfindungsbetrag",
+    
+    withholdingCalculatorTitle: "Quellensteuer-Rechner - 20%",
+    withholdingDescription: "Quellensteuer für Freiberufler berechnen",
+    grossAmount: "Bruttobetrag",
+    withholdingAmount: "Quellensteuer (20%)",
+    netAmount: "Nettobetrag",
+    
+    qrGeneratorTitle: "Kostenloser QR-Code-Generator",
+    qrDescription: "Erstellen Sie QR-Codes für Links, Text, E-Mail und mehr",
+    qrContent: "QR-Code-Inhalt",
+    qrType: "Typ",
+    generateQR: "QR-Code Erstellen",
+    downloadQR: "QR-Code Herunterladen",
+    
+    back: "Zurück",
+    close: "Schließen",
+    save: "Speichern",
+    cancel: "Abbrechen",
+    loading: "Laden...",
+    success: "Erfolg!",
+    error: "Fehler",
+    yes: "Ja",
+    no: "Nein"
+};
+
+// FRANÇAIS (FR)
+const FR_TOOLS = {
+    ivaCalculatorTitle: "Calculateur TVA En Ligne - Calculez la TVA Instantanément",
+    ivaDescription: "Calculez la TVA sur n'importe quel montant",
+    amount: "Montant",
+    vatRate: "Taux TVA",
+    calculate: "Calculer",
+    result: "Résultat",
+    amountWithoutVat: "Montant HT",
+    vatAmount: "TVA",
+    amountWithVat: "Montant TTC",
+    
+    salaryCalculatorTitle: "Calculateur Salaire Net - Brut à Net",
+    salaryDescription: "Découvrez votre salaire réel",
+    grossSalary: "Salaire Brut Annuel",
+    netSalary: "Salaire Net",
+    monthlyNet: "Net Mensuel",
+    yearlyNet: "Net Annuel",
+    taxes: "Impôts",
+    contributions: "Cotisations",
+    
+    tfrCalculatorTitle: "Calculateur Indemnité",
+    tfrDescription: "Calculez l'indemnité accumulée",
+    yearsWorked: "Années Travaillées",
+    tfrAmount: "Montant Indemnité",
+    
+    withholdingCalculatorTitle: "Calculateur Retenue à la Source - 20%",
+    withholdingDescription: "Calculer la retenue pour professionnels",
+    grossAmount: "Montant Brut",
+    withholdingAmount: "Retenue (20%)",
+    netAmount: "Montant Net",
+    
+    qrGeneratorTitle: "Générateur QR Code Gratuit",
+    qrDescription: "Créez des QR codes pour liens, texte, email et plus",
+    qrContent: "Contenu QR Code",
+    qrType: "Type",
+    generateQR: "Générer QR Code",
+    downloadQR: "Télécharger QR Code",
+    
+    back: "Retour",
+    close: "Fermer",
+    save: "Enregistrer",
+    cancel: "Annuler",
+    loading: "Chargement...",
+    success: "Succès!",
+    error: "Erreur",
+    yes: "Oui",
+    no: "Non"
+};
+
+// ESPAÑOL (ES)
+const ES_TOOLS = {
+    ivaCalculatorTitle: "Calculadora IVA Online - Calcula el IVA al Instante",
+    ivaDescription: "Calcula el IVA sobre cualquier cantidad",
+    amount: "Cantidad",
+    vatRate: "Tasa IVA",
+    calculate: "Calcular",
+    result: "Resultado",
+    amountWithoutVat: "Cantidad sin IVA",
+    vatAmount: "IVA",
+    amountWithVat: "Cantidad con IVA",
+    
+    salaryCalculatorTitle: "Calculadora Salario Neto - Bruto a Neto",
+    salaryDescription: "Descubre tu salario real",
+    grossSalary: "Salario Bruto Anual",
+    netSalary: "Salario Neto",
+    monthlyNet: "Neto Mensual",
+    yearlyNet: "Neto Anual",
+    taxes: "Impuestos",
+    contributions: "Cotizaciones",
+    
+    tfrCalculatorTitle: "Calculadora Indemnización",
+    tfrDescription: "Calcula la indemnización acumulada",
+    yearsWorked: "Años Trabajados",
+    tfrAmount: "Cantidad Indemnización",
+    
+    withholdingCalculatorTitle: "Calculadora Retención IRPF - 20%",
+    withholdingDescription: "Calcular retención para profesionales",
+    grossAmount: "Cantidad Bruta",
+    withholdingAmount: "Retención (20%)",
+    netAmount: "Cantidad Neta",
+    
+    qrGeneratorTitle: "Generador Código QR Gratis",
+    qrDescription: "Crea códigos QR para enlaces, texto, email y más",
+    qrContent: "Contenido Código QR",
+    qrType: "Tipo",
+    generateQR: "Generar Código QR",
+    downloadQR: "Descargar Código QR",
+    
+    back: "Volver",
+    close: "Cerrar",
+    save: "Guardar",
+    cancel: "Cancelar",
+    loading: "Cargando...",
+    success: "¡Éxito!",
+    error: "Error",
+    yes: "Sí",
+    no: "No"
+};

@@ -3,310 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Calcola la ritenuta d'acconto del 20% per professionisti e freelance. Scopri l'importo netto da ricevere e quanto trattenere in fattura.">
-    <meta name="keywords" content="ritenuta d'acconto, calcolo ritenuta 20%, fattura professionista, ritenuta acconto online">
-    <title>Calcolo Ritenuta d'Acconto 20% - Calcolatore Gratuito</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9F1LD82S0S"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-9F1LD82S0S');
-    </script>
+    <meta name="description" content="Calcolatore di Ritenuta Fiscale (Withholding Tax) multi-paese. Calcola la ritenuta per professionisti in Italia, Spagna e altri paesi.">
+    <title>Calcolo Ritenuta Fiscale Multi-Paese</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="tax-systems.js"></script>
+    <script src="i18n.js"></script>
+    <script src="country-selector.js"></script>
 </head>
 <body class="bg-gray-50">
-    <!-- Header -->
-    <header class="bg-white shadow-sm">
+    
+    <header class="bg-white shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between flex-wrap gap-4">
                 <a href="index.html" class="flex items-center space-x-2">
-                    <i class="fas fa-calculator text-blue-600 text-2xl"></i>
+                    <i class="fas fa-receipt text-purple-600 text-2xl"></i>
                     <span class="text-xl font-bold text-gray-800">Servizi Business</span>
                 </a>
-                <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">
-                    <i class="fas fa-home mr-2"></i>Home
-                </a>
+                
+                <div class="flex items-center gap-4">
+                    <div id="headerCountrySelector"></div>
+                    
+                    <div class="flex gap-1 border-l pl-4">
+                        <button class="lang-btn px-3 py-1 rounded text-sm" data-lang="it">IT</button>
+                        <button class="lang-btn px-3 py-1 rounded text-sm" data-lang="en">EN</button>
+                        <button class="lang-btn px-3 py-1 rounded text-sm" data-lang="de">DE</button>
+                    </div>
+                    
+                    <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">
+                        <i class="fas fa-home mr-2"></i><span data-i18n="home">Home</span>
+                    </a>
+                </div>
             </div>
         </nav>
     </header>
 
-    <!-- Main Content -->
     <main class="container mx-auto px-4 py-12">
-        <!-- Breadcrumb -->
-        <div class="mb-6">
-            <a href="index.html" class="text-blue-600 hover:underline">Home</a>
-            <span class="text-gray-400 mx-2">/</span>
-            <span class="text-gray-600">Calcolo Ritenuta d'Acconto</span>
-        </div>
-
         <div class="max-w-4xl mx-auto">
-            <!-- Title -->
+            
             <div class="text-center mb-8">
-                <h1 class="text-4xl font-bold text-gray-800 mb-4">Calcolo Ritenuta d'Acconto</h1>
-                <p class="text-xl text-gray-600">Calcola la ritenuta del 20% per professionisti</p>
+                <h1 class="text-4xl font-bold text-gray-800 mb-4" data-i18n="withholdingCalculatorTitle">Calcolo Ritenuta Fiscale</h1>
+                <p class="text-xl text-gray-600" data-i18n="withholdingCalculatorSubtitle">Calcola la ritenuta per professionisti</p>
+                <div class="mt-4 inline-flex items-center bg-purple-50 px-4 py-2 rounded-lg">
+                    <i class="fas fa-globe mr-2 text-purple-600"></i>
+                    <span class="text-purple-800 font-semibold" id="currentCountryName"></span>
+                </div>
+            </div>
+
+            <!-- Messaggio Non Disponibile -->
+            <div id="notAvailableContainer" class="hidden max-w-2xl mx-auto mt-8 bg-yellow-50 border-l-4 border-yellow-400 p-8 rounded-lg text-center">
+                <i class="fas fa-tools text-4xl text-yellow-500 mb-4"></i>
+                <h2 class="text-2xl font-bold text-yellow-800 mb-2" data-i18n="toolNotAvailableTitle">Strumento Non Disponibile</h2>
+                <p class="text-gray-700" data-i18n="toolNotAvailableText">Questo strumento è attualmente disponibile solo per alcuni paesi. Supporto per altri paesi in arrivo!</p>
             </div>
 
             <!-- Calculator Card -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
-                <!-- Input Section -->
-                <div class="mb-8">
-                    <label class="block text-gray-700 font-semibold mb-2">
-                        Importo Lordo Fattura (€)
-                    </label>
-                    <div class="relative">
-                        <span class="absolute left-4 top-4 text-gray-400 text-xl">€</span>
-                        <input 
-                            type="number" 
-                            id="amount" 
-                            class="w-full pl-10 pr-4 py-4 text-2xl border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none"
-                            placeholder="1000.00"
-                            step="0.01"
-                            min="0"
-                            value="1000"
-                        >
-                    </div>
-                    <p class="text-sm text-gray-500 mt-2">Inserisci l'importo della prestazione (senza IVA se applicabile)</p>
-                </div>
-
-                <!-- Results -->
-                <div class="space-y-4 mb-6">
-                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6">
-                        <div class="grid md:grid-cols-3 gap-6 text-center">
-                            <div>
-                                <div class="text-sm text-gray-600 mb-2">Importo Lordo</div>
-                                <div id="grossAmount" class="text-3xl font-bold text-gray-800">€ 1.000,00</div>
-                            </div>
-                            <div>
-                                <div class="text-sm text-gray-600 mb-2">Ritenuta (20%)</div>
-                                <div id="withholdingAmount" class="text-3xl font-bold text-red-600">€ 200,00</div>
-                            </div>
-                            <div>
-                                <div class="text-sm text-gray-600 mb-2">Netto da Ricevere</div>
-                                <div id="netAmount" class="text-3xl font-bold text-green-600">€ 800,00</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Breakdown -->
-                    <div class="bg-gray-50 rounded-xl p-6">
-                        <h3 class="font-bold text-gray-800 mb-4">
-                            <i class="fas fa-file-invoice text-purple-600 mr-2"></i>Come Indicare in Fattura
-                        </h3>
-                        <div class="space-y-2 text-gray-700">
-                            <div class="flex justify-between py-2 border-b">
-                                <span>Compenso per prestazione professionale</span>
-                                <span id="serviceAmount" class="font-semibold">€ 1.000,00</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b">
-                                <span>IVA 22% (se applicabile)</span>
-                                <span id="vatAmount" class="font-semibold">€ 220,00</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b font-bold">
-                                <span>Totale Fattura</span>
-                                <span id="totalInvoice" class="text-lg">€ 1.220,00</span>
-                            </div>
-                            <div class="flex justify-between py-2 text-red-600">
-                                <span>- Ritenuta d'acconto 20%</span>
-                                <span id="withholdingInvoice" class="font-semibold">€ 200,00</span>
-                            </div>
-                            <div class="flex justify-between py-3 bg-white rounded-lg px-4 mt-2">
-                                <span class="font-bold text-lg">Netto a Pagare</span>
-                                <span id="finalAmount" class="text-2xl font-bold text-green-600">€ 1.020,00</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Toggle IVA -->
-                    <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
-                        <label class="flex items-center cursor-pointer">
-                            <input type="checkbox" id="includeVat" class="mr-3 w-5 h-5" checked>
-                            <span class="text-gray-700">
-                                <strong>Includi IVA 22%</strong> nel calcolo totale fattura
-                            </span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Action Buttons -->
-                <div class="flex gap-4">
-                    <button id="resetBtn" class="flex-1 bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-300 transition">
-                        <i class="fas fa-redo mr-2"></i>Reset
-                    </button>
-                    <button id="copyBtn" class="flex-1 bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
-                        <i class="fas fa-copy mr-2"></i>Copia Dettagli
-                    </button>
-                </div>
-            </div>
-
-            <!-- Info Section -->
-            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">
-                    <i class="fas fa-info-circle text-blue-600 mr-2"></i>Cos'è la Ritenuta d'Acconto?
-                </h2>
+            <div id="calculatorContainer" class="bg-white rounded-2xl shadow-xl p-8 mb-8">
                 
-                <div class="space-y-4 text-gray-700">
-                    <p><strong>La ritenuta d'acconto</strong> è una trattenuta del 20% che il cliente (committente) effettua sul compenso del professionista e versa direttamente all'Erario come anticipo delle imposte dovute dal professionista.</p>
-                    
-                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-6">
-                        <h3 class="font-bold mb-2"><i class="fas fa-users mr-2"></i>Chi la applica?</h3>
-                        <p class="text-sm">La ritenuta si applica quando il committente è:</p>
-                        <ul class="text-sm space-y-1 ml-4 mt-2">
-                            <li>• Impresa / Società</li>
-                            <li>• Professionista con partita IVA</li>
-                            <li>• Ente pubblico</li>
-                            <li>• Associazione</li>
-                        </ul>
-                        <p class="text-sm mt-2"><strong>NON si applica</strong> se il cliente è un privato cittadino.</p>
-                    </div>
-
-                    <div class="bg-green-50 p-4 rounded-lg">
-                        <h3 class="font-bold text-green-800 mb-2">Come Funziona?</h3>
-                        <ol class="text-sm space-y-2 ml-4">
-                            <li><strong>1.</strong> Emetti fattura con ritenuta indicata</li>
-                            <li><strong>2.</strong> Il cliente ti paga il netto (80% del compenso)</li>
-                            <li><strong>3.</strong> Il cliente versa il 20% all'Agenzia delle Entrate</li>
-                            <li><strong>4.</strong> Recuperi la ritenuta in dichiarazione dei redditi</li>
-                        </ol>
-                    </div>
-
-                    <div class="bg-blue-50 p-4 rounded-lg">
-                        <h3 class="font-bold text-blue-800 mb-2"><i class="fas fa-lightbulb mr-2"></i>Esempio Pratico</h3>
-                        <p class="text-sm">Compenso per consulenza: <strong>€ 1.000</strong></p>
-                        <ul class="text-sm space-y-1 ml-4 mt-2">
-                            <li>• Ritenuta 20%: € 200 (versata dal cliente all'Erario)</li>
-                            <li>• Ricevi: € 800</li>
-                            <li>• Se applichi IVA 22%: € 220 (ricevi € 1.020 totale)</li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-purple-50 border-l-4 border-purple-400 p-4 mt-6">
-                        <h3 class="font-bold mb-2"><i class="fas fa-exclamation-circle mr-2"></i>Note Importanti:</h3>
-                        <ul class="text-sm space-y-1">
-                            <li>• La ritenuta NON è un costo aggiuntivo, è un anticipo d'imposta</li>
-                            <li>• Viene recuperata nella dichiarazione dei redditi</li>
-                            <li>• Va sempre indicata in fattura</li>
-                            <li>• Il calcolo è su imponibile (senza IVA)</li>
-                        </ul>
+                <div class="mb-8">
+                    <label class="block text-gray-700 font-semibold mb-2" data-i18n="grossInvoiceAmount">Importo Fattura Lordo (€)</label>
+                    <div class="relative">
+                        <span id="currencySymbol" class="absolute left-4 top-4 text-gray-400 text-xl">€</span>
+                        <input type="number" id="amount" class="w-full pl-10 pr-4 py-4 text-2xl border-2 border-gray-300 rounded-lg focus:border-purple-600 focus:outline-none" placeholder="1000.00" step="0.01" min="0" value="1000">
                     </div>
                 </div>
-            </div>
 
-            <!-- AdSense Placeholder -->
-            <div class="bg-gray-100 border-2 border-dashed border-gray-300 rounded-xl p-8 text-center mb-8">
-                <p class="text-gray-500">
-                    <i class="fas fa-ad text-4xl mb-4 block"></i>
-                    Spazio pubblicitario Google AdSense
-                </p>
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 mb-6">
+                    <div class="grid md:grid-cols-3 gap-6 text-center">
+                        <div>
+                            <div class="text-sm text-gray-600 mb-2" data-i18n="withholdingRate">Aliquota Ritenuta</div>
+                            <div id="rateDisplay" class="text-3xl font-bold text-gray-800">20%</div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-600 mb-2" data-i18n="withholdingAmount">Importo Ritenuta</div>
+                            <div id="withholdingAmount" class="text-3xl font-bold text-purple-600">€ 200.00</div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-600 mb-2" data-i18n="netToReceive">Netto da Incassare</div>
+                            <div id="netAmount" class="text-3xl font-bold text-gray-800">€ 800.00</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 mt-12">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 Servizi Business Italia. Tutti i diritti riservati.</p>
-            <div class="mt-4">
-                <a href="index.html" class="text-gray-400 hover:text-white mx-2">Home</a>
-                <a href="#" class="text-gray-400 hover:text-white mx-2">Privacy</a>
-                <a href="#" class="text-gray-400 hover:text-white mx-2">Contatti</a>
-            </div>
-        </div>
-    </footer>
+    <style>
+        .lang-btn {
+            background: #f3f4f6;
+            color: #6b7280;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background: #3b82f6;
+            color: white;
+        }
+    </style>
 
-    <!-- JavaScript -->
     <script>
+        let currentCountryCode = 'it';
+
         const elements = {
+            currentCountryName: document.getElementById('currentCountryName'),
+            calculatorContainer: document.getElementById('calculatorContainer'),
+            notAvailableContainer: document.getElementById('notAvailableContainer'),
             amount: document.getElementById('amount'),
-            includeVat: document.getElementById('includeVat'),
-            grossAmount: document.getElementById('grossAmount'),
+            currencySymbol: document.getElementById('currencySymbol'),
+            rateDisplay: document.getElementById('rateDisplay'),
             withholdingAmount: document.getElementById('withholdingAmount'),
-            netAmount: document.getElementById('netAmount'),
-            serviceAmount: document.getElementById('serviceAmount'),
-            vatAmount: document.getElementById('vatAmount'),
-            totalInvoice: document.getElementById('totalInvoice'),
-            withholdingInvoice: document.getElementById('withholdingInvoice'),
-            finalAmount: document.getElementById('finalAmount'),
-            resetBtn: document.getElementById('resetBtn'),
-            copyBtn: document.getElementById('copyBtn')
+            netAmount: document.getElementById('netAmount')
         };
 
+        document.addEventListener('DOMContentLoaded', function() {
+            init();
+            setupLanguageButtons();
+        });
+
+        function init() {
+            currentCountryCode = getCurrentCountry();
+            applyLocalizationAndUI(currentCountryCode);
+            addEventListeners();
+        }
+
+        function applyLocalizationAndUI(countryCode) {
+            currentCountryCode = countryCode;
+            const taxSystem = TAX_SYSTEMS[countryCode];
+            if (!taxSystem) return;
+
+            const isAvailable = taxSystem.withholding && taxSystem.withholding.standardRate;
+            
+            elements.calculatorContainer.style.display = isAvailable ? 'block' : 'none';
+            elements.notAvailableContainer.style.display = isAvailable ? 'none' : 'block';
+            elements.currentCountryName.textContent = taxSystem.country;
+
+            if (isAvailable) {
+                elements.currencySymbol.textContent = taxSystem.currencySymbol;
+                calculate();
+            }
+        }
+
         function calculate() {
-            const gross = parseFloat(elements.amount.value) || 0;
-            const includeVat = elements.includeVat.checked;
+            const amount = parseFloat(elements.amount.value) || 0;
+            const taxSystem = TAX_SYSTEMS[currentCountryCode];
+            
+            if (!taxSystem || !taxSystem.withholding) return;
+            
+            const rate = taxSystem.withholding.standardRate;
+            const withholdingValue = amount * (rate / 100);
+            const netValue = amount - withholdingValue;
 
-            // Ritenuta 20%
-            const withholding = gross * 0.20;
-            const net = gross - withholding;
-
-            // IVA 22%
-            const vat = includeVat ? gross * 0.22 : 0;
-            const totalWithVat = gross + vat;
-            const finalNet = totalWithVat - withholding;
-
-            // Update simple results
-            elements.grossAmount.textContent = formatCurrency(gross);
-            elements.withholdingAmount.textContent = formatCurrency(withholding);
-            elements.netAmount.textContent = formatCurrency(net);
-
-            // Update invoice breakdown
-            elements.serviceAmount.textContent = formatCurrency(gross);
-            elements.vatAmount.textContent = formatCurrency(vat);
-            elements.totalInvoice.textContent = formatCurrency(totalWithVat);
-            elements.withholdingInvoice.textContent = formatCurrency(withholding);
-            elements.finalAmount.textContent = formatCurrency(finalNet);
+            elements.rateDisplay.textContent = `${rate}%`;
+            elements.withholdingAmount.textContent = formatCurrency(withholdingValue, taxSystem);
+            elements.netAmount.textContent = formatCurrency(netValue, taxSystem);
         }
 
-        function formatCurrency(value) {
-            return '€ ' + value.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        function formatCurrency(value, taxSystem) {
+            const formattedValue = value.toFixed(2).replace('.', taxSystem.decimalSeparator);
+            return taxSystem.currencyPosition === 'before'
+                ? `${taxSystem.currencySymbol} ${formattedValue}`
+                : `${formattedValue} ${taxSystem.currencySymbol}`;
         }
 
-        function reset() {
-            elements.amount.value = '1000';
-            elements.includeVat.checked = true;
-            calculate();
-        }
-
-        function copy() {
-            const gross = parseFloat(elements.amount.value) || 0;
-            const includeVat = elements.includeVat.checked;
-            const withholding = gross * 0.20;
-            const vat = includeVat ? gross * 0.22 : 0;
-            const total = gross + vat;
-            const finalNet = total - withholding;
-
-            const text = `Calcolo Ritenuta d'Acconto\n\n` +
-                        `Compenso: ${formatCurrency(gross)}\n` +
-                        `IVA 22%: ${formatCurrency(vat)}\n` +
-                        `Totale Fattura: ${formatCurrency(total)}\n` +
-                        `Ritenuta 20%: ${formatCurrency(withholding)}\n` +
-                        `━━━━━━━━━━━━━━━━━━━\n` +
-                        `NETTO A PAGARE: ${formatCurrency(finalNet)}`;
-
-            navigator.clipboard.writeText(text).then(() => {
-                const originalText = elements.copyBtn.innerHTML;
-                elements.copyBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Copiato!';
-                elements.copyBtn.classList.add('bg-green-600');
-                elements.copyBtn.classList.remove('bg-purple-600');
-                
-                setTimeout(() => {
-                    elements.copyBtn.innerHTML = originalText;
-                    elements.copyBtn.classList.remove('bg-green-600');
-                    elements.copyBtn.classList.add('bg-purple-600');
-                }, 2000);
+        function addEventListeners() {
+            elements.amount.addEventListener('input', calculate);
+            
+            window.addEventListener('countryChanged', (e) => {
+                applyLocalizationAndUI(e.detail.country);
             });
         }
 
-        // Event Listeners
-        elements.amount.addEventListener('input', calculate);
-        elements.includeVat.addEventListener('change', calculate);
-        elements.resetBtn.addEventListener('click', reset);
-        elements.copyBtn.addEventListener('click', copy);
-
-        // Initialize
-        calculate();
+        function setupLanguageButtons() {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    setLanguage(this.dataset.lang);
+                });
+            });
+        }
     </script>
 </body>
 </html>

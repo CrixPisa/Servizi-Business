@@ -3,276 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genera Fattura - Servizi Business Italia</title>
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9F1LD82S0S"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-9F1LD82S0S');
-    </script>
-    
-    <!-- Supabase SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase-config.js"></script>
-    
+    <title>Genera Preventivo - Servizi Business</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
-    <script src="dashboard.js"></script>
+    <script src="tax-systems.js"></script>
+    <script src="i18n.js"></script>
+    <script src="country-selector.js"></script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
 </head>
-<body class="bg-gray-50" data-protected="true">
-    <!-- Header -->
-    <header class="bg-white shadow-sm">
+<body class="bg-gray-50">
+    
+    <header class="bg-white shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-                <a href="index.html" class="flex items-center space-x-2">
-                    <i class="fas fa-calculator text-blue-600 text-2xl"></i>
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-file-alt text-green-600 text-2xl"></i>
                     <span class="text-xl font-bold text-gray-800">Servizi Business</span>
-                </a>
-                <div id="userInfo" class="flex items-center gap-4">
-                    <a href="lista-fatture.html" class="text-gray-600 hover:text-blue-600 transition">
-                        <i class="fas fa-list mr-2"></i>Le Mie Fatture
-                    </a>
+                </div>
+                
+                <div class="flex items-center gap-4">
+                    <div id="headerCountrySelector"></div>
+                    
+                    <div class="flex items-center bg-gray-100 rounded-lg p-1">
+                        <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="it">🇮🇹</button>
+                        <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="en">🇺🇸</button>
+                        <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="de">🇩🇪</button>
+                        <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="fr">🇫🇷</button>
+                        <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="es">🇪🇸</button>
+                    </div>
+                    
                     <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">
-                        <i class="fas fa-home mr-2"></i>Home
+                        <i class="fas fa-home mr-2"></i><span data-i18n="home">Home</span>
                     </a>
                 </div>
             </div>
         </nav>
     </header>
 
-    <!-- Main Content -->
+    <!-- AdSense Banner Top -->
+    <div class="container mx-auto px-4 py-4">
+        <div class="max-w-6xl mx-auto">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="horizontal"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </div>
+
     <main class="container mx-auto px-4 py-8">
         <div class="max-w-6xl mx-auto">
-            <!-- Page Title -->
-            <div class="mb-8">
-                <h1 class="text-3xl font-bold text-gray-800 mb-2">Genera Nuova Fattura</h1>
-                <p class="text-gray-600">Compila i dati e genera la tua fattura professionale in PDF</p>
+            <div class="mb-8 text-center">
+                <h1 class="text-3xl font-bold text-gray-800 mb-2" data-i18n="generateQuote">Genera Preventivo</h1>
+                <p class="text-gray-600" data-i18n="generateQuoteDesc">Crea un preventivo professionale in PDF</p>
+                <div class="mt-3 inline-flex items-center bg-green-50 px-4 py-2 rounded-lg">
+                    <i class="fas fa-globe mr-2 text-green-600"></i>
+                    <span class="text-green-800 font-semibold" id="currentCountryName">Italia</span>
+                </div>
             </div>
 
-            <!-- Invoice Form -->
-            <div class="grid lg:grid-cols-3 gap-6">
-                <!-- Form Section (2/3) -->
+            <div id="quoteFormContainer" class="grid lg:grid-cols-3 gap-6">
+                
+                <!-- Colonna 1: Form -->
                 <div class="lg:col-span-2 space-y-6">
                     
-                    <!-- Invoice Header -->
-                    <div class="bg-white rounded-xl shadow-md p-6">
-                        <h2 class="text-xl font-bold text-gray-800 mb-4">
-                            <i class="fas fa-file-invoice text-blue-600 mr-2"></i>Dati Fattura
-                        </h2>
+                    <!-- Dati Preventivo -->
+                    <div class="bg-white rounded-xl shadow p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4" data-i18n="quoteData">Dati Preventivo</h2>
                         <div class="grid md:grid-cols-3 gap-4">
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Numero Fattura *</label>
-                                <input type="text" id="invoiceNumber" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="2025/001" required>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2" data-i18n="quoteNumber">Numero Preventivo</label>
+                                <input type="text" id="quoteNumber" class="w-full px-3 py-2 border rounded-lg" value="PREV-2025/001">
                             </div>
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Data Emissione *</label>
-                                <input type="date" id="invoiceDate" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2" data-i18n="issueDate">Data Emissione</label>
+                                <input type="date" id="issueDate" class="w-full px-3 py-2 border rounded-lg">
                             </div>
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Scadenza</label>
-                                <input type="date" id="dueDate" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <label class="block text-sm font-semibold text-gray-700 mb-2" data-i18n="validityDays">Validità (giorni)</label>
+                                <input type="number" id="validityDays" class="w-full px-3 py-2 border rounded-lg" value="30" min="1">
                             </div>
+                        </div>
+                        <div class="mt-3 text-sm text-gray-600">
+                            <i class="fas fa-info-circle mr-1"></i>
+                            <span>Validità fino al: <strong id="validUntilDate">-</strong></span>
                         </div>
                     </div>
 
-                    <!-- Emittente -->
-                    <div class="bg-white rounded-xl shadow-md p-6">
-                        <div class="flex justify-between items-center mb-4">
-                            <h2 class="text-xl font-bold text-gray-800">
-                                <i class="fas fa-building text-blue-600 mr-2"></i>Dati Emittente
-                            </h2>
-                            <button id="loadCompanyBtn" class="text-sm text-blue-600 hover:text-blue-700">
-                                <i class="fas fa-download mr-1"></i>Carica Salvati
-                            </button>
-                        </div>
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Ragione Sociale / Nome *</label>
-                                <input type="text" id="companyName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Mario Rossi" required>
+                    <!-- Dati Azienda -->
+                    <div class="bg-white rounded-xl shadow p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4" data-i18n="companyData">Dati Azienda</h2>
+                        <div class="space-y-3">
+                            <input type="text" id="companyName" class="w-full px-3 py-2 border rounded-lg" data-i18n-placeholder="companyName">
+                            <input type="text" id="companyVat" class="w-full px-3 py-2 border rounded-lg" data-i18n-placeholder="vatNumber">
+                            <input type="text" id="companyAddress" class="w-full px-3 py-2 border rounded-lg" data-i18n-placeholder="address">
+                            <div class="grid grid-cols-2 gap-3">
+                                <input type="text" id="companyCity" class="w-full px-3 py-2 border rounded-lg" data-i18n-placeholder="city">
+                                <input type="text" id="companyZip" class="w-full px-3 py-2 border rounded-lg" data-i18n-placeholder="zip">
                             </div>
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Partita IVA *</label>
-                                    <input type="text" id="companyVat" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="IT12345678901" required>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Codice Fiscale</label>
-                                    <input type="text" id="companyFiscalCode" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="RSSMRA80A01H501U">
-                                </div>
-                            </div>
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Indirizzo *</label>
-                                    <input type="text" id="companyAddress" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Via Example 123" required>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Città / Provincia *</label>
-                                    <input type="text" id="companyCity" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Roma (RM)" required>
-                                </div>
-                            </div>
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">CAP *</label>
-                                    <input type="text" id="companyZip" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="00100" required>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Telefono</label>
-                                    <input type="tel" id="companyPhone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="06 1234567">
-                                </div>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
-                                <input type="email" id="companyEmail" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="info@example.com">
-                            </div>
+                            <input type="email" id="companyEmail" class="w-full px-3 py-2 border rounded-lg" data-i18n-placeholder="email">
+                            <input type="tel" id="companyPhone" class="w-full px-3 py-2 border rounded-lg" data-i18n-placeholder="phone">
                         </div>
                     </div>
 
-                    <!-- Destinatario -->
-                    <div class="bg-white rounded-xl shadow-md p-6">
-                        <div class="flex justify-between items-center mb-4">
-                            <h2 class="text-xl font-bold text-gray-800">
-                                <i class="fas fa-user text-blue-600 mr-2"></i>Dati Destinatario
-                            </h2>
-                            <button id="loadClientBtn" class="text-sm text-blue-600 hover:text-blue-700">
-                                <i class="fas fa-download mr-1"></i>Carica Salvati
-                            </button>
-                        </div>
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Ragione Sociale / Nome *</label>
-                                <input type="text" id="clientName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Cliente SRL" required>
+                    <!-- AdSense In-Content -->
+                    <div class="bg-gray-50 rounded-xl p-4">
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-XXXXXXXXXX"
+                             data-ad-slot="XXXXXXXXXX"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                    </div>
+
+                    <!-- Dati Cliente -->
+                    <div class="bg-white rounded-xl shadow p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4" data-i18n="clientData">Dati Cliente</h2>
+                        <div class="space-y-3">
+                            <input type="text" id="clientName" class="w-full px-3 py-2 border rounded-lg" data-i18n-placeholder="companyName">
+                            <input type="text" id="clientVat" class="w-full px-3 py-2 border rounded-lg" data-i18n-placeholder="vatNumber">
+                            <input type="text" id="clientAddress" class="w-full px-3 py-2 border rounded-lg" data-i18n-placeholder="address">
+                            <div class="grid grid-cols-2 gap-3">
+                                <input type="text" id="clientCity" class="w-full px-3 py-2 border rounded-lg" data-i18n-placeholder="city">
+                                <input type="text" id="clientZip" class="w-full px-3 py-2 border rounded-lg" data-i18n-placeholder="zip">
                             </div>
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Partita IVA *</label>
-                                    <input type="text" id="clientVat" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="IT98765432100" required>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Codice Fiscale</label>
-                                    <input type="text" id="clientFiscalCode" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="CLNNTL80A01H501U">
-                                </div>
-                            </div>
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Indirizzo *</label>
-                                    <input type="text" id="clientAddress" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Via Cliente 456" required>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Città / Provincia *</label>
-                                    <input type="text" id="clientCity" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Milano (MI)" required>
-                                </div>
-                            </div>
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">CAP *</label>
-                                    <input type="text" id="clientZip" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="20100" required>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Telefono</label>
-                                    <input type="tel" id="clientPhone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="02 7654321">
-                                </div>
-                            </div>
+                            <input type="email" id="clientEmail" class="w-full px-3 py-2 border rounded-lg" data-i18n-placeholder="email">
+                            <input type="tel" id="clientPhone" class="w-full px-3 py-2 border rounded-lg" data-i18n-placeholder="phone">
                         </div>
                     </div>
 
                     <!-- Prodotti/Servizi -->
-                    <div class="bg-white rounded-xl shadow-md p-6">
-                        <h2 class="text-xl font-bold text-gray-800 mb-4">
-                            <i class="fas fa-box text-blue-600 mr-2"></i>Prodotti / Servizi
-                        </h2>
-                        
-                        <div id="itemsContainer" class="space-y-4 mb-4">
-                            <!-- Items will be added here dynamically -->
+                    <div class="bg-white rounded-xl shadow p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4" data-i18n="items">Prodotti / Servizi</h2>
+                        <div id="itemsContainer">
+                            <div class="grid grid-cols-12 gap-2 mb-2 text-sm font-semibold text-gray-600">
+                                <div class="col-span-6" data-i18n="description">Descrizione</div>
+                                <div class="col-span-2" data-i18n="quantity">Quantità</div>
+                                <div class="col-span-3" data-i18n="unitPrice">Prezzo</div>
+                                <div class="col-span-1"></div>
+                            </div>
+                            <div class="item-row grid grid-cols-12 gap-2 mb-2">
+                                <input type="text" class="col-span-6 px-2 py-1 border rounded" data-i18n-placeholder="description">
+                                <input type="number" class="col-span-2 px-2 py-1 border rounded item-qty" value="1" min="0">
+                                <input type="number" class="col-span-3 px-2 py-1 border rounded item-price" value="0" min="0" step="0.01">
+                                <button class="col-span-1 text-red-600 hover:text-red-800" onclick="removeItem(this)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
                         </div>
-
-                        <button id="addItemBtn" class="w-full bg-blue-100 text-blue-700 px-4 py-3 rounded-lg hover:bg-blue-200 transition font-semibold">
-                            <i class="fas fa-plus mr-2"></i>Aggiungi Riga
+                        <button onclick="addItem()" class="mt-3 text-green-600 hover:text-green-800 font-semibold">
+                            <i class="fas fa-plus mr-2"></i><span data-i18n="addRow">Aggiungi Riga</span>
                         </button>
                     </div>
 
-                    <!-- Note e Pagamento -->
-                    <div class="bg-white rounded-xl shadow-md p-6">
-                        <h2 class="text-xl font-bold text-gray-800 mb-4">
-                            <i class="fas fa-sticky-note text-yellow-600 mr-2"></i>Note e Condizioni
-                        </h2>
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Metodo di Pagamento</label>
-                                <select id="paymentMethod" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                    <option value="Bonifico Bancario">Bonifico Bancario</option>
-                                    <option value="Contanti">Contanti</option>
-                                    <option value="Assegno">Assegno</option>
-                                    <option value="PayPal">PayPal</option>
-                                    <option value="Carta di Credito">Carta di Credito</option>
-                                    <option value="RID">RID</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">IBAN (opzionale)</label>
-                                <input type="text" id="iban" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="IT60 X054 2811 1010 0000 0123 456">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Note Aggiuntive</label>
-                                <textarea id="notes" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Inserisci eventuali note..."></textarea>
-                            </div>
-                            <div class="flex items-center">
-                                <input type="checkbox" id="withholding" class="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                                <label for="withholding" class="ml-2 text-sm font-semibold text-gray-700">Applica Ritenuta d'Acconto 20%</label>
-                            </div>
-                        </div>
+                    <!-- Note Aggiuntive -->
+                    <div class="bg-white rounded-xl shadow p-6">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4" data-i18n="additionalNotes">Note Aggiuntive</h2>
+                        <textarea id="notes" rows="4" class="w-full px-3 py-2 border rounded-lg" data-i18n-placeholder="additionalNotes"></textarea>
                     </div>
                 </div>
 
-                <!-- Summary Section (1/3) -->
-                <div class="lg:col-span-1">
-                    <div class="bg-white rounded-xl shadow-md p-6 sticky top-4">
-                        <h2 class="text-xl font-bold text-gray-800 mb-6">Riepilogo</h2>
+                <!-- Colonna 2: Riepilogo + AdSense -->
+                <div class="space-y-6">
+                    
+                    <!-- AdSense Sidebar -->
+                    <div class="bg-gray-50 rounded-xl p-4">
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-XXXXXXXXXX"
+                             data-ad-slot="XXXXXXXXXX"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                    </div>
+
+                    <!-- Riepilogo -->
+                    <div class="bg-white rounded-xl shadow p-6 sticky top-20">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4" data-i18n="summary">Riepilogo</h2>
                         
-                        <div class="space-y-4">
-                            <div class="flex justify-between text-gray-700">
-                                <span>Imponibile:</span>
-                                <span id="subtotal" class="font-semibold">€ 0,00</span>
-                            </div>
-                            <div class="flex justify-between text-gray-700">
-                                <span>IVA:</span>
-                                <span id="vatTotal" class="font-semibold">€ 0,00</span>
-                            </div>
-                            <div class="border-t pt-4 flex justify-between text-lg font-bold">
-                                <span>Totale:</span>
-                                <span id="total" class="text-blue-600">€ 0,00</span>
-                            </div>
-                            <div id="withholdingRow" class="hidden flex justify-between text-red-600">
-                                <span>Ritenuta (20%):</span>
-                                <span id="withholdingAmount" class="font-semibold">-€ 0,00</span>
-                            </div>
-                            <div id="netRow" class="hidden border-t pt-4 flex justify-between text-xl font-bold">
-                                <span>Netto a Pagare:</span>
-                                <span id="netTotal" class="text-green-600">€ 0,00</span>
+                        <!-- Opzione IVA -->
+                        <div class="mb-4 p-3 bg-gray-50 rounded-lg">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" id="includeVat" class="mr-2" checked>
+                                <span class="text-sm font-semibold" data-i18n="includeVat">Includi IVA</span>
+                            </label>
+                            <div id="vatRateSelector" class="mt-2">
+                                <select id="vatRate" class="w-full px-2 py-1 border rounded text-sm"></select>
                             </div>
                         </div>
 
-                        <div class="mt-8 space-y-3">
-                            <button id="generatePDFBtn" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-semibold">
-                                <i class="fas fa-file-pdf mr-2"></i>Genera PDF
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span data-i18n="subtotal">Imponibile:</span>
+                                <span id="subtotalAmount" class="font-bold">€ 0.00</span>
+                            </div>
+                            <div id="vatRow" class="flex justify-between">
+                                <span id="taxTotalLabel">IVA:</span>
+                                <span id="vatAmount" class="font-bold">€ 0.00</span>
+                            </div>
+                            <div class="flex justify-between border-t pt-3">
+                                <span class="text-lg font-bold" data-i18n="totalQuote">Totale:</span>
+                                <span id="totalAmount" class="text-2xl font-bold text-green-600">€ 0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 space-y-2">
+                            <button onclick="generatePDF()" class="w-full bg-green-600 text-white px-4 py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+                                <i class="fas fa-file-pdf mr-2"></i><span data-i18n="generatePDF">Genera PDF</span>
                             </button>
-                            <button id="saveDraftBtn" class="w-full bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 transition font-semibold">
-                                <i class="fas fa-save mr-2"></i>Salva Bozza
+                            <button onclick="sendEmail()" class="w-full bg-blue-600 text-white px-4 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                                <i class="fas fa-envelope mr-2"></i><span data-i18n="sendEmail">Invia via Email</span>
                             </button>
-                            <button id="resetBtn" class="w-full bg-red-100 text-red-700 px-6 py-3 rounded-lg hover:bg-red-200 transition font-semibold">
-                                <i class="fas fa-times mr-2"></i>Cancella Tutto
+                            <button onclick="resetForm()" class="w-full bg-gray-200 text-gray-700 px-4 py-3 rounded-lg font-semibold hover:bg-gray-300 transition">
+                                <i class="fas fa-redo mr-2"></i><span data-i18n="reset">Cancella Tutto</span>
                             </button>
                         </div>
 
-                        <div class="mt-6 p-4 bg-blue-50 rounded-lg">
-                            <p class="text-sm text-blue-800">
-                                <i class="fas fa-info-circle mr-2"></i>
-                                La fattura verrà salvata localmente nel tuo browser e potrai scaricarla in PDF.
-                            </p>
+                        <div class="mt-4 p-3 bg-blue-50 rounded-lg text-xs text-blue-800">
+                            <i class="fas fa-info-circle mr-1"></i>
+                            <span data-i18n="quoteInfo">Il preventivo non ha valore fiscale.</span>
                         </div>
                     </div>
                 </div>
@@ -280,6 +234,183 @@
         </div>
     </main>
 
-    <script src="fatture.js"></script>
+    <!-- AdSense Footer -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-6xl mx-auto">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="horizontal"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </div>
+
+    <style>
+        .lang-btn {
+            background: transparent;
+            color: #6b7280;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background: #3b82f6;
+            color: white;
+        }
+    </style>
+
+    <script>
+        let currentCountryCode = 'it';
+        let currentTaxSystem = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            init();
+            setupLanguageButtons();
+            setDefaultDates();
+            updateValidityDate();
+        });
+
+        function init() {
+            currentCountryCode = getCurrentCountry();
+            currentTaxSystem = TAX_SYSTEMS[currentCountryCode];
+            applyCountrySettings();
+            populateVATRates();
+            calculateTotals();
+            addEventListeners();
+        }
+
+        function applyCountrySettings() {
+            document.getElementById('currentCountryName').textContent = currentTaxSystem.country;
+            document.getElementById('taxTotalLabel').textContent = currentTaxSystem.vat.name + ':';
+        }
+
+        function populateVATRates() {
+            const rates = currentTaxSystem.vat.rates;
+            const select = document.getElementById('vatRate');
+            select.innerHTML = '';
+            rates.forEach((rate, index) => {
+                const option = document.createElement('option');
+                option.value = rate.value;
+                option.textContent = `${rate.value}% - ${t(rate.labelKey)}`;
+                if (index === 0) option.selected = true;
+                select.appendChild(option);
+            });
+        }
+
+        function setDefaultDates() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('issueDate').value = today;
+        }
+
+        function updateValidityDate() {
+            const issueDate = document.getElementById('issueDate').value;
+            const validityDays = parseInt(document.getElementById('validityDays').value) || 30;
+            
+            if (issueDate) {
+                const validUntil = new Date(issueDate);
+                validUntil.setDate(validUntil.getDate() + validityDays);
+                
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('validUntilDate').textContent = validUntil.toLocaleDateString('it-IT', options);
+            }
+        }
+
+        function addItem() {
+            const container = document.getElementById('itemsContainer');
+            const newRow = document.querySelector('.item-row').cloneNode(true);
+            newRow.querySelectorAll('input').forEach(input => {
+                if (input.classList.contains('item-qty')) input.value = '1';
+                else if (input.classList.contains('item-price')) input.value = '0';
+                else input.value = '';
+            });
+            container.appendChild(newRow);
+            calculateTotals();
+        }
+
+        function removeItem(button) {
+            const rows = document.querySelectorAll('.item-row');
+            if (rows.length > 1) {
+                button.closest('.item-row').remove();
+                calculateTotals();
+            }
+        }
+
+        function calculateTotals() {
+            let subtotal = 0;
+
+            document.querySelectorAll('.item-row').forEach(row => {
+                const qty = parseFloat(row.querySelector('.item-qty').value) || 0;
+                const price = parseFloat(row.querySelector('.item-price').value) || 0;
+                subtotal += qty * price;
+            });
+
+            const includeVat = document.getElementById('includeVat').checked;
+            const vatRate = parseFloat(document.getElementById('vatRate').value) || 0;
+            const vatAmount = includeVat ? subtotal * (vatRate / 100) : 0;
+            const total = subtotal + vatAmount;
+
+            document.getElementById('subtotalAmount').textContent = formatCurrency(subtotal);
+            document.getElementById('vatAmount').textContent = formatCurrency(vatAmount);
+            document.getElementById('totalAmount').textContent = formatCurrency(total);
+
+            document.getElementById('vatRow').style.display = includeVat ? 'flex' : 'none';
+            document.getElementById('vatRateSelector').style.display = includeVat ? 'block' : 'none';
+        }
+
+        function formatCurrency(value) {
+            const formatted = value.toFixed(2).replace('.', currentTaxSystem.decimalSeparator);
+            return currentTaxSystem.currencyPosition === 'before'
+                ? `${currentTaxSystem.currencySymbol} ${formatted}`
+                : `${formatted} ${currentTaxSystem.currencySymbol}`;
+        }
+
+        function addEventListeners() {
+            document.getElementById('itemsContainer').addEventListener('input', calculateTotals);
+            document.getElementById('includeVat').addEventListener('change', calculateTotals);
+            document.getElementById('vatRate').addEventListener('change', calculateTotals);
+            document.getElementById('issueDate').addEventListener('change', updateValidityDate);
+            document.getElementById('validityDays').addEventListener('input', updateValidityDate);
+            
+            window.addEventListener('countryChanged', (e) => {
+                currentCountryCode = e.detail.country;
+                currentTaxSystem = TAX_SYSTEMS[currentCountryCode];
+                applyCountrySettings();
+                populateVATRates();
+                calculateTotals();
+            });
+        }
+
+        function setupLanguageButtons() {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    setLanguage(this.dataset.lang);
+                    populateVATRates();
+                });
+            });
+        }
+
+        function generatePDF() {
+            alert('Funzionalità PDF in sviluppo. Integra jsPDF qui.');
+        }
+
+        function sendEmail() {
+            const clientEmail = document.getElementById('clientEmail').value;
+            if (!clientEmail) {
+                alert('Inserisci l\'email del cliente!');
+                return;
+            }
+            
+            const subject = encodeURIComponent('Preventivo ' + document.getElementById('quoteNumber').value);
+            const body = encodeURIComponent('Gentile cliente,\n\nIn allegato trova il preventivo richiesto.\n\nCordiali saluti');
+            
+            window.location.href = `mailto:${clientEmail}?subject=${subject}&body=${body}`;
+        }
+
+        function resetForm() {
+            if (confirm('Vuoi davvero cancellare tutti i dati?')) {
+                location.reload();
+            }
+        }
+    </script>
 </body>
 </html>

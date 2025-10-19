@@ -3,174 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Assistente fiscale AI per scadenze IVA, F24, contributi INPS. Calendario adempimenti 2025 per partite IVA.">
-    <title>Assistente Scadenze Fiscali - Servizi Business</title>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9F1LD82S0S"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-9F1LD82S0S');
-    </script>
+    <title>Assistente Scadenze Fiscali - Multi-paese</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="i18n.js"></script>
+    <script src="tax-systems.js"></script>
 </head>
 <body class="bg-gray-50">
     <!-- Header -->
-    <header class="bg-white shadow-sm">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between flex-wrap gap-4">
                 <a href="index.html" class="flex items-center space-x-2">
-                    <i class="fas fa-calculator text-blue-600 text-2xl"></i>
+                    <i class="fas fa-robot text-blue-600 text-2xl"></i>
                     <span class="text-xl font-bold text-gray-800">Servizi Business</span>
                 </a>
-                <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">
-                    <i class="fas fa-home mr-2"></i>Home
+                 <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">
+                    <i class="fas fa-home mr-2"></i><span data-i18n="home">Home</span>
                 </a>
             </div>
         </nav>
     </header>
 
-    <main class="container mx-auto px-4 py-12">
-        <div class="max-w-5xl mx-auto">
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12 max-w-4xl">
+        <div class="bg-white rounded-2xl shadow-xl p-8">
             <!-- Title -->
             <div class="text-center mb-8">
-                <h1 class="text-4xl font-bold text-gray-800 mb-4">
-                    🤖 Assistente Scadenze Fiscali
-                </h1>
-                <p class="text-xl text-gray-600">
-                    Chiedi quando devi pagare IVA, F24, INPS e altri adempimenti
-                </p>
-            </div>
-
-            <!-- Quick Info Cards -->
-            <div class="grid md:grid-cols-3 gap-4 mb-8">
-                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg">
-                    <div class="flex items-center mb-2">
-                        <i class="fas fa-calendar-check text-blue-600 text-2xl mr-3"></i>
-                        <h3 class="font-bold text-gray-800">Oggi</h3>
-                    </div>
-                    <p id="todayDate" class="text-gray-600 text-sm"></p>
-                    <p id="todayDeadline" class="text-blue-800 font-semibold mt-2"></p>
-                </div>
-
-                <div class="bg-orange-50 border-l-4 border-orange-500 p-4 rounded-lg">
-                    <div class="flex items-center mb-2">
-                        <i class="fas fa-exclamation-triangle text-orange-600 text-2xl mr-3"></i>
-                        <h3 class="font-bold text-gray-800">Prossima scadenza</h3>
-                    </div>
-                    <p id="nextDeadline" class="text-orange-800 font-semibold"></p>
-                </div>
-
-                <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-lg">
-                    <div class="flex items-center mb-2">
-                        <i class="fas fa-clock text-green-600 text-2xl mr-3"></i>
-                        <h3 class="font-bold text-gray-800">Questo mese</h3>
-                    </div>
-                    <p id="monthDeadlines" class="text-green-800 font-semibold"></p>
+                <h1 class="text-3xl font-bold text-gray-800 mb-4" data-i18n="fiscalAssistantTitle"></h1>
+                <p class="text-lg text-gray-600" data-i18n="fiscalAssistantSubtitle"></p>
+                <div class="mt-4 inline-flex items-center bg-blue-50 px-4 py-2 rounded-lg">
+                    <i class="fas fa-globe mr-2 text-blue-600"></i>
+                    <span class="text-blue-800 font-semibold" id="currentCountryName"></span>
                 </div>
             </div>
 
-            <!-- Disclaimer -->
-            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 rounded-lg">
-                <p class="text-sm text-gray-700">
-                    ⚠️ <strong>Importante:</strong> Questo assistente fornisce informazioni generiche sulle scadenze fiscali 2025. 
-                    Le date possono variare per situazioni specifiche. Verifica sempre con il tuo commercialista.
-                </p>
+            <!-- Country Selector -->
+            <div class="mb-6">
+                <label for="countrySelector" class="block text-gray-700 font-semibold mb-2">Paese / Country</label>
+                <select id="countrySelector" class="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none appearance-none bg-white"></select>
+            </div>
+            
+            <!-- Chat Interface -->
+            <div class="bg-gray-50 rounded-xl p-6 mb-6 h-96 overflow-y-auto" id="chatContainer">
+                <div class="space-y-4" id="messages"></div>
             </div>
 
-            <div class="grid lg:grid-cols-3 gap-8">
-                <!-- Chat Container -->
-                <div class="lg:col-span-2">
-                    <div class="bg-white rounded-2xl shadow-xl">
-                        <!-- Chat Messages -->
-                        <div id="chatMessages" class="h-[500px] overflow-y-auto p-6 space-y-4">
-                            <!-- Welcome Message -->
-                            <div class="flex items-start space-x-3">
-                                <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white flex-shrink-0">
-                                    <i class="fas fa-robot"></i>
-                                </div>
-                                <div class="bg-blue-50 rounded-lg p-4 max-w-lg">
-                                    <p class="text-gray-800 font-semibold mb-2">👋 Ciao! Sono il tuo assistente per le scadenze fiscali!</p>
-                                    <p class="text-gray-700 text-sm mb-3">Posso aiutarti con:</p>
-                                    <ul class="text-sm text-gray-700 space-y-1">
-                                        <li>📅 Quando pagare l'IVA (mensile/trimestrale)</li>
-                                        <li>💰 Scadenze F24 e acconti</li>
-                                        <li>🏦 Contributi INPS</li>
-                                        <li>📊 Dichiarazioni annuali</li>
-                                        <li>📋 Calendario completo 2025</li>
-                                    </ul>
-                                    <p class="text-gray-800 mt-3">💬 Cosa vuoi sapere?</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Input Area -->
-                        <div class="border-t p-4">
-                            <div class="flex space-x-3">
-                                <input 
-                                    type="text" 
-                                    id="userInput" 
-                                    placeholder="Es: quando devo versare l'IVA?"
-                                    class="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none"
-                                    onkeypress="if(event.key === 'Enter') sendMessage()"
-                                >
-                                <button 
-                                    onclick="sendMessage()"
-                                    class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-semibold"
-                                >
-                                    <i class="fas fa-paper-plane"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick Questions Sidebar -->
-                <div class="space-y-4">
-                    <div class="bg-white rounded-xl shadow-lg p-6">
-                        <h3 class="font-bold text-gray-800 mb-4">
-                            <i class="fas fa-bolt text-yellow-500 mr-2"></i>Domande rapide
-                        </h3>
-                        <div class="space-y-2">
-                            <button onclick="askQuestion('Quando devo versare IVA mensile?')" 
-                                    class="w-full text-left bg-gray-50 hover:bg-blue-50 p-3 rounded-lg transition border border-gray-200 hover:border-blue-300 text-sm">
-                                📅 IVA mensile
-                            </button>
-                            <button onclick="askQuestion('Quando devo versare IVA trimestrale?')" 
-                                    class="w-full text-left bg-gray-50 hover:bg-blue-50 p-3 rounded-lg transition border border-gray-200 hover:border-blue-300 text-sm">
-                                📊 IVA trimestrale
-                            </button>
-                            <button onclick="askQuestion('Quando pago contributi INPS?')" 
-                                    class="w-full text-left bg-gray-50 hover:bg-blue-50 p-3 rounded-lg transition border border-gray-200 hover:border-blue-300 text-sm">
-                                🏦 INPS
-                            </button>
-                            <button onclick="askQuestion('Quando si pagano gli acconti?')" 
-                                    class="w-full text-left bg-gray-50 hover:bg-blue-50 p-3 rounded-lg transition border border-gray-200 hover:border-blue-300 text-sm">
-                                💰 Acconti imposte
-                            </button>
-                            <button onclick="askQuestion('Scadenze dichiarazione redditi?')" 
-                                    class="w-full text-left bg-gray-50 hover:bg-blue-50 p-3 rounded-lg transition border border-gray-200 hover:border-blue-300 text-sm">
-                                📋 Dichiarazione
-                            </button>
-                            <button onclick="askQuestion('Calendario completo 2025')" 
-                                    class="w-full text-left bg-gray-50 hover:bg-blue-50 p-3 rounded-lg transition border border-gray-200 hover:border-blue-300 text-sm">
-                                📅 Calendario 2025
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <!-- Input Form -->
+            <div class="flex space-x-3">
+                <input type="text" id="questionInput" class="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none" data-i18n-placeholder="askQuestionPlaceholder">
+                <button id="sendBtn" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-semibold">
+                    <i class="fas fa-paper-plane mr-2"></i><span data-i18n="sendQuestion"></span>
+                </button>
             </div>
+
+            <!-- Quick Questions -->
+            <div class="mt-6">
+                <p class="text-sm text-gray-600 mb-3" data-i18n="quickQuestions"></p>
+                <div class="flex flex-wrap gap-2" id="quickQuestionsContainer"></div>
+            </div>
+        </div>
+
+        <!-- Warning -->
+        <div class="mt-6 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+            <p class="text-sm text-gray-700" data-i18n="assistantDisclaimer"></p>
         </div>
     </main>
 
-    <footer class="bg-gray-800 text-white py-8 mt-12">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 Servizi Business Italia. Tutti i diritti riservati.</p>
-        </div>
-    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentCountryCode = 'it';
 
-    <script src="assistente-script.js"></script>
+            const elements = {
+                countrySelector: document.getElementById('countrySelector'),
+                currentCountryName: document.getElementById('currentCountryName'),
+                messages: document.getElementById('messages'),
+                chatContainer: document.getElementById('chatContainer'),
+                questionInput: document.getElementById('questionInput'),
+                sendBtn: document.getElementById('sendBtn'),
+                quickQuestionsContainer: document.getElementById('quickQuestionsContainer')
+            };
+
+            function init() {
+                populateCountrySelector();
+                setCountry(currentCountryCode);
+                addEventListeners();
+            }
+
+            function populateCountrySelector() {
+                for (const code in TAX_SYSTEMS) {
+                    const country = TAX_SYSTEMS[code];
+                    const option = document.createElement('option');
+                    option.value = code;
+                    option.textContent = country.country;
+                    elements.countrySelector.appendChild(option);
+                }
+            }
+
+            function setCountry(countryCode) {
+                currentCountryCode = countryCode;
+                const taxSystem = TAX_SYSTEMS[countryCode];
+                if (!taxSystem) return;
+
+                // Aggiorna UI
+                elements.currentCountryName.textContent = taxSystem.country;
+                elements.countrySelector.value = countryCode;
+
+                // Pulisci chat e mostra messaggio di benvenuto
+                elements.messages.innerHTML = '';
+                let welcomeKey = `welcome_${countryCode}`;
+                if (countryCode === 'en') welcomeKey = 'welcome_us'; // Gestione speciale per US
+                addMessage(t(welcomeKey) || t('welcome_it'), 'assistant'); // Usa t() dal nostro i18n.js
+                
+                // Popola domande rapide
+                elements.quickQuestionsContainer.innerHTML = '';
+                if(taxSystem.fiscalDeadlines){
+                    Object.values(taxSystem.fiscalDeadlines).forEach(deadline => {
+                        const button = document.createElement('button');
+                        button.className = 'px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-700 transition';
+                        button.textContent = deadline.label;
+                        button.onclick = () => askQuickQuestion(deadline.label);
+                        elements.quickQuestionsContainer.appendChild(button);
+                    });
+                }
+            }
+            
+            function generateResponse(question) {
+                const taxSystem = TAX_SYSTEMS[currentCountryCode];
+                const q = question.toLowerCase();
+
+                if (taxSystem.fiscalDeadlines) {
+                    for (const key in taxSystem.fiscalDeadlines) {
+                        const deadline = taxSystem.fiscalDeadlines[key];
+                        // Cerca una corrispondenza nelle parole chiave o nel label
+                        if (deadline.keywords.some(kw => q.includes(kw)) || q.includes(deadline.label.toLowerCase())) {
+                            return `${deadline.label}:\n${deadline.details}`;
+                        }
+                    }
+                }
+                return t('assistantDefaultResponse'); // Risposta di default dal nostro i18n.js
+            }
+
+            function sendQuestion() {
+                const question = elements.questionInput.value.trim();
+                if (!question) return;
+                addMessage(question, 'user');
+                elements.questionInput.value = '';
+                setTimeout(() => {
+                    const response = generateResponse(question);
+                    addMessage(response, 'assistant');
+                }, 500);
+            }
+
+            function askQuickQuestion(question) {
+                addMessage(question, 'user');
+                setTimeout(() => {
+                    const response = generateResponse(question);
+                    addMessage(response, 'assistant');
+                }, 500);
+            }
+
+            function addMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'flex items-start space-x-3 animate-fade-in';
+                
+                let iconHtml = sender === 'user'
+                    ? `<div class="bg-gray-200 rounded-full p-2 w-10 h-10 flex items-center justify-center"><i class="fas fa-user text-sm text-gray-600"></i></div>`
+                    : `<div class="bg-blue-600 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center"><i class="fas fa-robot text-sm"></i></div>`;
+                
+                let bubbleClass = sender === 'user' ? 'bg-gray-100' : 'bg-white shadow-sm';
+                
+                messageDiv.innerHTML = `
+                    ${iconHtml}
+                    <div class="${bubbleClass} rounded-lg p-4 max-w-md">
+                        <p class="text-gray-700 whitespace-pre-line">${text}</p>
+                    </div>
+                `;
+                elements.messages.appendChild(messageDiv);
+                elements.chatContainer.scrollTop = elements.chatContainer.scrollHeight;
+            }
+
+            function addEventListeners() {
+                elements.countrySelector.addEventListener('change', (e) => setCountry(e.target.value));
+                elements.sendBtn.addEventListener('click', sendQuestion);
+                elements.questionInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') sendQuestion();
+                });
+            }
+            
+            init();
+        });
+    </script>
+    <style>
+        @keyframes animate-fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: animate-fade-in 0.3s ease-out forwards; }
+    </style>
 </body>
 </html>

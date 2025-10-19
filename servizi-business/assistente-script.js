@@ -1,4 +1,6 @@
-// Assistente Fiscale - JavaScript
+// assistente-script.js ESTESO CON I18N
+// Importa translations da i18n.js (già caricato nel HTML)
+
 const chatMessages = document.getElementById('chatMessages');
 const userInput = document.getElementById('userInput');
 
@@ -37,7 +39,7 @@ if (today.getMonth() === 0 || today.getMonth() === 3 || today.getMonth() === 6 |
 }
 document.getElementById('monthDeadlines').textContent = `${monthCount} scadenze`;
 
-// Responses database
+// Responses database (ITALIAN ONLY - specific to Italian tax system!)
 const responses = {
     iva_mensile: `📊 <strong>IVA MENSILE</strong><br><br>
 <strong>Scadenza:</strong> 16 di ogni mese<br><br>
@@ -216,3 +218,6 @@ O usa i bottoni qui accanto! 👉`;
 }
 
 chatMessages.scrollTop = chatMessages.scrollHeight;
+
+// NOTE: This assistant provides information specific to Italian tax deadlines.
+// The responses remain in Italian as they reference Italian tax codes and regulations.

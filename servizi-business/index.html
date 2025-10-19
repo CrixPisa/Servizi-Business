@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Strumenti gratuiti per professionisti e aziende: calcolo IVA, stipendio netto, fatture elettroniche, preventivi e molto altro.">
     <meta name="keywords" content="calcolo IVA, stipendio netto, fatture elettroniche, preventivi, calcolatori online, partita IVA">
-    <title>Servizi Business Italia - Strumenti Gratuiti per Professionisti</title>
+    <title>Servizi Business - Strumenti Gratuiti per Professionisti</title>
     
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9F1LD82S0S"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -16,25 +16,46 @@
       gtag('config', 'G-9F1LD82S0S');
     </script>
     
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="tax-systems.js"></script>
+    <script src="i18n.js"></script>
+    <script src="country-selector.js"></script>
 </head>
 <body class="bg-gray-50">
+    
     <!-- Header/Navigation -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between flex-wrap gap-4">
                 <div class="flex items-center space-x-2">
                     <i class="fas fa-calculator text-blue-600 text-2xl"></i>
                     <span class="text-xl font-bold text-gray-800">Servizi Business</span>
                 </div>
-                <div class="hidden md:flex space-x-6">
-                    <a href="#servizi" class="text-gray-600 hover:text-blue-600 transition">Servizi</a>
-                    <a href="#calcolatori" class="text-gray-600 hover:text-blue-600 transition">Calcolatori</a>
-                    <a href="#contatti" class="text-gray-600 hover:text-blue-600 transition">Contatti</a>
-                </div>
-                <div id="headerButtons" class="flex items-center gap-3">
-                    <!-- Buttons will be dynamically loaded -->
+                
+                <div class="flex items-center gap-4">
+                    <!-- Country Selector -->
+                    <div id="headerCountrySelector"></div>
+                    
+                    <!-- Language Selector -->
+                    <div class="flex items-center bg-gray-100 rounded-lg p-1">
+                        <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="it">🇮🇹</button>
+                        <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="en">🇺🇸</button>
+                        <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="de">🇩🇪</button>
+                        <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="fr">🇫🇷</button>
+                        <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="es">🇪🇸</button>
+                    </div>
+                    
+                    <div class="hidden md:flex space-x-6">
+                        <a href="#servizi" class="text-gray-600 hover:text-blue-600 transition" data-i18n="features">Servizi</a>
+                        <a href="#calcolatori" class="text-gray-600 hover:text-blue-600 transition" data-i18n="tools">Calcolatori</a>
+                    </div>
+                    
+                    <!-- Auth Buttons Container (dinamico) -->
+                    <div id="authButtonsContainer"></div>
                 </div>
             </div>
         </nav>
@@ -43,19 +64,11 @@
     <!-- Hero Section -->
     <section class="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                Strumenti Gratuiti per il Tuo Business
-            </h1>
-            <p class="text-xl md:text-2xl mb-8 text-blue-100">
-                Calcolatori, generatori di documenti e molto altro. Tutto gratis.
-            </p>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6" data-i18n="heroTitle">Strumenti Gratuiti per il Tuo Business</h1>
+            <p class="text-xl md:text-2xl mb-8 text-blue-100" data-i18n="heroSubtitle">Calcolatori, generatori di documenti e molto altro. Tutto gratis.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#calcolatori" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition text-lg">
-                    Inizia Subito
-                </a>
-                <a href="#servizi" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition text-lg">
-                    Scopri di Più
-                </a>
+                <a href="#calcolatori" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition text-lg" data-i18n="ctaStart">Inizia Subito</a>
+                <a href="#servizi" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition text-lg" data-i18n="ctaLearnMore">Scopri di Più</a>
             </div>
         </div>
     </section>
@@ -66,37 +79,31 @@
             <div class="grid md:grid-cols-3 gap-8 text-center">
                 <div>
                     <div class="text-4xl font-bold text-blue-600 mb-2">10+</div>
-                    <div class="text-gray-600">Strumenti Gratuiti</div>
+                    <div class="text-gray-600" data-i18n="statsTools">Strumenti Gratuiti</div>
                 </div>
                 <div>
                     <div class="text-4xl font-bold text-blue-600 mb-2">100%</div>
-                    <div class="text-gray-600">Gratis Forever</div>
+                    <div class="text-gray-600" data-i18n="statsFree">Gratis Forever</div>
                 </div>
                 <div>
                     <div class="text-4xl font-bold text-blue-600 mb-2">24/7</div>
-                    <div class="text-gray-600">Sempre Disponibile</div>
+                    <div class="text-gray-600" data-i18n="statsAvailable">Sempre Disponibile</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- AdSense TOP - Alta visibilità -->
+    <!-- AdSense TOP -->
     <section class="py-8 bg-gray-100">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto">
-                <!-- Google AdSense - Banner Top Homepage -->
-                <!-- SOSTITUISCI ca-pub-XXXXXXXX con il TUO codice AdSense -->
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX"
-                        crossorigin="anonymous"></script>
                 <ins class="adsbygoogle"
                      style="display:block"
-                     data-ad-client="ca-pub-XXXXXXXX"
+                     data-ad-client="ca-pub-XXXXXXXXXX"
                      data-ad-slot="XXXXXXXXXX"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
         </div>
     </section>
@@ -104,12 +111,8 @@
     <!-- Calcolatori Section -->
     <section id="calcolatori" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">
-                Calcolatori Gratuiti
-            </h2>
-            <p class="text-center text-gray-600 mb-12 text-lg">
-                Senza registrazione. Usa subito i nostri calcolatori!
-            </p>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800" data-i18n="freeTools">Calcolatori Gratuiti</h2>
+            <p class="text-center text-gray-600 mb-12 text-lg" data-i18n="freeToolsDesc">Senza registrazione. Usa subito i nostri calcolatori!</p>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Calcolo IVA -->
@@ -117,10 +120,10 @@
                     <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                         <i class="fas fa-percentage text-blue-600 text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">Calcolo IVA</h3>
-                    <p class="text-gray-600 mb-4">Calcola velocemente l'IVA su qualsiasi importo con tutte le aliquote italiane (22%, 10%, 4%, 0%).</p>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800" data-i18n="ivaCalc">Calcolo IVA</h3>
+                    <p class="text-gray-600 mb-4" data-i18n="ivaCalcDesc">Calcola velocemente l'IVA su qualsiasi importo.</p>
                     <span class="text-blue-600 font-semibold inline-flex items-center">
-                        Usa ora <i class="fas fa-arrow-right ml-2"></i>
+                        <span data-i18n="useNow">Usa ora</span> <i class="fas fa-arrow-right ml-2"></i>
                     </span>
                 </a>
 
@@ -129,10 +132,10 @@
                     <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                         <i class="fas fa-money-bill-wave text-green-600 text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">Calcolo Stipendio Netto</h3>
-                    <p class="text-gray-600 mb-4">Scopri quanto guadagnerai effettivamente partendo dallo stipendio lordo annuale.</p>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800" data-i18n="salaryCalc">Calcolo Stipendio Netto</h3>
+                    <p class="text-gray-600 mb-4" data-i18n="salaryCalcDesc">Scopri quanto guadagnerai effettivamente.</p>
                     <span class="text-blue-600 font-semibold inline-flex items-center">
-                        Usa ora <i class="fas fa-arrow-right ml-2"></i>
+                        <span data-i18n="useNow">Usa ora</span> <i class="fas fa-arrow-right ml-2"></i>
                     </span>
                 </a>
 
@@ -141,10 +144,10 @@
                     <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                         <i class="fas fa-receipt text-purple-600 text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">Calcolo Ritenuta d'Acconto</h3>
-                    <p class="text-gray-600 mb-4">Calcola la ritenuta d'acconto del 20% per professionisti e freelance.</p>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800" data-i18n="withholdingCalc">Calcolo Ritenuta d'Acconto</h3>
+                    <p class="text-gray-600 mb-4" data-i18n="withholdingCalcDesc">Calcola la ritenuta per professionisti.</p>
                     <span class="text-blue-600 font-semibold inline-flex items-center">
-                        Usa ora <i class="fas fa-arrow-right ml-2"></i>
+                        <span data-i18n="useNow">Usa ora</span> <i class="fas fa-arrow-right ml-2"></i>
                     </span>
                 </a>
 
@@ -153,29 +156,23 @@
                     <div class="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                         <i class="fas fa-piggy-bank text-orange-600 text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">Calcolo TFR</h3>
-                    <p class="text-gray-600 mb-4">Calcola il tuo Trattamento di Fine Rapporto maturato negli anni di lavoro.</p>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800" data-i18n="tfrCalc">Calcolo TFR</h3>
+                    <p class="text-gray-600 mb-4" data-i18n="tfrCalcDesc">Calcola il tuo TFR maturato.</p>
                     <span class="text-blue-600 font-semibold inline-flex items-center">
-                        Usa ora <i class="fas fa-arrow-right ml-2"></i>
+                        <span data-i18n="useNow">Usa ora</span> <i class="fas fa-arrow-right ml-2"></i>
                     </span>
                 </a>
 
-                <!-- AdSense MID-CONTENT - Massimo engagement -->
+                <!-- AdSense MID-CONTENT -->
                 <div class="col-span-full">
                     <div class="bg-white rounded-xl shadow-md p-6">
-                        <!-- Google AdSense - Native In-Feed -->
-                        <!-- SOSTITUISCI ca-pub-XXXXXXXX con il TUO codice AdSense -->
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX"
-                                crossorigin="anonymous"></script>
                         <ins class="adsbygoogle"
                              style="display:block"
                              data-ad-format="fluid"
                              data-ad-layout-key="-fb+5w+4e-db+86"
-                             data-ad-client="ca-pub-XXXXXXXX"
+                             data-ad-client="ca-pub-XXXXXXXXXX"
                              data-ad-slot="XXXXXXXXXX"></ins>
-                        <script>
-                             (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
+                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                     </div>
                 </div>
 
@@ -184,10 +181,10 @@
                     <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                         <i class="fas fa-calculator text-red-600 text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">Calcolo Tasse Partita IVA</h3>
-                    <p class="text-gray-600 mb-4">Calcola le tasse da pagare con regime forfettario o ordinario.</p>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800" data-i18n="taxCalc">Calcolo Tasse P.IVA</h3>
+                    <p class="text-gray-600 mb-4" data-i18n="taxCalcDesc">Calcola le tasse da pagare.</p>
                     <span class="text-blue-600 font-semibold inline-flex items-center">
-                        Usa ora <i class="fas fa-arrow-right ml-2"></i>
+                        <span data-i18n="useNow">Usa ora</span> <i class="fas fa-arrow-right ml-2"></i>
                     </span>
                 </a>
 
@@ -196,25 +193,10 @@
                     <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                         <i class="fas fa-qrcode text-indigo-600 text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">Generatore QR Code</h3>
-                    <p class="text-gray-600 mb-4">Crea codici QR gratuiti per link, testo, contatti e molto altro.</p>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800" data-i18n="qrGenerator">Generatore QR Code</h3>
+                    <p class="text-gray-600 mb-4" data-i18n="qrGeneratorDesc">Crea codici QR gratuiti.</p>
                     <span class="text-blue-600 font-semibold inline-flex items-center">
-                        Usa ora <i class="fas fa-arrow-right ml-2"></i>
-                    </span>
-                </a>
-
-                <!-- Assistente Fiscale AI - NUOVO -->
-                <a href="assistente-fiscale.html" class="bg-white p-6 rounded-xl shadow-md hover:shadow-2xl transition transform hover:-translate-y-1 relative">
-                    <span class="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse">
-                        NEW! 🔥
-                    </span>
-                    <div class="bg-gradient-to-br from-blue-100 to-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-robot text-blue-600 text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">🤖 Assistente Scadenze Fiscali</h3>
-                    <p class="text-gray-600 mb-4">Chiedi quando versare IVA, F24, INPS e scopri tutte le scadenze 2025.</p>
-                    <span class="text-blue-600 font-semibold inline-flex items-center">
-                        Prova l'AI <i class="fas fa-arrow-right ml-2"></i>
+                        <span data-i18n="useNow">Usa ora</span> <i class="fas fa-arrow-right ml-2"></i>
                     </span>
                 </a>
             </div>
@@ -224,97 +206,120 @@
     <!-- Servizi Premium Section -->
     <section id="servizi" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">
-                Servizi Avanzati
-            </h2>
-            <p class="text-center text-gray-600 mb-12 text-lg">
-                <i class="fas fa-gift text-blue-600 mr-2"></i>Registrati gratuitamente per sbloccare fatture e preventivi
-            </p>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800" data-i18n="premiumServices">Servizi Avanzati</h2>
+            <p class="text-center text-gray-600 mb-12 text-lg" data-i18n="premiumDesc">Crea fatture e preventivi professionali</p>
             
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Fatture -->
                 <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl shadow-lg">
                     <i class="fas fa-file-invoice text-blue-600 text-4xl mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-3 text-gray-800">Generatore Fatture</h3>
-                    <p class="text-gray-700 mb-6">Crea fatture professionali in PDF. Salva clienti e dati azienda per riutilizzo rapido.</p>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800" data-i18n="invoiceGenTitle">Generatore Fatture</h3>
+                    <p class="text-gray-700 mb-6" data-i18n="invoiceGenDesc">Crea fatture professionali in PDF.</p>
                     <ul class="space-y-2 mb-6">
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-600 mt-1 mr-2"></i>
-                            <span>PDF professionale</span>
+                            <span data-i18n="invoiceFeature1">PDF professionale</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-600 mt-1 mr-2"></i>
-                            <span>Storico fatture illimitato</span>
+                            <span data-i18n="invoiceFeature2">Multi-valuta</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-600 mt-1 mr-2"></i>
-                            <span>Salva clienti</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-lock-open text-blue-600 mt-1 mr-2"></i>
-                            <span class="font-semibold text-blue-600">Registrazione richiesta (gratis)</span>
+                            <span data-i18n="invoiceFeature3">Tutti i paesi</span>
                         </li>
                     </ul>
-                    <a href="genera-fatture.html" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition w-full font-semibold text-center block">
-                        Crea Fattura - Gratis
-                    </a>
+                    <a href="genera-fatture.html" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition w-full font-semibold text-center block" data-i18n="createInvoiceFree">Crea Fattura - Gratis</a>
                 </div>
 
                 <!-- Preventivi -->
                 <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-xl shadow-lg">
                     <i class="fas fa-file-alt text-green-600 text-4xl mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-3 text-gray-800">Generatore Preventivi</h3>
-                    <p class="text-gray-700 mb-6">Crea preventivi professionali in PDF. Proponi offerte ai clienti in modo professionale.</p>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-800" data-i18n="quoteGenTitle">Generatore Preventivi</h3>
+                    <p class="text-gray-700 mb-6" data-i18n="quoteGenDesc">Crea preventivi professionali in PDF.</p>
                     <ul class="space-y-2 mb-6">
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-600 mt-1 mr-2"></i>
-                            <span>PDF professionale</span>
+                            <span data-i18n="quoteFeature1">PDF professionale</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-600 mt-1 mr-2"></i>
-                            <span>Validità offerta personalizzabile</span>
+                            <span data-i18n="quoteFeature2">Validità personalizzabile</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-600 mt-1 mr-2"></i>
-                            <span>Salva clienti</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-lock-open text-green-600 mt-1 mr-2"></i>
-                            <span class="font-semibold text-green-600">Registrazione richiesta (gratis)</span>
+                            <span data-i18n="quoteFeature3">Tutti i paesi</span>
                         </li>
                     </ul>
-                    <a href="genera-preventivi.html" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition w-full font-semibold text-center block">
-                        Crea Preventivo - Gratis
-                    </a>
+                    <a href="genera-preventivi.html" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition w-full font-semibold text-center block" data-i18n="createQuoteFree">Crea Preventivo - Gratis</a>
                 </div>
-            </div>
-            
-            <div class="mt-8 text-center">
-                <p class="text-gray-600">
-                    <i class="fas fa-gift text-green-600 mr-2"></i>
-                    Tutti i servizi sono completamente gratuiti!
-                </p>
             </div>
         </div>
     </section>
 
-    <!-- AdSense BOTTOM - Exit traffic -->
-    <section class="py-8 bg-gray-50">
+    <!-- Testimonianze -->
+    <section id="testimonials" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800" data-i18n="testimonialsTitle">Cosa Dicono i Nostri Utenti</h2>
+            <p class="text-center text-gray-600 mb-12 text-lg" data-i18n="testimonialsSubtitle">Migliaia di professionisti si fidano dei nostri strumenti ogni giorno.</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg flex flex-col">
+                    <div class="flex-grow mb-4">
+                        <i class="fas fa-quote-left text-blue-600 text-2xl mb-4"></i>
+                        <p class="text-gray-700 italic" data-i18n="testimonial1Text">"Il generatore di fatture mi ha salvato la vita! Semplice, veloce e professionale."</p>
+                    </div>
+                    <div class="flex items-center mt-4">
+                        <img src="https://i.pravatar.cc/150?u=marco" alt="Marco" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <p class="font-bold text-gray-800" data-i18n="testimonial1Name">Marco Rossi</p>
+                            <p class="text-sm text-gray-600" data-i18n="testimonial1Role">Graphic Designer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg flex flex-col">
+                    <div class="flex-grow mb-4">
+                        <i class="fas fa-quote-left text-blue-600 text-2xl mb-4"></i>
+                        <p class="text-gray-700 italic" data-i18n="testimonial2Text">"Finalmente un sito che raccoglie tutti gli strumenti utili in un unico posto."</p>
+                    </div>
+                    <div class="flex items-center mt-4">
+                        <img src="https://i.pravatar.cc/150?u=giulia" alt="Giulia" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <p class="font-bold text-gray-800" data-i18n="testimonial2Name">Giulia Bianchi</p>
+                            <p class="text-sm text-gray-600" data-i18n="testimonial2Role">Impiegata</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg flex flex-col">
+                    <div class="flex-grow mb-4">
+                        <i class="fas fa-quote-left text-blue-600 text-2xl mb-4"></i>
+                        <p class="text-gray-700 italic" data-i18n="testimonial3Text">"Il tempo è denaro. Servizi Business mi permette di calcolare tutto al volo."</p>
+                    </div>
+                    <div class="flex items-center mt-4">
+                        <img src="https://i.pravatar.cc/150?u=andrea" alt="Andrea" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <p class="font-bold text-gray-800" data-i18n="testimonial3Name">Andrea Ferri</p>
+                            <p class="text-sm text-gray-600" data-i18n="testimonial3Role">Imprenditore</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AdSense BOTTOM -->
+    <section class="py-8 bg-white">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto">
-                <!-- Google AdSense - Banner Bottom -->
-                <!-- SOSTITUISCI ca-pub-XXXXXXXX con il TUO codice AdSense -->
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX"
-                        crossorigin="anonymous"></script>
                 <ins class="adsbygoogle"
                      style="display:block"
-                     data-ad-client="ca-pub-XXXXXXXX"
+                     data-ad-client="ca-pub-XXXXXXXXXX"
                      data-ad-slot="XXXXXXXXXX"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
         </div>
     </section>
@@ -322,15 +327,9 @@
     <!-- CTA Section -->
     <section class="py-16 bg-blue-600 text-white">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                Pronto a Semplificare il Tuo Lavoro?
-            </h2>
-            <p class="text-xl mb-8 text-blue-100">
-                Inizia subito ad usare i nostri strumenti gratuiti!
-            </p>
-            <a href="#calcolatori" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition text-lg inline-block">
-                Esplora i Calcolatori
-            </a>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4" data-i18n="ctaTitle">Pronto a Semplificare il Tuo Lavoro?</h2>
+            <p class="text-xl mb-8 text-blue-100" data-i18n="ctaSubtitle">Inizia subito ad usare i nostri strumenti gratuiti!</p>
+            <a href="#calcolatori" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition text-lg inline-block" data-i18n="ctaButton">Esplora i Calcolatori</a>
         </div>
     </section>
 
@@ -340,40 +339,38 @@
             <div class="grid md:grid-cols-3 gap-8 mb-8">
                 <div>
                     <h4 class="text-xl font-bold mb-4">Servizi Business</h4>
-                    <p class="text-gray-400">Strumenti gratuiti per professionisti e aziende italiane.</p>
+                    <p class="text-gray-400" data-i18n="footerTagline">Strumenti gratuiti per professionisti.</p>
                 </div>
                 <div>
-                    <h4 class="text-xl font-bold mb-4">Link Utili</h4>
+                    <h4 class="text-xl font-bold mb-4" data-i18n="usefulLinks">Link Utili</h4>
                     <ul class="space-y-2">
-                        <li><a href="#calcolatori" class="text-gray-400 hover:text-white transition">Calcolatori</a></li>
-                        <li><a href="#servizi" class="text-gray-400 hover:text-white transition">Servizi</a></li>
-                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
-                        <li><a href="terms.html" class="text-gray-400 hover:text-white transition">Termini di Servizio</a></li>
+                        <li><a href="#calcolatori" class="text-gray-400 hover:text-white transition" data-i18n="calculators">Calcolatori</a></li>
+                        <li><a href="#servizi" class="text-gray-400 hover:text-white transition" data-i18n="services">Servizi</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition" data-i18n="privacy">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-xl font-bold mb-4">Contatti</h4>
-                    <p class="text-gray-400 mb-2">
-                        <i class="fas fa-envelope mr-2"></i> info@servizi-business.com
-                    </p>
-                    <div class="flex space-x-4 mt-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-facebook text-2xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-twitter text-2xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <i class="fab fa-linkedin text-2xl"></i>
-                        </a>
-                    </div>
+                    <h4 class="text-xl font-bold mb-4" data-i18n="contacts">Contatti</h4>
+                    <p class="text-gray-400 mb-2"><i class="fas fa-envelope mr-2"></i> info@servizi-business.com</p>
                 </div>
             </div>
             <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
-                <p>&copy; 2025 Servizi Business Italia. Tutti i diritti riservati.</p>
+                <p>&copy; 2025 Servizi Business. <span data-i18n="allRightsReserved">Tutti i diritti riservati</span>.</p>
             </div>
         </div>
     </footer>
+
+    <style>
+        .lang-btn {
+            background: transparent;
+            color: #6b7280;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background: #3b82f6;
+            color: white;
+        }
+    </style>
 
     <!-- Smooth Scroll -->
     <script>
@@ -386,67 +383,18 @@
                 }
             });
         });
-    </script>
-    
-    <!-- Auth Protection for Premium Services -->
-    <script src="auth.js"></script>
-    <script>
-        // Update header buttons based on login status
-        document.addEventListener('DOMContentLoaded', function() {
-            const currentUser = getCurrentUser();
-            const headerButtons = document.getElementById('headerButtons');
-            
-            if (currentUser) {
-                // User is logged in - show dashboard button and user menu
-                headerButtons.innerHTML = `
-                    <a href="lista-fatture.html" class="text-gray-600 hover:text-blue-600 transition">
-                        <i class="fas fa-tachometer-alt mr-1"></i>Dashboard
-                    </a>
-                    <div class="relative group">
-                        <button class="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-                            <i class="fas fa-user-circle"></i>
-                            <span>${currentUser.name}</span>
-                            <i class="fas fa-chevron-down text-sm"></i>
-                        </button>
-                        <div class="hidden group-hover:block absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 z-50">
-                            <a href="lista-fatture.html" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 transition">
-                                <i class="fas fa-file-invoice mr-2"></i>Le Mie Fatture
-                            </a>
-                            <a href="genera-fatture.html" class="block px-4 py-2 text-gray-800 hover:bg-blue-50 transition">
-                                <i class="fas fa-plus mr-2"></i>Nuova Fattura
-                            </a>
-                            <hr class="my-2">
-                            <button onclick="logout()" class="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 transition">
-                                <i class="fas fa-sign-out-alt mr-2"></i>Esci
-                            </button>
-                        </div>
-                    </div>
-                `;
-            } else {
-                // User is NOT logged in - show login and register buttons
-                headerButtons.innerHTML = `
-                    <a href="login.html" class="text-blue-600 hover:text-blue-700 transition font-semibold">
-                        <i class="fas fa-sign-in-alt mr-1"></i>Accedi
-                    </a>
-                    <a href="login.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-semibold">
-                        <i class="fas fa-user-plus mr-1"></i>Registrati Gratis
-                    </a>
-                `;
-            }
-            
-            // Add protection to all premium service links
-            const protectedLinks = document.querySelectorAll('a[href="genera-fatture.html"], a[href="genera-preventivi.html"]');
-            protectedLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    if (!isLoggedIn()) {
-                        e.preventDefault();
-                        if (confirm('⚠️ Devi registrarti gratuitamente per usare fatture e preventivi!\n\nRegistrazione GRATIS in 30 secondi.\n\nVuoi registrarti ora?')) {
-                            window.location.href = 'login.html';
-                        }
-                    }
-                });
+
+        // Language Buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                setLanguage(this.dataset.lang);
             });
         });
     </script>
+
+    <!-- Auth System Integration -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="auth.js"></script>
 </body>
 </html>
