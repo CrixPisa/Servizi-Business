@@ -24,6 +24,62 @@
     <script src="auth.js"></script>
 </head>
 <body class="bg-gray-50" data-protected="true">
+    
+    <!-- ============================================ -->
+    <!-- PROTEZIONE PAGINA - Sistema Auth -->
+    <!-- ============================================ -->
+    <script>
+    (async function protectPage() {
+        document.body.style.opacity = '0';
+        
+        async function isUserLoggedIn() {
+            const localUser = localStorage.getItem('currentUser');
+            if (localUser) {
+                document.body.style.opacity = '1';
+                return true;
+            }
+            
+            if (typeof supabase !== 'undefined') {
+                try {
+                    const { data: { session } } = await supabase.auth.getSession();
+                    if (session) {
+                        const userData = {
+                            id: session.user.id,
+                            email: session.user.email,
+                            name: session.user.user_metadata?.name || session.user.email.split('@')[0]
+                        };
+                        localStorage.setItem('currentUser', JSON.stringify(userData));
+                        document.body.style.opacity = '1';
+                        return true;
+                    }
+                } catch (error) {
+                    console.warn('Supabase check failed:', error);
+                }
+            }
+            return false;
+        }
+        
+        const isLoggedIn = await isUserLoggedIn();
+        
+        if (!isLoggedIn) {
+            const wantsToRegister = confirm(
+                '⚠️ Devi essere registrato per accedere a questo servizio!\n\n' +
+                '✅ Registrazione GRATUITA in 30 secondi\n' +
+                '✅ Crea fatture e preventivi illimitati\n' +
+                '✅ Dashboard con storico documenti\n\n' +
+                'Vuoi registrarti ora?'
+            );
+            
+            if (wantsToRegister) {
+                window.location.href = 'login.html';
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+    })();
+    </script>
+    <!-- ============================================ -->
+    
     <!-- Header -->
     <header class="bg-white shadow-sm">
         <nav class="container mx-auto px-4 py-4">
