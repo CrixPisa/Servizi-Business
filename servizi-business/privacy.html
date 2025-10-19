@@ -14,6 +14,7 @@
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="i18n.js"></script>
 </head>
 <body class="bg-gray-50">
     <header class="bg-white shadow-sm">
@@ -23,9 +24,21 @@
                     <i class="fas fa-calculator text-blue-600 text-2xl"></i>
                     <span class="text-xl font-bold text-gray-800">Servizi Business</span>
                 </a>
-                <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">
-                    <i class="fas fa-home mr-2"></i>Home
-                </a>
+                
+                <div class="flex items-center gap-4">
+                    <!-- Language Selector -->
+                    <div class="flex items-center bg-gray-100 rounded-lg p-1">
+                        <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="it">🇮🇹</button>
+                        <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="en">🇺🇸</button>
+                        <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="de">🇩🇪</button>
+                        <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="fr">🇫🇷</button>
+                        <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="es">🇪🇸</button>
+                    </div>
+                    
+                    <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">
+                        <i class="fas fa-home mr-2"></i><span data-i18n="home">Home</span>
+                    </a>
+                </div>
             </div>
         </nav>
     </header>
@@ -138,5 +151,26 @@
             </div>
         </div>
     </footer>
+
+    <style>
+        .lang-btn {
+            background: transparent;
+            color: #6b7280;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background: #3b82f6;
+            color: white;
+        }
+    </style>
+
+    <script>
+        // Language selector
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                setLanguage(this.dataset.lang);
+            });
+        });
+    </script>
 </body>
 </html>
