@@ -46,7 +46,14 @@
     <main class="container mx-auto px-4 py-12">
         <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-8">
             <h1 class="text-3xl font-bold text-gray-800 mb-6">Privacy Policy</h1>
-            <p class="text-sm text-gray-600 mb-8">Ultimo aggiornamento: 07 Ottobre 2025</p>
+            <p class="text-sm text-gray-600 mb-8">Ultimo aggiornamento: 21 Ottobre 2025</p>
+
+            <div class="bg-blue-50 border-l-4 border-blue-600 p-6 mb-8 rounded">
+                <p class="text-blue-900">
+                    <strong><i class="fas fa-shield-alt mr-2"></i>Titolare del Trattamento:</strong> Servizi Business - P.IVA IT 02478420504 - Pisa, Italy<br>
+                    <strong><i class="fas fa-envelope mr-2"></i>Email:</strong> info@servizi-business.com
+                </p>
+            </div>
 
             <section class="mb-8">
                 <h2 class="text-2xl font-bold text-gray-800 mb-4">1. Introduzione</h2>
@@ -57,13 +64,19 @@
 
             <section class="mb-8">
                 <h2 class="text-2xl font-bold text-gray-800 mb-4">2. Dati che Raccogliamo</h2>
-                <p class="text-gray-700 mb-4">Quando ti registri raccogliamo:</p>
+                <p class="text-gray-700 mb-4">Quando ti registri o usi i nostri servizi, raccogliamo:</p>
                 <ul class="list-disc list-inside text-gray-700 space-y-2">
-                    <li>Nome e cognome</li>
-                    <li>Indirizzo email</li>
-                    <li>Password (crittografata)</li>
-                    <li>Dati aziendali (opzionali, per fatture)</li>
+                    <li><strong>Dati di registrazione:</strong> Email e password (crittografata)</li>
+                    <li><strong>Dati facoltativi:</strong> Nome, cognome, dati aziendali (solo se li inserisci tu per fatture/preventivi)</li>
+                    <li><strong>Dati di utilizzo:</strong> Informazioni su come usi il sito (tramite Google Analytics)</li>
+                    <li><strong>Cookie pubblicitari:</strong> Google AdSense utilizza cookie per mostrare annunci personalizzati</li>
                 </ul>
+                <div class="mt-4 bg-yellow-50 p-4 rounded border-l-4 border-yellow-400">
+                    <p class="text-yellow-800 text-sm">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        <strong>Nota:</strong> Per usare i calcolatori base NON serve registrazione. La registrazione è richiesta solo per salvare documenti (fatture, preventivi, corrispettivi).
+                    </p>
+                </div>
             </section>
 
             <section class="mb-8">
@@ -78,14 +91,57 @@
             </section>
 
             <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">4. Conservazione Dati</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">4. Conservazione e Sicurezza Dati</h2>
                 <p class="text-gray-700 mb-4">
-                    <strong>Attualmente:</strong> I tuoi dati sono salvati nel cloud tramite Supabase con backup automatici e sicurezza enterprise-grade.
+                    <strong>Dove conserviamo i tuoi dati:</strong> Utilizziamo <strong>Supabase</strong> (infrastruttura cloud conforme GDPR) per archiviare in modo sicuro:
+                </p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 mb-4">
+                    <li>Account utente (email, password crittografata)</li>
+                    <li>Documenti salvati (fatture, preventivi, corrispettivi)</li>
+                    <li>Preferenze e impostazioni</li>
+                </ul>
+                <p class="text-gray-700 mb-4">
+                    <strong>Sicurezza:</strong> Implementiamo:
+                </p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li>Connessioni HTTPS/SSL crittografate</li>
+                    <li>Password crittografate con algoritmi sicuri</li>
+                    <li>Backup automatici giornalieri</li>
+                    <li>Accesso protetto ai server</li>
+                </ul>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">5. Google AdSense - Pubblicità</h2>
+                <div class="bg-orange-50 border-l-4 border-orange-400 p-6 rounded mb-4">
+                    <p class="text-orange-900 mb-3">
+                        <i class="fas fa-ad mr-2"></i>
+                        <strong>Importante:</strong> Utilizziamo Google AdSense per mostrare pubblicità sul sito.
+                    </p>
+                </div>
+                <p class="text-gray-700 mb-4">
+                    <strong>Cosa fa Google AdSense:</strong>
+                </p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 mb-4">
+                    <li>Utilizza cookie per tracciare le tue visite e mostrare annunci personalizzati</li>
+                    <li>Raccoglie informazioni anonime sul tuo comportamento di navigazione</li>
+                    <li>Condivide dati con partner pubblicitari per ottimizzare gli annunci</li>
+                </ul>
+                <p class="text-gray-700 mb-4">
+                    <strong>Come gestire i cookie pubblicitari:</strong>
+                </p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 mb-4">
+                    <li>Puoi disattivare gli annunci personalizzati visitando: <a href="https://www.google.com/settings/ads" class="text-blue-600 hover:underline" target="_blank">Google Ads Settings</a></li>
+                    <li>Puoi disabilitare i cookie dal tuo browser</li>
+                    <li>Puoi usare estensioni browser per bloccare gli annunci</li>
+                </ul>
+                <p class="text-gray-700">
+                    Per maggiori informazioni: <a href="https://policies.google.com/technologies/ads" class="text-blue-600 hover:underline" target="_blank">Come Google utilizza i dati pubblicitari</a>
                 </p>
             </section>
 
             <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">5. Google Analytics</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">6. Google Analytics</h2>
                 <p class="text-gray-700 mb-4">
                     Utilizziamo Google Analytics per analizzare l'utilizzo del sito. Google raccoglie dati anonimi su pagine visitate, durata della visita e dispositivo utilizzato.
                 </p>
@@ -95,7 +151,7 @@
             </section>
 
             <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">6. I Tuoi Diritti (GDPR)</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">7. I Tuoi Diritti (GDPR)</h2>
                 <p class="text-gray-700 mb-4">Hai diritto a:</p>
                 <ul class="list-disc list-inside text-gray-700 space-y-2">
                     <li>Accedere ai tuoi dati personali</li>
@@ -107,24 +163,46 @@
             </section>
 
             <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">7. Cookie</h2>
-                <p class="text-gray-700 mb-4">Utilizziamo cookie per:</p>
-                <ul class="list-disc list-inside text-gray-700 space-y-2">
-                    <li>Mantenere la tua sessione attiva</li>
-                    <li>Ricordare le tue preferenze</li>
-                    <li>Analizzare il traffico del sito</li>
-                </ul>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">8. Cookie</h2>
+                <p class="text-gray-700 mb-4">Utilizziamo diversi tipi di cookie:</p>
+                <div class="space-y-4">
+                    <div class="bg-gray-50 p-4 rounded">
+                        <h3 class="font-bold text-gray-800 mb-2"><i class="fas fa-cookie-bite text-blue-600 mr-2"></i>Cookie Tecnici (Necessari)</h3>
+                        <p class="text-gray-700 text-sm">Essenziali per il funzionamento del sito (es. sessione utente, preferenze lingua)</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded">
+                        <h3 class="font-bold text-gray-800 mb-2"><i class="fas fa-chart-line text-green-600 mr-2"></i>Cookie Analitici (Google Analytics)</h3>
+                        <p class="text-gray-700 text-sm">Per analizzare come usi il sito e migliorare l'esperienza utente</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded">
+                        <h3 class="font-bold text-gray-800 mb-2"><i class="fas fa-ad text-orange-600 mr-2"></i>Cookie Pubblicitari (Google AdSense)</h3>
+                        <p class="text-gray-700 text-sm">Per mostrare annunci pubblicitari personalizzati</p>
+                    </div>
+                </div>
+                <div class="mt-4 bg-blue-50 p-4 rounded border-l-4 border-blue-400">
+                    <p class="text-blue-900 text-sm">
+                        <i class="fas fa-cog mr-2"></i>
+                        Puoi gestire i cookie dalle impostazioni del tuo browser. Nota: Disabilitare i cookie tecnici potrebbe limitare alcune funzionalità del sito.
+                    </p>
+                </div>
             </section>
 
             <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">8. Sicurezza</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">9. Sicurezza</h2>
                 <p class="text-gray-700">
                     Implementiamo misure di sicurezza per proteggere i tuoi dati, inclusa la crittografia SSL/TLS e password criptate. Tuttavia, nessun sistema è completamente sicuro al 100%.
                 </p>
             </section>
 
             <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">9. Contattaci</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">10. Modifiche alla Privacy Policy</h2>
+                <p class="text-gray-700">
+                    Potremmo aggiornare questa Privacy Policy periodicamente. Ti informeremo di eventuali modifiche sostanziali tramite email o con un avviso sul sito.
+                </p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">11. Contattaci</h2>
                 <p class="text-gray-700 mb-4">
                     Per domande sulla privacy o per esercitare i tuoi diritti, contattaci:
                 </p>

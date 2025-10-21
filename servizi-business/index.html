@@ -52,6 +52,7 @@
                     <div class="hidden md:flex space-x-6">
                         <a href="#servizi" class="text-gray-600 hover:text-blue-600 transition" data-i18n="features">Servizi</a>
                         <a href="#calcolatori" class="text-gray-600 hover:text-blue-600 transition" data-i18n="tools">Calcolatori</a>
+                        <a href="chi-siamo.html" class="text-gray-600 hover:text-blue-600 transition" data-i18n="aboutUs">Chi Siamo</a>
                     </div>
                     
                     <!-- Auth Buttons Container (dinamico) -->
@@ -195,6 +196,18 @@
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-gray-800" data-i18n="qrGenerator">Generatore QR Code</h3>
                     <p class="text-gray-600 mb-4" data-i18n="qrGeneratorDesc">Crea codici QR gratuiti.</p>
+                    <span class="text-blue-600 font-semibold inline-flex items-center">
+                        <span data-i18n="useNow">Usa ora</span> <i class="fas fa-arrow-right ml-2"></i>
+                    </span>
+                </a>
+
+                <!-- Corrispettivi Online -->
+                <a href="corrispettivi-online.html" class="bg-white p-6 rounded-xl shadow-md hover:shadow-2xl transition transform hover:-translate-y-1">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-cash-register text-green-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800" data-i18n="corrispettiviCalc">Corrispettivi Online</h3>
+                    <p class="text-gray-600 mb-4" data-i18n="corrispettiviCalcDesc">Gestisci le vendite giornaliere con calcolo IVA automatico.</p>
                     <span class="text-blue-600 font-semibold inline-flex items-center">
                         <span data-i18n="useNow">Usa ora</span> <i class="fas fa-arrow-right ml-2"></i>
                     </span>
@@ -397,5 +410,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-config.js"></script>
     <script src="auth.js"></script>
+    
+    <!-- Cookie Banner GDPR -->
+    <script src="cookie-banner.js"></script>
 </body>
 </html>

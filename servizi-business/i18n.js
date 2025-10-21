@@ -5,6 +5,7 @@ const TRANSLATIONS = {
         home: "Home",
         features: "Servizi",
         tools: "Calcolatori",
+        aboutUs: "Chi Siamo",
         login: "Accedi",
         register: "Registrati",
         logout: "Esci",
@@ -38,6 +39,8 @@ const TRANSLATIONS = {
         taxCalcDesc: "Calcola le tasse da pagare.",
         qrGenerator: "Generatore QR Code",
         qrGeneratorDesc: "Crea codici QR gratuiti.",
+        corrispettiviCalc: "Corrispettivi Online",
+        corrispettiviCalcDesc: "Gestisci le vendite giornaliere con calcolo IVA automatico.",
         myInvoices: "Le Mie Fatture",
         useNow: "Usa ora",
 
@@ -258,6 +261,7 @@ const TRANSLATIONS = {
         home: "Home",
         features: "Services",
         tools: "Tools",
+        aboutUs: "About Us",
         login: "Sign In",
         register: "Sign Up",
         logout: "Logout",
@@ -286,6 +290,8 @@ const TRANSLATIONS = {
         taxCalcDesc: "Calculate taxes to pay.",
         qrGenerator: "QR Code Generator",
         qrGeneratorDesc: "Create free QR codes.",
+        corrispettiviCalc: "Daily Sales",
+        corrispettiviCalcDesc: "Manage daily sales with automatic VAT calculation.",
         useNow: "Use now",
         
         testimonialsTitle: "What Our Users Say",
@@ -469,6 +475,7 @@ const TRANSLATIONS = {
         home: "Startseite",
         features: "Dienste",
         tools: "Werkzeuge",
+        aboutUs: "Über Uns",
         
         heroTitle: "Kostenlose Tools für Ihr Unternehmen",
         heroSubtitle: "Rechner, Dokumentengeneratoren und vieles mehr. Alles kostenlos.",
@@ -487,6 +494,8 @@ const TRANSLATIONS = {
         salaryCalcDesc: "Finden Sie Ihr Nettogehalt heraus.",
         qrGenerator: "QR-Code-Generator",
         qrGeneratorDesc: "Erstellen Sie kostenlose QR-Codes.",
+        corrispettiviCalc: "Tagesverkäufe",
+        corrispettiviCalcDesc: "Verwalten Sie tägliche Verkäufe mit automatischer MwSt-Berechnung.",
         useNow: "Jetzt verwenden",
         
         testimonialsTitle: "Was unsere Nutzer sagen",
@@ -548,6 +557,7 @@ const TRANSLATIONS = {
         home: "Accueil",
         features: "Services",
         tools: "Outils",
+        aboutUs: "À Propos",
         
         heroTitle: "Outils Gratuits pour Votre Entreprise",
         heroSubtitle: "Calculateurs, générateurs de documents et bien plus. Tout gratuit.",
@@ -566,6 +576,8 @@ const TRANSLATIONS = {
         salaryCalcDesc: "Découvrez votre salaire net.",
         qrGenerator: "Générateur QR Code",
         qrGeneratorDesc: "Créez des QR codes gratuits.",
+        corrispettiviCalc: "Ventes Quotidiennes",
+        corrispettiviCalcDesc: "Gérez les ventes quotidiennes avec calcul TVA automatique.",
         useNow: "Utiliser maintenant",
         
         testimonialsTitle: "Ce que disent nos utilisateurs",
@@ -619,6 +631,7 @@ const TRANSLATIONS = {
         home: "Inicio",
         features: "Servicios",
         tools: "Herramientas",
+        aboutUs: "Sobre Nosotros",
         
         heroTitle: "Herramientas Gratuitas para Tu Negocio",
         heroSubtitle: "Calculadoras, generadores de documentos y mucho más. Todo gratis.",
@@ -637,6 +650,8 @@ const TRANSLATIONS = {
         salaryCalcDesc: "Descubre tu salario neto.",
         qrGenerator: "Generador Código QR",
         qrGeneratorDesc: "Crea códigos QR gratis.",
+        corrispettiviCalc: "Ventas Diarias",
+        corrispettiviCalcDesc: "Gestiona ventas diarias con cálculo IVA automático.",
         useNow: "Usar ahora",
         
         testimonialsTitle: "Lo que dicen nuestros usuarios",
