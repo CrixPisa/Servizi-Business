@@ -57,13 +57,16 @@
                 <i class="fas fa-tools text-4xl text-yellow-500 mb-4"></i>
                 <h2 class="text-2xl font-bold text-yellow-800 mb-2" data-i18n="toolNotAvailableTitle">Strumento Non Disponibile</h2>
                 <p class="text-gray-700" data-i18n="toolNotAvailableText">Questo strumento è attualmente disponibile solo per alcuni paesi. Supporto per altri paesi in arrivo!</p>
+                <div class="mt-4 text-sm text-gray-600">
+                    <p><strong>Paesi supportati:</strong> 🇮🇹 Italia, 🇪🇸 Spagna, 🇩🇪 Germania, 🇫🇷 Francia, 🇬🇧 Regno Unito, 🇺🇸 USA, 🇦🇺 Australia</p>
+                </div>
             </div>
 
             <!-- Calculator Card -->
             <div id="calculatorContainer" class="bg-white rounded-2xl shadow-xl p-8 mb-8">
                 
                 <div class="mb-8">
-                    <label class="block text-gray-700 font-semibold mb-2" data-i18n="grossInvoiceAmount">Importo Fattura Lordo (€)</label>
+                    <label class="block text-gray-700 font-semibold mb-2" data-i18n="grossInvoiceAmount">Importo Fattura Lordo</label>
                     <div class="relative">
                         <span id="currencySymbol" class="absolute left-4 top-4 text-gray-400 text-xl">€</span>
                         <input type="number" id="amount" class="w-full pl-10 pr-4 py-4 text-2xl border-2 border-gray-300 rounded-lg focus:border-purple-600 focus:outline-none" placeholder="1000.00" step="0.01" min="0" value="1000">
@@ -84,6 +87,18 @@
                             <div class="text-sm text-gray-600 mb-2" data-i18n="netToReceive">Netto da Incassare</div>
                             <div id="netAmount" class="text-3xl font-bold text-gray-800">€ 800.00</div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Info Box con dettagli paese -->
+                <div class="bg-blue-50 rounded-xl p-6">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        <span id="withholdingInfoTitle">Informazioni Ritenuta d'Acconto</span>
+                    </h3>
+                    <div id="withholdingInfoText" class="text-gray-700 space-y-2 text-sm">
+                        <p>La ritenuta d'acconto è una trattenuta fiscale applicata sui compensi dei professionisti.</p>
+                        <p>In Italia l'aliquota standard è del <strong>20%</strong> per la maggior parte dei professionisti.</p>
                     </div>
                 </div>
             </div>
@@ -113,7 +128,111 @@
             currencySymbol: document.getElementById('currencySymbol'),
             rateDisplay: document.getElementById('rateDisplay'),
             withholdingAmount: document.getElementById('withholdingAmount'),
-            netAmount: document.getElementById('netAmount')
+            netAmount: document.getElementById('netAmount'),
+            withholdingInfoTitle: document.getElementById('withholdingInfoTitle'),
+            withholdingInfoText: document.getElementById('withholdingInfoText')
+        };
+
+        // ✅ INFO PER PAESE
+        const WITHHOLDING_INFO = {
+            it: {
+                title: 'Informazioni Ritenuta d\'Acconto',
+                text: `
+                    <p>La <strong>ritenuta d'acconto</strong> è una trattenuta fiscale applicata sui compensi dei professionisti.</p>
+                    <p>In Italia l'aliquota standard è del <strong>20%</strong> per la maggior parte dei professionisti (medici, avvocati, ingegneri, consulenti, ecc.).</p>
+                    <p class="mt-2"><strong>Come funziona:</strong></p>
+                    <ul class="list-disc ml-6">
+                        <li>Il cliente trattiene il 20% dal compenso lordo</li>
+                        <li>Il professionista riceve l'80% netto</li>
+                        <li>La ritenuta è un acconto sulle imposte finali</li>
+                    </ul>
+                `
+            },
+            es: {
+                title: 'Información Retención IRPF',
+                text: `
+                    <p>La <strong>retención IRPF</strong> es una retención fiscal aplicada sobre las facturas de autónomos y profesionales.</p>
+                    <p>En España el tipo general es del <strong>15%</strong> para la mayoría de actividades profesionales.</p>
+                    <p class="mt-2"><strong>¿Cómo funciona?:</strong></p>
+                    <ul class="list-disc ml-6">
+                        <li>El cliente retiene el 15% del importe facturado</li>
+                        <li>El profesional cobra el 85% neto</li>
+                        <li>La retención es un anticipo del IRPF anual</li>
+                    </ul>
+                `
+            },
+            de: {
+                title: 'Einkommensteuer-Vorauszahlung',
+                text: `
+                    <p>Die <strong>Einkommensteuer-Vorauszahlung</strong> ist eine Steuervorauszahlung für Freiberufler und Selbständige.</p>
+                    <p>In Deutschland beträgt der Standardsatz ca. <strong>25%</strong> des Einkommens als Vorauszahlung.</p>
+                    <p class="mt-2"><strong>Wie funktioniert es:</strong></p>
+                    <ul class="list-disc ml-6">
+                        <li>Quartalsweise Vorauszahlungen ans Finanzamt</li>
+                        <li>Anrechnung auf die Jahressteuerschuld</li>
+                        <li>Endabrechnung bei der Steuererklärung</li>
+                    </ul>
+                `
+            },
+            fr: {
+                title: 'Prélèvement à la source',
+                text: `
+                    <p>Le <strong>prélèvement à la source</strong> est une retenue fiscale appliquée sur les revenus des professionnels.</p>
+                    <p>En France, le taux moyen est d'environ <strong>12%</strong> pour les professions libérales.</p>
+                    <p class="mt-2"><strong>Comment ça marche :</strong></p>
+                    <ul class="list-disc ml-6">
+                        <li>Retenue mensuelle ou trimestrielle</li>
+                        <li>Le professionnel reçoit le montant net</li>
+                        <li>Régularisation lors de la déclaration annuelle</li>
+                    </ul>
+                `
+            },
+            gb: {
+                title: 'Income Tax Withholding',
+                text: `
+                    <p><strong>Income Tax Withholding</strong> is a tax deduction applied to self-employed earnings.</p>
+                    <p>In the UK, the basic rate is <strong>20%</strong> for most self-employed professionals.</p>
+                    <p class="mt-2"><strong>How it works:</strong></p>
+                    <ul class="list-disc ml-6">
+                        <li>Self-assessment tax payments on account</li>
+                        <li>Two payments per year (January and July)</li>
+                        <li>Final adjustment with annual tax return</li>
+                    </ul>
+                `
+            },
+            us: {
+                title: 'Federal Tax Withholding',
+                text: `
+                    <p><strong>Federal Tax Withholding</strong> is a tax deduction applied to contractor payments.</p>
+                    <p>In the US, the standard withholding rate is <strong>24%</strong> for independent contractors (Form 1099).</p>
+                    <p class="mt-2"><strong>How it works:</strong></p>
+                    <ul class="list-disc ml-6">
+                        <li>Quarterly estimated tax payments to IRS</li>
+                        <li>Contractors receive gross payment minus withholding</li>
+                        <li>Final reconciliation with annual tax return</li>
+                    </ul>
+                `
+            },
+            au: {
+                title: 'PAYG Withholding',
+                text: `
+                    <p><strong>PAYG Withholding</strong> (Pay As You Go) is a tax withholding system for contractors.</p>
+                    <p>In Australia, the standard rate is <strong>32.5%</strong> for contractors without an ABN.</p>
+                    <p class="mt-2"><strong>How it works:</strong></p>
+                    <ul class="list-disc ml-6">
+                        <li>Tax withheld from each payment</li>
+                        <li>Quarterly BAS lodgement to ATO</li>
+                        <li>Annual tax return for final adjustment</li>
+                    </ul>
+                `
+            },
+            en: {
+                title: 'Withholding Tax Information',
+                text: `
+                    <p><strong>Withholding tax</strong> is a tax deduction applied to professional fees and services.</p>
+                    <p>The rate varies by country and profession. Contact your local tax authority for specific rates.</p>
+                `
+            }
         };
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -140,6 +259,12 @@
 
             if (isAvailable) {
                 elements.currencySymbol.textContent = taxSystem.currencySymbol;
+                
+                // ✅ Aggiorna info paese
+                const info = WITHHOLDING_INFO[countryCode] || WITHHOLDING_INFO.en;
+                elements.withholdingInfoTitle.textContent = info.title;
+                elements.withholdingInfoText.innerHTML = info.text;
+                
                 calculate();
             }
         }
