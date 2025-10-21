@@ -251,7 +251,7 @@
             const taxSystem = TAX_SYSTEMS[countryCode];
             if (!taxSystem) return;
 
-            const isAvailable = taxSystem.withholding && taxSystem.withholding.standardRate;
+            const isAvailable = taxSystem.withholding && typeof taxSystem.withholding.standardRate === 'number';
             
             elements.calculatorContainer.style.display = isAvailable ? 'block' : 'none';
             elements.notAvailableContainer.style.display = isAvailable ? 'none' : 'block';
