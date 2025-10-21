@@ -1,24 +1,28 @@
-// corrispettivi.js
+// corrispettivi.js - VERSIONE CORRETTA
 // Gestione Corrispettivi Giornalieri
 
 let currentUser = null;
 let currentCountry = 'it';
 let currentTaxSystem = null;
 let vendite = [];
+let salesChart = null;
+let vatChart = null;
 
 // Inizializzazione
 document.addEventListener('DOMContentLoaded', async () => {
     await initApp();
     setupEventListeners();
     setupTabs();
-    loadVendite();
+    await loadVendite();
+    updateCharts();
 });
 
 async function initApp() {
     // Get user session
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) {
-        window.location.href = 'login.html?redirect=corrispettivi.html';
+        const currentUrl = encodeURIComponent(window.location.href);
+        window.location.href = `login.html?redirect=${currentUrl}`;
         return;
     }
     currentUser = session.user;
@@ -27,196 +31,117 @@ async function initApp() {
     currentCountry = getCurrentCountry();
     currentTaxSystem = TAX_SYSTEMS[currentCountry];
     
-    // Setup UI
-    updateCurrencySymbol();
-    setupIVABreakdown();
-    setTodayDate();
+    // Setup years filter
+    setupYearFilter();
     
-    // Setup language buttons
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            setLanguage(this.dataset.lang);
-        });
-    });
+    console.log('✅ App initialized:', { user: currentUser.email, country: currentCountry });
 }
 
-function setTodayDate() {
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('dataVendita').value = today;
-}
-
-function updateCurrencySymbol() {
-    document.getElementById('currencySymbol').textContent = currentTaxSystem.currencySymbol;
-}
-
-function setupIVABreakdown() {
-    const container = document.getElementById('ivaBreakdown');
-    container.innerHTML = '';
+function setupYearFilter() {
+    const yearSelect = document.getElementById('filterYear');
+    const currentYear = new Date().getFullYear();
     
-    currentTaxSystem.vat.rates.forEach((rate, index) => {
-        const rateLabel = t(rate.labelKey) || `Aliquota ${rate.value}%`;
-        
-        const div = document.createElement('div');
-        div.className = 'flex items-center gap-4';
-        div.innerHTML = `
-            <label class="flex-1 font-semibold text-gray-700">${rateLabel} (${rate.value}%)</label>
-            <div class="flex-1 relative">
-                <input type="number" 
-                       step="0.01" 
-                       min="0" 
-                       class="iva-input w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-blue-600 focus:outline-none" 
-                       data-rate="${rate.value}" 
-                       placeholder="0.00">
-                <span class="absolute right-12 top-2.5 text-gray-400">${currentTaxSystem.currencySymbol}</span>
-            </div>
-            <div class="flex-1 text-right text-sm">
-                <span class="text-gray-600">IVA: </span>
-                <span class="iva-amount-${index} font-semibold text-blue-600">0.00 ${currentTaxSystem.currencySymbol}</span>
-            </div>
-        `;
-        container.appendChild(div);
-    });
-    
-    // Add event listeners to all inputs
-    document.querySelectorAll('.iva-input').forEach(input => {
-        input.addEventListener('input', calcolaRiepilogo);
-    });
-}
-
-function calcolaRiepilogo() {
-    let totaleImponibile = 0;
-    let totaleIVA = 0;
-    
-    document.querySelectorAll('.iva-input').forEach((input, index) => {
-        const imponibile = parseFloat(input.value) || 0;
-        const rate = parseFloat(input.dataset.rate);
-        const iva = imponibile * (rate / 100);
-        
-        totaleImponibile += imponibile;
-        totaleIVA += iva;
-        
-        // Update IVA amount display
-        const amountSpan = document.querySelector(`.iva-amount-${index}`);
-        if (amountSpan) {
-            amountSpan.textContent = `${iva.toFixed(2)} ${currentTaxSystem.currencySymbol}`;
-        }
-    });
-    
-    const totaleGenerale = totaleImponibile + totaleIVA;
-    const importoInserito = parseFloat(document.getElementById('importoTotale').value) || 0;
-    const differenza = importoInserito - totaleGenerale;
-    
-    // Update displays
-    document.getElementById('totaleImponibile').textContent = `${currentTaxSystem.currencySymbol} ${totaleImponibile.toFixed(2)}`;
-    document.getElementById('totaleIVA').textContent = `${currentTaxSystem.currencySymbol} ${totaleIVA.toFixed(2)}`;
-    document.getElementById('totaleGenerale').textContent = `${currentTaxSystem.currencySymbol} ${totaleGenerale.toFixed(2)}`;
-    
-    // Show/hide difference alert
-    const diffAlert = document.getElementById('differenzaAlert');
-    if (Math.abs(differenza) > 0.01 && importoInserito > 0) {
-        diffAlert.classList.remove('hidden');
-        document.getElementById('differenzaValue').textContent = `${currentTaxSystem.currencySymbol} ${Math.abs(differenza).toFixed(2)}`;
-    } else {
-        diffAlert.classList.add('hidden');
+    for (let year = currentYear; year >= currentYear - 5; year--) {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearSelect.appendChild(option);
     }
 }
 
 function setupEventListeners() {
     // Form submission
-    document.getElementById('formVendita').addEventListener('submit', salvaVendita);
+    const form = document.getElementById('saleForm');
+    if (form) {
+        form.addEventListener('submit', salvaVendita);
+    }
     
     // Reset button
-    document.getElementById('btnReset').addEventListener('click', resetForm);
+    const resetBtn = document.getElementById('resetForm');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', resetForm);
+    }
     
-    // Import change triggers calculation
-    document.getElementById('importoTotale').addEventListener('input', calcolaRiepilogo);
+    // Input changes for real-time calculation (già gestito nell'HTML)
     
-    // Export buttons
-    document.getElementById('btnExportExcel').addEventListener('click', exportExcel);
-    document.getElementById('btnExportPDF').addEventListener('click', exportPDF);
+    // Filter changes
+    const filterMonth = document.getElementById('filterMonth');
+    const filterYear = document.getElementById('filterYear');
     
-    // View storico button
-    document.getElementById('btnVediStorico').addEventListener('click', () => {
-        switchTab('storico');
-    });
-    
-    // Country changed
-    window.addEventListener('countryChanged', (e) => {
-        currentCountry = e.detail.country;
-        currentTaxSystem = TAX_SYSTEMS[currentCountry];
-        updateCurrencySymbol();
-        setupIVABreakdown();
-    });
+    if (filterMonth) filterMonth.addEventListener('change', applyFilters);
+    if (filterYear) filterYear.addEventListener('change', applyFilters);
 }
 
 function setupTabs() {
-    const tabs = ['tabRegistra', 'tabStorico', 'tabReport'];
+    const tabButtons = document.querySelectorAll('.tab-btn');
     
-    tabs.forEach(tabId => {
-        document.getElementById(tabId).addEventListener('click', () => {
-            const tabName = tabId.replace('tab', '').toLowerCase();
+    tabButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const tabName = this.dataset.tab;
             switchTab(tabName);
         });
     });
 }
 
 function switchTab(tabName) {
+    console.log('Switching to tab:', tabName);
+    
     // Update buttons
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    document.getElementById(`tab${tabName.charAt(0).toUpperCase() + tabName.slice(1)}`).classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.tab === tabName) {
+            btn.classList.add('active');
+        }
+    });
     
     // Update content
-    document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
-    document.getElementById(`content${tabName.charAt(0).toUpperCase() + tabName.slice(1)}`).classList.remove('hidden');
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.add('hidden');
+    });
+    
+    const targetTab = document.getElementById(`tab-${tabName}`);
+    if (targetTab) {
+        targetTab.classList.remove('hidden');
+    }
     
     // Load data if needed
-    if (tabName === 'storico') {
+    if (tabName === 'history') {
         renderStorico();
-    } else if (tabName === 'report') {
-        // Future: generate report
+    } else if (tabName === 'stats') {
+        updateCharts();
+        updateKPIs();
     }
 }
 
 async function salvaVendita(e) {
     e.preventDefault();
     
-    const data = document.getElementById('dataVendita').value;
-    const importoTotale = parseFloat(document.getElementById('importoTotale').value);
-    const note = document.getElementById('noteVendita').value;
+    const data = document.getElementById('saleDate').value;
+    const importoLordo = parseFloat(document.getElementById('saleAmount').value);
+    const aliquotaIVA = parseFloat(document.getElementById('vatRate').value);
+    const descrizione = document.getElementById('saleDescription').value;
     
-    // Get IVA breakdown
-    const ivaBreakdown = [];
-    let totaleImponibile = 0;
-    let totaleIVA = 0;
+    if (!data || !importoLordo || importoLordo <= 0) {
+        alert('⚠️ Compila tutti i campi obbligatori');
+        return;
+    }
     
-    document.querySelectorAll('.iva-input').forEach(input => {
-        const imponibile = parseFloat(input.value) || 0;
-        if (imponibile > 0) {
-            const rate = parseFloat(input.dataset.rate);
-            const iva = imponibile * (rate / 100);
-            
-            ivaBreakdown.push({
-                aliquota: rate,
-                imponibile: imponibile,
-                iva: iva
-            });
-            
-            totaleImponibile += imponibile;
-            totaleIVA += iva;
-        }
-    });
+    // Calcola IVA e imponibile
+    const iva = importoLordo * aliquotaIVA / (100 + aliquotaIVA);
+    const imponibile = importoLordo - iva;
     
     const vendita = {
         data: data,
-        importo_totale: importoTotale,
-        imponibile: totaleImponibile,
-        iva: totaleIVA,
-        breakdown: ivaBreakdown,
-        note: note,
+        importo_totale: importoLordo,
+        imponibile: imponibile,
+        iva: iva,
+        aliquota_iva: aliquotaIVA,
+        descrizione: descrizione,
         country: currentCountry,
-        user_id: currentUser.id,
-        created_at: new Date().toISOString()
+        user_id: currentUser.id
     };
+    
+    console.log('Saving sale:', vendita);
     
     // Save to Supabase
     const { data: saved, error } = await supabase
@@ -225,25 +150,37 @@ async function salvaVendita(e) {
         .select();
     
     if (error) {
-        alert('Errore nel salvare la vendita: ' + error.message);
-        console.error(error);
+        console.error('Save error:', error);
+        alert('❌ Errore nel salvare la vendita: ' + error.message);
         return;
     }
     
+    console.log('✅ Sale saved:', saved);
     alert('✅ Vendita salvata con successo!');
+    
     resetForm();
-    loadVendite();
-    updateRiepilogoOggi();
+    await loadVendite();
+    updateCharts();
+    updateKPIs();
 }
 
 function resetForm() {
-    document.getElementById('formVendita').reset();
-    setTodayDate();
-    document.querySelectorAll('.iva-input').forEach(input => input.value = '');
-    calcolaRiepilogo();
+    document.getElementById('saleForm').reset();
+    
+    // Reset to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('saleDate').value = today;
+    
+    // Reset summary
+    const currencySymbol = currentTaxSystem.currencySymbol;
+    document.getElementById('summaryGross').textContent = `${currencySymbol} 0.00`;
+    document.getElementById('summaryVat').textContent = `${currencySymbol} 0.00`;
+    document.getElementById('summaryNet').textContent = `${currencySymbol} 0.00`;
 }
 
 async function loadVendite() {
+    console.log('Loading sales for user:', currentUser.id);
+    
     const { data, error } = await supabase
         .from('corrispettivi')
         .select('*')
@@ -251,105 +188,281 @@ async function loadVendite() {
         .order('data', { ascending: false });
     
     if (error) {
-        console.error('Errore caricamento vendite:', error);
+        console.error('Load error:', error);
+        alert('❌ Errore nel caricamento: ' + error.message);
         return;
     }
     
     vendite = data || [];
-    updateRiepilogoOggi();
+    console.log(`✅ Loaded ${vendite.length} sales`);
+    
+    renderStorico();
+    updateKPIs();
 }
 
-function updateRiepilogoOggi() {
-    const today = new Date().toISOString().split('T')[0];
-    const venditeOggi = vendite.filter(v => v.data === today);
+function applyFilters() {
+    const month = document.getElementById('filterMonth').value;
+    const year = document.getElementById('filterYear').value;
     
-    const totaleVendite = venditeOggi.length;
-    const totaleIncasso = venditeOggi.reduce((sum, v) => sum + v.importo_totale, 0);
-    const totaleIVA = venditeOggi.reduce((sum, v) => sum + v.iva, 0);
-    
-    document.getElementById('venditeTotali').textContent = totaleVendite;
-    document.getElementById('incassoTotale').textContent = `${currentTaxSystem.currencySymbol} ${totaleIncasso.toFixed(2)}`;
-    document.getElementById('ivaTotale').textContent = `${currentTaxSystem.currencySymbol} ${totaleIVA.toFixed(2)}`;
+    console.log('Applying filters:', { month, year });
+    renderStorico(month, year);
 }
 
-function renderStorico() {
-    const table = document.getElementById('tabellaVendite');
-    const noData = document.getElementById('noDataMessage');
+function renderStorico(filterMonth = '', filterYear = '') {
+    const tbody = document.getElementById('historyTableBody');
     
-    if (vendite.length === 0) {
-        table.innerHTML = '';
-        noData.classList.remove('hidden');
+    // Filter sales
+    let filteredVendite = [...vendite];
+    
+    if (filterMonth) {
+        filteredVendite = filteredVendite.filter(v => {
+            const date = new Date(v.data);
+            return (date.getMonth() + 1) === parseInt(filterMonth);
+        });
+    }
+    
+    if (filterYear) {
+        filteredVendite = filteredVendite.filter(v => {
+            const date = new Date(v.data);
+            return date.getFullYear() === parseInt(filterYear);
+        });
+    }
+    
+    // Calculate totals
+    let totalNet = 0;
+    let totalVat = 0;
+    let totalGross = 0;
+    
+    if (filteredVendite.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="7" class="px-6 py-8 text-center text-gray-500">
+                    <i class="fas fa-inbox text-4xl mb-2"></i>
+                    <p>Nessuna vendita trovata</p>
+                </td>
+            </tr>
+        `;
+    } else {
+        let html = '';
+        
+        filteredVendite.forEach(v => {
+            totalNet += v.imponibile;
+            totalVat += v.iva;
+            totalGross += v.importo_totale;
+            
+            html += `
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap">${formatDate(v.data)}</td>
+                    <td class="px-6 py-4">${v.descrizione || '-'}</td>
+                    <td class="px-6 py-4 text-right">${currentTaxSystem.currencySymbol} ${v.imponibile.toFixed(2)}</td>
+                    <td class="px-6 py-4 text-right">${v.aliquota_iva}%</td>
+                    <td class="px-6 py-4 text-right text-green-600">${currentTaxSystem.currencySymbol} ${v.iva.toFixed(2)}</td>
+                    <td class="px-6 py-4 text-right font-semibold">${currentTaxSystem.currencySymbol} ${v.importo_totale.toFixed(2)}</td>
+                    <td class="px-6 py-4 text-center">
+                        <button onclick="deleteVendita('${v.id}')" class="text-red-600 hover:text-red-800">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        
+        tbody.innerHTML = html;
+    }
+    
+    // Update totals
+    document.getElementById('totalNet').textContent = `${currentTaxSystem.currencySymbol} ${totalNet.toFixed(2)}`;
+    document.getElementById('totalVat').textContent = `${currentTaxSystem.currencySymbol} ${totalVat.toFixed(2)}`;
+    document.getElementById('totalGross').textContent = `${currentTaxSystem.currencySymbol} ${totalGross.toFixed(2)}`;
+}
+
+async function deleteVendita(id) {
+    if (!confirm('Sei sicuro di voler eliminare questa vendita?')) {
         return;
     }
     
-    noData.classList.add('hidden');
+    const { error } = await supabase
+        .from('corrispettivi')
+        .delete()
+        .eq('id', id)
+        .eq('user_id', currentUser.id);
     
-    let html = `
-        <table class="w-full">
-            <thead>
-                <tr class="bg-gray-100 border-b-2 border-gray-300">
-                    <th class="px-4 py-3 text-left font-semibold">Data</th>
-                    <th class="px-4 py-3 text-right font-semibold">Imponibile</th>
-                    <th class="px-4 py-3 text-right font-semibold">IVA</th>
-                    <th class="px-4 py-3 text-right font-semibold">Totale</th>
-                    <th class="px-4 py-3 text-left font-semibold">Note</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
+    if (error) {
+        alert('❌ Errore nell\'eliminazione: ' + error.message);
+        return;
+    }
     
-    vendite.forEach(v => {
-        html += `
-            <tr class="border-b border-gray-200 hover:bg-gray-50">
-                <td class="px-4 py-3">${formatDate(v.data)}</td>
-                <td class="px-4 py-3 text-right">${currentTaxSystem.currencySymbol} ${v.imponibile.toFixed(2)}</td>
-                <td class="px-4 py-3 text-right text-blue-600">${currentTaxSystem.currencySymbol} ${v.iva.toFixed(2)}</td>
-                <td class="px-4 py-3 text-right font-semibold">${currentTaxSystem.currencySymbol} ${v.importo_totale.toFixed(2)}</td>
-                <td class="px-4 py-3 text-gray-600">${v.note || '-'}</td>
-            </tr>
-        `;
-    });
-    
-    html += `
-            </tbody>
-        </table>
-    `;
-    
-    table.innerHTML = html;
+    alert('✅ Vendita eliminata');
+    await loadVendite();
 }
 
 function formatDate(dateStr) {
     const date = new Date(dateStr);
-    return date.toLocaleDateString('it-IT', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    return date.toLocaleDateString('it-IT', { 
+        day: '2-digit', 
+        month: '2-digit', 
+        year: 'numeric' 
+    });
 }
 
-function exportExcel() {
+function updateKPIs() {
+    const totalSales = vendite.length;
+    const revenue = vendite.reduce((sum, v) => sum + v.importo_totale, 0);
+    const average = totalSales > 0 ? revenue / totalSales : 0;
+    const totalVat = vendite.reduce((sum, v) => sum + v.iva, 0);
+    
+    document.getElementById('kpiTotalSales').textContent = totalSales;
+    document.getElementById('kpiRevenue').textContent = `${currentTaxSystem.currencySymbol} ${revenue.toFixed(0)}`;
+    document.getElementById('kpiAverage').textContent = `${currentTaxSystem.currencySymbol} ${average.toFixed(0)}`;
+    document.getElementById('kpiTotalVat').textContent = `${currentTaxSystem.currencySymbol} ${totalVat.toFixed(0)}`;
+}
+
+function updateCharts() {
+    updateSalesChart();
+    updateVatChart();
+}
+
+function updateSalesChart() {
+    // Group by date
+    const salesByDate = {};
+    
+    vendite.forEach(v => {
+        const date = v.data;
+        if (!salesByDate[date]) {
+            salesByDate[date] = 0;
+        }
+        salesByDate[date] += v.importo_totale;
+    });
+    
+    const dates = Object.keys(salesByDate).sort().slice(-30); // Last 30 days
+    const amounts = dates.map(d => salesByDate[d]);
+    
+    const ctx = document.getElementById('salesChart');
+    if (!ctx) return;
+    
+    if (salesChart) {
+        salesChart.destroy();
+    }
+    
+    salesChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: dates.map(d => formatDate(d)),
+            datasets: [{
+                label: 'Vendite',
+                data: amounts,
+                borderColor: '#16a34a',
+                backgroundColor: 'rgba(22, 163, 74, 0.1)',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return currentTaxSystem.currencySymbol + ' ' + value;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function updateVatChart() {
+    // Group by VAT rate
+    const vatByRate = {};
+    
+    vendite.forEach(v => {
+        const rate = v.aliquota_iva;
+        if (!vatByRate[rate]) {
+            vatByRate[rate] = 0;
+        }
+        vatByRate[rate] += v.iva;
+    });
+    
+    const rates = Object.keys(vatByRate);
+    const amounts = Object.values(vatByRate);
+    
+    const ctx = document.getElementById('vatChart');
+    if (!ctx) return;
+    
+    if (vatChart) {
+        vatChart.destroy();
+    }
+    
+    vatChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: rates.map(r => `${r}%`),
+            datasets: [{
+                data: amounts,
+                backgroundColor: [
+                    '#16a34a',
+                    '#3b82f6',
+                    '#f59e0b',
+                    '#ef4444',
+                    '#8b5cf6'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+}
+
+// Export functions
+async function exportToExcel() {
     if (vendite.length === 0) {
-        alert('Nessuna vendita da esportare');
+        alert('⚠️ Nessuna vendita da esportare');
         return;
     }
     
-    // Simple CSV export
-    let csv = 'Data,Imponibile,IVA,Totale,Note\n';
+    let csv = 'Data,Descrizione,Imponibile,IVA %,IVA,Totale\n';
     
     vendite.forEach(v => {
-        csv += `${v.data},${v.imponibile},${v.iva},${v.importo_totale},"${v.note || ''}"\n`;
+        csv += `${v.data},"${v.descrizione || ''}",${v.imponibile},${v.aliquota_iva},${v.iva},${v.importo_totale}\n`;
     });
     
-    // Download
-    const blob = new Blob([csv], { type: 'text/csv' });
+    downloadFile(csv, `corrispettivi_${new Date().toISOString().split('T')[0]}.csv`, 'text/csv');
+    alert('✅ Export Excel completato!');
+}
+
+async function exportToCSV() {
+    exportToExcel(); // Same as Excel
+}
+
+async function exportToPDF() {
+    alert('📄 Export PDF in arrivo! Per ora usa Export Excel/CSV.');
+}
+
+function downloadFile(content, filename, type) {
+    const blob = new Blob([content], { type: type });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `corrispettivi_${new Date().toISOString().split('T')[0]}.csv`;
+    a.download = filename;
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
-    
-    alert('✅ Export completato!');
 }
 
-function exportPDF() {
-    alert('Funzione Export PDF in arrivo! Per ora usa Export Excel.');
-}
-
-console.log('✅ Corrispettivi.js loaded');
+console.log('✅ Corrispettivi.js loaded and ready');
