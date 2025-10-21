@@ -20,7 +20,8 @@ const TAX_SYSTEMS = {
         },
         withholding: {
             name: "Ritenuta d'Acconto",
-            standardRate: 20
+            standardRate: 20,
+            available: true
         },
         salary: {
             available: true,
@@ -45,7 +46,8 @@ const TAX_SYSTEMS = {
         tfr: {
             available: true,
             divisor: 13.5,
-            revaluationRate: 0.015
+            revaluationRate: 0.015,
+            name: "TFR"
         },
         pivaRegimes: {
             available: true
@@ -67,8 +69,9 @@ const TAX_SYSTEMS = {
             ]
         },
         withholding: {
-            name: "Einkommensteuer",
-            standardRate: 25 // Estimated withholding for freelancers (Vorauszahlung)
+            name: "Quellensteuer",
+            standardRate: 0,
+            available: false // Germany doesn't use withholding for freelancers like Italy
         },
         salary: {
             available: true,
@@ -88,9 +91,8 @@ const TAX_SYSTEMS = {
             }
         },
         tfr: {
-            available: true, // Abfindung (severance pay)
-            divisor: 2, // 0.5 months per year standard
-            revaluationRate: 0
+            available: false,
+            name: "N/A" // No TFR equivalent in Germany
         }
     },
 
@@ -112,12 +114,8 @@ const TAX_SYSTEMS = {
         },
         withholding: {
             name: "Prélèvement à la source",
-            standardRate: 12 // Average withholding rate for professionals
-        },
-        tfr: {
-            available: true, // Indemnité de licenciement
-            divisor: 4, // 1/4 month per year
-            revaluationRate: 0
+            standardRate: 0,
+            available: false // France uses "prélèvement à la source" but varies by income
         },
         salary: {
             available: true,
@@ -136,6 +134,10 @@ const TAX_SYSTEMS = {
                 spouse: 0,
                 child1: 0
             }
+        },
+        tfr: {
+            available: false,
+            name: "N/A" // No TFR equivalent in France
         }
     },
 
@@ -156,7 +158,8 @@ const TAX_SYSTEMS = {
         },
         withholding: {
             name: "Retención IRPF",
-            standardRate: 15
+            standardRate: 15,
+            available: true
         },
         salary: {
             available: true,
@@ -178,6 +181,10 @@ const TAX_SYSTEMS = {
                 spouse: 0,
                 child1: 2400
             }
+        },
+        tfr: {
+            available: false,
+            name: "N/A" // Spain has different severance system (Indemnización)
         }
     },
 
@@ -198,12 +205,8 @@ const TAX_SYSTEMS = {
         },
         withholding: {
             name: "Income Tax Withholding",
-            standardRate: 20 // Basic rate for self-employed
-        },
-        tfr: {
-            available: true, // Redundancy Pay
-            divisor: 52, // 1 week per year
-            revaluationRate: 0
+            standardRate: 20,
+            available: true // UK has CIS (Construction Industry Scheme) withholding
         },
         salary: {
             available: true,
@@ -221,6 +224,10 @@ const TAX_SYSTEMS = {
                 spouse: 0,
                 child1: 0
             }
+        },
+        tfr: {
+            available: false,
+            name: "N/A" // UK has statutory redundancy pay instead
         }
     },
 
@@ -241,12 +248,8 @@ const TAX_SYSTEMS = {
         },
         withholding: {
             name: "Federal Tax Withholding",
-            standardRate: 24 // Standard withholding rate for contractors
-        },
-        tfr: {
-            available: true, // Severance Pay (at-will employment)
-            divisor: 52, // 1 week per year (standard practice)
-            revaluationRate: 0
+            standardRate: 22,
+            available: true // 1099 contractors withholding
         },
         salary: {
             available: true,
@@ -267,6 +270,10 @@ const TAX_SYSTEMS = {
                 spouse: 27700, // Married filing jointly
                 child1: 0
             }
+        },
+        tfr: {
+            available: false,
+            name: "N/A" // US doesn't have TFR equivalent
         }
     },
 
@@ -286,12 +293,8 @@ const TAX_SYSTEMS = {
         },
         withholding: {
             name: "PAYG Withholding",
-            standardRate: 32.5 // Standard contractor withholding rate
-        },
-        tfr: {
-            available: true, // Redundancy/Severance Pay
-            divisor: 6, // ~2 months per year (standard practice)
-            revaluationRate: 0
+            standardRate: 0,
+            available: false // Australia uses PAYG but calculated differently
         },
         salary: {
             available: true,
@@ -310,6 +313,10 @@ const TAX_SYSTEMS = {
                 spouse: 0,
                 child1: 0
             }
+        },
+        tfr: {
+            available: false,
+            name: "N/A" // Australia has different redundancy pay system
         }
     }
 };
@@ -386,4 +393,4 @@ function calculateSalary(grossSalary, familyStatus, countryCode) {
     };
 }
 
-console.log('✅ Tax Systems Database loaded');
+console.log('✅ Tax Systems Database loaded (UPDATED VERSION)');
