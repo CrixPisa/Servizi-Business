@@ -311,6 +311,50 @@ const TAX_SYSTEMS = {
                 child1: 0
             }
         }
+    },
+
+    // 🇭🇺 HUNGARY (UNGHERIA)
+    hu: {
+        country: "Ungheria",
+        currency: "HUF",
+        currencySymbol: "Ft",
+        currencyPosition: "after",
+        decimalSeparator: ",",
+        vat: {
+            name: "ÁFA",
+            rates: [
+                { value: 27, labelKey: "hu_standardRate" },
+                { value: 18, labelKey: "hu_reducedRate" },
+                { value: 5, labelKey: "hu_superReducedRate" }
+            ]
+        },
+        withholding: {
+            name: "Személyi jövedelemadó",
+            standardRate: 15 // Personal income tax (flat rate)
+        },
+        salary: {
+            available: true,
+            socialSecurityRate: 0.185, // Social contributions (18.5%)
+            taxBrackets: [
+                { limit: Infinity, rate: 0.15 } // Flat tax system
+            ],
+            deductions: {
+                base: function(gross) {
+                    return 0; // No standard deductions in Hungary
+                },
+                spouse: 0,
+                child1: 66670, // Family tax benefit per child (monthly)
+                child2: 133340 // Cumulative benefit for 2 children
+            }
+        },
+        tfr: {
+            available: true, // Végkielégítés
+            divisor: 12, // 1 month per year
+            revaluationRate: 0
+        },
+        pivaRegimes: {
+            available: false // Different system (KATA)
+        }
     }
 };
 

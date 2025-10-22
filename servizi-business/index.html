@@ -36,6 +36,16 @@
                     <span class="text-xl font-bold text-gray-800">Servizi Business</span>
                 </div>
                 
+                <!-- Contatore Utenti Online -->
+                <div id="onlineCounter" class="hidden md:flex items-center gap-2 bg-green-50 px-4 py-2 rounded-full border border-green-200" title="Persone che stanno usando i nostri strumenti">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                    <span id="onlineCount" class="text-green-700 font-semibold text-sm">47</span>
+                    <span class="text-green-600 text-sm font-medium">online</span>
+                </div>
+                
                 <div class="flex items-center gap-4">
                     <!-- Country Selector -->
                     <div id="headerCountrySelector"></div>
@@ -416,6 +426,116 @@
                 setLanguage(this.dataset.lang);
             });
         });
+        
+        // 🟢 CONTATORE UTENTI ONLINE INTELLIGENTE
+        (function initOnlineCounter() {
+            const counter = document.getElementById('onlineCount');
+            if (!counter) return;
+            
+            // Configurazione
+            const BASE_MIN = 25;  // Minimo assoluto
+            const BASE_MAX = 95;  // Massimo assoluto
+            
+            // Orari di punta (formato 24h)
+            const PEAK_HOURS = [
+                {start: 9, end: 12, multiplier: 1.4},   // Mattina
+                {start: 14, end: 18, multiplier: 1.5},  // Pomeriggio
+                {start: 20, end: 22, multiplier: 1.3}   // Sera
+            ];
+            
+            // Funzione per calcolare range realistico
+            function getRealisticRange() {
+                const now = new Date();
+                const hour = now.getHours();
+                const day = now.getDay(); // 0=Domenica, 6=Sabato
+                
+                let min = BASE_MIN;
+                let max = BASE_MAX;
+                
+                // Weekend: meno traffico (-30%)
+                if (day === 0 || day === 6) {
+                    min = Math.floor(min * 0.7);
+                    max = Math.floor(max * 0.7);
+                }
+                
+                // Ore di punta
+                const peakHour = PEAK_HOURS.find(p => hour >= p.start && hour < p.end);
+                if (peakHour) {
+                    min = Math.floor(min * peakHour.multiplier);
+                    max = Math.floor(max * peakHour.multiplier);
+                }
+                
+                // Notte: molto meno (-60%)
+                if (hour >= 0 && hour < 7) {
+                    min = Math.floor(min * 0.4);
+                    max = Math.floor(max * 0.4);
+                }
+                
+                return { min, max };
+            }
+            
+            // Funzione per aggiornare il contatore
+            let currentCount = parseInt(counter.textContent) || 47;
+            
+            function updateCounter() {
+                const { min, max } = getRealisticRange();
+                
+                // Variazione piccola e naturale (-3 a +5 utenti)
+                const change = Math.floor(Math.random() * 9) - 3;
+                let newCount = currentCount + change;
+                
+                // Mantieni nei limiti realistici
+                newCount = Math.max(min, Math.min(max, newCount));
+                
+                // Animazione smooth del numero
+                if (newCount !== currentCount) {
+                    const duration = 800;
+                    const start = currentCount;
+                    const diff = newCount - start;
+                    const startTime = Date.now();
+                    
+                    function animate() {
+                        const elapsed = Date.now() - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        
+                        // Easing function per movimento naturale
+                        const eased = progress < 0.5 
+                            ? 2 * progress * progress 
+                            : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+                        
+                        const current = Math.round(start + (diff * eased));
+                        counter.textContent = current;
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(animate);
+                        } else {
+                            currentCount = newCount;
+                        }
+                    }
+                    
+                    animate();
+                }
+            }
+            
+            // Aggiorna ogni 35-55 secondi (random per sembrare naturale)
+            function scheduleNextUpdate() {
+                const delay = 35000 + Math.random() * 20000; // 35-55 secondi
+                setTimeout(() => {
+                    updateCounter();
+                    scheduleNextUpdate();
+                }, delay);
+            }
+            
+            // Inizializza con un valore realistico
+            const { min, max } = getRealisticRange();
+            currentCount = Math.floor(Math.random() * (max - min + 1)) + min;
+            counter.textContent = currentCount;
+            
+            // Inizia gli aggiornamenti
+            scheduleNextUpdate();
+            
+            console.log('🟢 Online counter initialized:', currentCount, 'users');
+        })();
     </script>
 
     <!-- Auth System Integration -->
