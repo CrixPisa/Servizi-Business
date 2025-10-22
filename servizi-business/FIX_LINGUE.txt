@@ -1,0 +1,48 @@
+🌍 FIX LINGUE - ELENCO FILE DA AGGIORNARE
+
+FILE CON SOLO IT-EN-DE (Mancano FR, ES, HU):
+===============================================
+✅ calcolo-ritenuta.html
+✅ calcolo-stipendio.html  
+✅ calcolo-tfr.html (ma HU già aggiunto!)
+
+CODICE DA AGGIUNGERE (sostituire la riga esistente):
+<div class="flex gap-1 border-l pl-4">
+    <button class="lang-btn px-3 py-1 rounded text-sm" data-lang="it">IT</button>
+    <button class="lang-btn px-3 py-1 rounded text-sm" data-lang="en">EN</button>
+    <button class="lang-btn px-3 py-1 rounded text-sm" data-lang="de">DE</button>
+    <button class="lang-btn px-3 py-1 rounded text-sm" data-lang="fr">FR</button>
+    <button class="lang-btn px-3 py-1 rounded text-sm" data-lang="es">ES</button>
+    <button class="lang-btn px-3 py-1 rounded text-sm" data-lang="hu">HU</button>
+</div>
+
+FILE CON FR-ES MA MANCA HU:
+===============================
+✅ calcolo-iva.html
+✅ calcolo-tasse-piva.html
+
+CODICE DA AGGIUNGERE (aggiungere solo HU alla fine):
+    <button class="lang-btn px-3 py-1 rounded text-sm" data-lang="hu">HU</button>
+
+FILE GIÀ COMPLETI (con bandiere emoji):
+=========================================
+✅ index.html - Ha tutte le bandiere compreso HU (🇭🇺)
+
+ALTRI FILE DA VERIFICARE:
+==========================
+- genera-fatture.html
+- genera-preventivi.html
+- generatore-qr.html
+- corrispettivi-online.html
+- converti-immagini-pdf.html
+- chi-siamo.html
+- privacy.html
+- terms.html
+
+PROCEDURA:
+==========
+1. Aprire ogni file HTML elencato
+2. Cercare la sezione con i pulsanti lingua
+3. Aggiungere le lingue mancanti
+4. Salvare e ricaricare sul sito
+5. Testare con Ctrl+Shift+R

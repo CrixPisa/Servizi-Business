@@ -263,6 +263,27 @@
                 `,
                 divisor: 6, // ~2 months per year
                 revaluation: 0
+            },
+            hu: {
+                title: 'Végkielégítés Számítás',
+                subtitle: 'Számítsa ki végkielégítését',
+                resultLabel: 'Becsült Teljes Végkielégítés',
+                infoTitle: 'Hogyan számítják ki?',
+                infoText: `
+                    <p>Magyarországon a <strong>végkielégítés</strong> a munkaviszony tartalmától függ:</p>
+                    <ul class="list-disc ml-6 space-y-1">
+                        <li><strong>3-5 év:</strong> 1 havi átlagkereset</li>
+                        <li><strong>5-10 év:</strong> 2 havi átlagkereset</li>
+                        <li><strong>10-15 év:</strong> 3 havi átlagkereset</li>
+                        <li><strong>15-20 év:</strong> 4 havi átlagkereset</li>
+                        <li><strong>20-25 év:</strong> 5 havi átlagkereset</li>
+                        <li><strong>25+ év:</strong> 6 havi átlagkereset</li>
+                    </ul>
+                    <p class="mt-2">Ez a kalkulátor <strong>1 havi fizetést évente</strong> használ átlagos becsülésként.</p>
+                    <p class="text-sm text-gray-600 mt-4">⚠️ Egyszerűsített számítás. A tényleges összeg a munkaszerződéstől függ.</p>
+                `,
+                divisor: 12, // 1 month per year
+                revaluation: 0
             }
         };
 
@@ -283,7 +304,7 @@
             if (!taxSystem) return;
 
             // ✅ Lista paesi supportati per Severance
-            const supportedCountries = ['it', 'es', 'fr', 'de', 'gb', 'us', 'au'];
+            const supportedCountries = ['it', 'es', 'fr', 'de', 'gb', 'us', 'au', 'hu'];
             const isCalculatorAvailable = supportedCountries.includes(countryCode);
             
             elements.calculatorContainer.style.display = isCalculatorAvailable ? 'block' : 'none';
