@@ -23,6 +23,63 @@
     <script src="auth.js"></script>
 </head>
 <body class="bg-gray-50">
+    
+    <!-- PROTEZIONE ADMIN -->
+    <script>
+    (async function protectAdminDashboard() {
+        // 🔐 CONFIGURAZIONE SICUREZZA
+        const ADMIN_PASSWORD = 'Archa2025'; // Cambia questa password!
+        const WHITELISTED_EMAILS = [
+            'info@servizi-business.com',  // La tua email principale
+            'crixp@example.com'            // Aggiungi altre email admin se necessario
+        ];
+        
+        // Nascondi pagina durante il check
+        document.body.style.display = 'none';
+        
+        // Check 1: Verifica password admin
+        const adminAuth = sessionStorage.getItem('adminAuthenticated');
+        if (!adminAuth) {
+            const password = prompt('🔒 ACCESSO RISERVATO\n\nInserisci la password amministratore:');
+            
+            if (password !== ADMIN_PASSWORD) {
+                alert('❌ Password errata! Accesso negato.');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            sessionStorage.setItem('adminAuthenticated', 'true');
+        }
+        
+        // Check 2: Verifica email autorizzata (Supabase)
+        try {
+            const { data: { session } } = await supabase.auth.getSession();
+            
+            if (!session) {
+                alert('⚠️ Devi essere autenticato per accedere alla dashboard admin.');
+                window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.href);
+                return;
+            }
+            
+            const userEmail = session.user.email.toLowerCase();
+            
+            if (!WHITELISTED_EMAILS.includes(userEmail)) {
+                alert('🚫 ACCESSO NEGATO\n\nQuesta area è riservata agli amministratori.\n\nLa tua email (' + userEmail + ') non è autorizzata.');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            // ✅ Tutto OK - mostra dashboard
+            document.body.style.display = 'block';
+            console.log('✅ Admin authenticated:', userEmail);
+            
+        } catch (error) {
+            console.error('Auth error:', error);
+            alert('❌ Errore di autenticazione. Riprova.');
+            window.location.href = 'login.html';
+        }
+    })();
+    </script>
     <!-- Header -->
     <header class="bg-white shadow-sm">
         <nav class="container mx-auto px-4 py-4">

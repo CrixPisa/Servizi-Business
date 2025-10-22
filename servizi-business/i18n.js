@@ -41,6 +41,8 @@ const TRANSLATIONS = {
         qrGeneratorDesc: "Crea codici QR gratuiti.",
         corrispettiviCalc: "Corrispettivi Online",
         corrispettiviCalcDesc: "Gestisci le vendite giornaliere con calcolo IVA automatico.",
+        imgToPdfConverter: "Converti Immagini in PDF",
+        imgToPdfConverterDesc: "Trasforma PNG, JPG, WebP in PDF professionale.",
         myInvoices: "Le Mie Fatture",
         useNow: "Usa ora",
 
@@ -292,6 +294,8 @@ const TRANSLATIONS = {
         qrGeneratorDesc: "Create free QR codes.",
         corrispettiviCalc: "Daily Sales",
         corrispettiviCalcDesc: "Manage daily sales with automatic VAT calculation.",
+        imgToPdfConverter: "Convert Images to PDF",
+        imgToPdfConverterDesc: "Transform PNG, JPG, WebP into professional PDF.",
         useNow: "Use now",
         
         testimonialsTitle: "What Our Users Say",
@@ -496,6 +500,8 @@ const TRANSLATIONS = {
         qrGeneratorDesc: "Erstellen Sie kostenlose QR-Codes.",
         corrispettiviCalc: "Tagesverkäufe",
         corrispettiviCalcDesc: "Verwalten Sie tägliche Verkäufe mit automatischer MwSt-Berechnung.",
+        imgToPdfConverter: "Bilder in PDF umwandeln",
+        imgToPdfConverterDesc: "Verwandeln Sie PNG, JPG, WebP in professionelle PDF.",
         useNow: "Jetzt verwenden",
         
         testimonialsTitle: "Was unsere Nutzer sagen",
@@ -578,6 +584,8 @@ const TRANSLATIONS = {
         qrGeneratorDesc: "Créez des QR codes gratuits.",
         corrispettiviCalc: "Ventes Quotidiennes",
         corrispettiviCalcDesc: "Gérez les ventes quotidiennes avec calcul TVA automatique.",
+        imgToPdfConverter: "Convertir Images en PDF",
+        imgToPdfConverterDesc: "Transformez PNG, JPG, WebP en PDF professionnel.",
         useNow: "Utiliser maintenant",
         
         testimonialsTitle: "Ce que disent nos utilisateurs",
@@ -652,6 +660,8 @@ const TRANSLATIONS = {
         qrGeneratorDesc: "Crea códigos QR gratis.",
         corrispettiviCalc: "Ventas Diarias",
         corrispettiviCalcDesc: "Gestiona ventas diarias con cálculo IVA automático.",
+        imgToPdfConverter: "Convertir Imágenes a PDF",
+        imgToPdfConverterDesc: "Transforma PNG, JPG, WebP en PDF profesional.",
         useNow: "Usar ahora",
         
         testimonialsTitle: "Lo que dicen nuestros usuarios",
