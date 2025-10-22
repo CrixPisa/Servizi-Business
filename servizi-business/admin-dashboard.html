@@ -22,33 +22,80 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="auth.js"></script>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50" style="display: none;">
     
-    <!-- PROTEZIONE ADMIN -->
+    <!-- SISTEMA PROTEZIONE ADMIN MIGLIORATO -->
     <script>
     (async function protectAdminDashboard() {
         // 🔐 CONFIGURAZIONE SICUREZZA
-        const ADMIN_PASSWORD = 'Archa2025'; // Cambia questa password!
         const WHITELISTED_EMAILS = [
-            'info@servizi-business.com',  // La tua email principale
-            'crixp@example.com'            // Aggiungi altre email admin se necessario
+            'info@servizi-business.com',
+            'crixp@example.com'
         ];
         
-        // Nascondi pagina durante il check
-        document.body.style.display = 'none';
+        // Funzione per ottenere/impostare password admin
+        function getAdminPassword() {
+            let pwd = localStorage.getItem('adminPassword');
+            if (!pwd) {
+                // Password di default alla prima configurazione
+                pwd = 'admin2025';
+                localStorage.setItem('adminPassword', pwd);
+            }
+            return pwd;
+        }
         
-        // Check 1: Verifica password admin
-        const adminAuth = sessionStorage.getItem('adminAuthenticated');
-        if (!adminAuth) {
-            const password = prompt('🔒 ACCESSO RISERVATO\n\nInserisci la password amministratore:');
+        function setAdminPassword(newPassword) {
+            localStorage.setItem('adminPassword', newPassword);
+        }
+        
+        // Funzione per verificare se l'utente è già autenticato in questa sessione
+        function isAuthenticated() {
+            const auth = sessionStorage.getItem('adminAuthenticated');
+            const timestamp = sessionStorage.getItem('adminAuthTimestamp');
             
-            if (password !== ADMIN_PASSWORD) {
-                alert('❌ Password errata! Accesso negato.');
-                window.location.href = 'index.html';
-                return;
+            if (!auth || !timestamp) return false;
+            
+            // Verifica se sono passate più di 8 ore
+            const eightHours = 8 * 60 * 60 * 1000;
+            const now = Date.now();
+            if (now - parseInt(timestamp) > eightHours) {
+                sessionStorage.removeItem('adminAuthenticated');
+                sessionStorage.removeItem('adminAuthTimestamp');
+                return false;
             }
             
-            sessionStorage.setItem('adminAuthenticated', 'true');
+            return true;
+        }
+        
+        // Check 1: Verifica password admin
+        if (!isAuthenticated()) {
+            const currentPassword = getAdminPassword();
+            let attempts = 0;
+            const maxAttempts = 3;
+            
+            while (attempts < maxAttempts) {
+                const password = prompt(`🔒 ACCESSO RISERVATO\n\nInserisci la password amministratore:\n(Tentativi rimasti: ${maxAttempts - attempts})`);
+                
+                if (password === null) {
+                    // Utente ha premuto Annulla
+                    window.location.href = 'index.html';
+                    return;
+                }
+                
+                if (password === currentPassword) {
+                    sessionStorage.setItem('adminAuthenticated', 'true');
+                    sessionStorage.setItem('adminAuthTimestamp', Date.now().toString());
+                    break;
+                } else {
+                    attempts++;
+                    if (attempts >= maxAttempts) {
+                        alert('❌ Troppi tentativi falliti! Accesso negato.');
+                        window.location.href = 'index.html';
+                        return;
+                    }
+                    alert(`❌ Password errata! Tentativi rimasti: ${maxAttempts - attempts}`);
+                }
+            }
         }
         
         // Check 2: Verifica email autorizzata (Supabase)
@@ -73,22 +120,91 @@
             document.body.style.display = 'block';
             console.log('✅ Admin authenticated:', userEmail);
             
+            // Aggiungi pulsante cambio password
+            addPasswordChangeButton();
+            
         } catch (error) {
             console.error('Auth error:', error);
             alert('❌ Errore di autenticazione. Riprova.');
             window.location.href = 'login.html';
         }
     })();
+    
+    function addPasswordChangeButton() {
+        const header = document.querySelector('header nav > div');
+        const changePasswordBtn = document.createElement('button');
+        changePasswordBtn.innerHTML = '<i class="fas fa-key mr-2"></i>Cambia Password';
+        changePasswordBtn.className = 'bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition text-sm font-semibold';
+        changePasswordBtn.onclick = changeAdminPassword;
+        header.appendChild(changePasswordBtn);
+    }
+    
+    function changeAdminPassword() {
+        const currentPwd = localStorage.getItem('adminPassword');
+        
+        const oldPassword = prompt('🔐 CAMBIO PASSWORD\n\nInserisci la password attuale:');
+        if (!oldPassword) return;
+        
+        if (oldPassword !== currentPwd) {
+            alert('❌ Password attuale errata!');
+            return;
+        }
+        
+        const newPassword = prompt('🔐 Inserisci la NUOVA password:\n(Minimo 8 caratteri)');
+        if (!newPassword) return;
+        
+        if (newPassword.length < 8) {
+            alert('❌ La password deve essere di almeno 8 caratteri!');
+            return;
+        }
+        
+        const confirmPassword = prompt('🔐 Conferma la nuova password:');
+        if (confirmPassword !== newPassword) {
+            alert('❌ Le password non coincidono!');
+            return;
+        }
+        
+        localStorage.setItem('adminPassword', newPassword);
+        sessionStorage.removeItem('adminAuthenticated');
+        sessionStorage.removeItem('adminAuthTimestamp');
+        
+        alert('✅ Password cambiata con successo!\n\nDovrai riautenticarti alla prossima visita.');
+    }
+    
+    function logoutAdmin() {
+        if (confirm('🚪 Sei sicuro di voler uscire dalla dashboard admin?')) {
+            sessionStorage.removeItem('adminAuthenticated');
+            sessionStorage.removeItem('adminAuthTimestamp');
+            window.location.href = 'index.html';
+        }
+    }
+    
+    function resetAdminPassword() {
+        if (confirm('⚠️ ATTENZIONE!\n\nQuesta funzione resetterà la password admin a "admin2025".\n\nContinuare?')) {
+            localStorage.setItem('adminPassword', 'admin2025');
+            sessionStorage.removeItem('adminAuthenticated');
+            sessionStorage.removeItem('adminAuthTimestamp');
+            alert('✅ Password resettata a: admin2025\n\nRicarica la pagina per riautenticarti.');
+            location.reload();
+        }
+    }
     </script>
+    
     <!-- Header -->
     <header class="bg-white shadow-sm">
         <nav class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between flex-wrap gap-4">
                 <a href="index.html" class="flex items-center space-x-2">
                     <i class="fas fa-calculator text-blue-600 text-2xl"></i>
                     <span class="text-xl font-bold text-gray-800">Servizi Business - Admin</span>
                 </a>
                 <div class="flex items-center gap-4">
+                    <button onclick="resetAdminPassword()" class="text-gray-600 hover:text-red-600 transition text-sm" title="Reset Password">
+                        <i class="fas fa-undo mr-1"></i>Reset PWD
+                    </button>
+                    <button onclick="logoutAdmin()" class="text-gray-600 hover:text-red-600 transition">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </button>
                     <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">
                         <i class="fas fa-home mr-2"></i>Home
                     </a>
@@ -104,6 +220,23 @@
             <div class="mb-8">
                 <h1 class="text-3xl font-bold text-gray-800 mb-2">Dashboard Amministratore</h1>
                 <p class="text-gray-600">Statistiche utenti e attività</p>
+            </div>
+
+            <!-- Security Info Banner -->
+            <div class="bg-green-50 border border-green-200 rounded-xl p-4 mb-8">
+                <div class="flex items-start gap-3">
+                    <i class="fas fa-shield-alt text-green-600 text-xl mt-1"></i>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-green-900 mb-2">🔐 Sistema di Sicurezza Attivo</h4>
+                        <ul class="text-sm text-green-800 space-y-1">
+                            <li>✅ Autenticazione password attiva (scade dopo 8 ore)</li>
+                            <li>✅ Email whitelist configurata</li>
+                            <li>✅ Massimo 3 tentativi di accesso</li>
+                            <li>💡 <strong>Cambia password</strong> cliccando il pulsante in alto a destra</li>
+                            <li>💡 <strong>Reset PWD</strong> ripristina la password a "admin2025"</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <!-- Stats Overview -->
@@ -242,17 +375,6 @@
                     <li>Ottieni il codice di tracciamento (G-XXXXXXXXXX)</li>
                     <li>Aggiungi lo script in tutte le pagine HTML</li>
                 </ol>
-                <div class="bg-white p-4 rounded-lg font-mono text-sm overflow-x-auto">
-                    <code class="text-gray-800">
-                        &lt;script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"&gt;&lt;/script&gt;<br>
-                        &lt;script&gt;<br>
-                        &nbsp;&nbsp;window.dataLayer = window.dataLayer || [];<br>
-                        &nbsp;&nbsp;function gtag(){dataLayer.push(arguments);}<br>
-                        &nbsp;&nbsp;gtag('js', new Date());<br>
-                        &nbsp;&nbsp;gtag('config', 'G-XXXXXXXXXX');<br>
-                        &lt;/script&gt;
-                    </code>
-                </div>
             </div>
         </div>
     </main>
@@ -279,7 +401,6 @@
             document.getElementById('totalUsers').textContent = users.length;
             document.getElementById('totalInvoices').textContent = invoices.length;
             
-            // Simulate online users
             const onlineCount = 1 + Math.floor(Math.random() * 5);
             document.getElementById('onlineNow').textContent = onlineCount;
         }
@@ -429,13 +550,11 @@
                 return;
             }
             
-            // Create CSV
             let csv = 'Nome,Email,Data Registrazione,ID\n';
             users.forEach(user => {
                 csv += `"${user.name}","${user.email}","${new Date(user.createdAt).toLocaleString('it-IT')}","${user.id}"\n`;
             });
             
-            // Download CSV
             const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
