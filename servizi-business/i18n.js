@@ -1,4 +1,4 @@
-// INTERNATIONAL TRANSLATIONS
+// SISTEMA I18N COMPLETO - TUTTE LE LINGUE
 const TRANSLATIONS = {
     it: {
         // Header & Navigation
@@ -9,12 +9,31 @@ const TRANSLATIONS = {
         login: "Accedi",
         register: "Registrati",
         logout: "Esci",
+        dashboard: "Dashboard",
         
         // Hero Section
         heroTitle: "Strumenti Gratuiti per il Tuo Business",
         heroSubtitle: "Calcolatori, generatori di documenti e molto altro. Tutto gratis.",
+        heroDescription: "Servizi Business offre strumenti professionali per il calcolo di IVA, ritenuta d'acconto, stipendio netto e TFR. Crea fatture elettroniche e preventivi in PDF. Tutti gli strumenti essenziali per freelance, partite IVA e piccole imprese in un unico posto.",
         ctaStart: "Inizia Subito",
         ctaLearnMore: "Scopri di Più",
+        
+        // SEO Section
+        seoIntroTitle: "Strumenti Business Online: Semplifica la Gestione della Tua Attività",
+        seoIntroPara1: "Benvenuto su Servizi Business, la piattaforma che raccoglie tutti gli strumenti essenziali per gestire la tua attività professionale. Che tu sia un freelance, una partita IVA o una piccola impresa, troverai calcolatori gratuiti e generatori di documenti professionali per risparmiare tempo e denaro.",
+        seoWhoIsThisFor: "Per Chi Sono Questi Strumenti?",
+        seoTargetFreelance: "Liberi professionisti: calcola ritenute d'acconto, IVA e crea fatture professionali",
+        seoTargetVAT: "Partite IVA: gestisci tasse, preventivi e documenti fiscali",
+        seoTargetBusiness: "Piccole imprese: strumenti per fatturazione, calcoli fiscali e corrispettivi",
+        seoTargetEmployee: "Dipendenti: calcola il tuo stipendio netto e il TFR maturato",
+        seoTargetAccountant: "Commercialisti: velocizza i calcoli per i tuoi clienti",
+        seoWhyChooseUs: "Perché Scegliere Servizi Business?",
+        seoFeature1Title: "100% Gratuito",
+        seoFeature1Desc: "Tutti gli strumenti base sono completamente gratuiti, senza costi nascosti.",
+        seoFeature2Title: "Veloce e Facile",
+        seoFeature2Desc: "Risultati istantanei senza bisogno di registrazione per i calcolatori base.",
+        seoFeature3Title: "Sicuro e GDPR",
+        seoFeature3Desc: "I tuoi dati sono protetti e trattati nel rispetto della normativa europea.",
         
         // Stats
         statsTools: "Strumenti Gratuiti",
@@ -90,159 +109,6 @@ const TRANSLATIONS = {
         privacy: "Privacy Policy",
         terms: "Termini di Servizio",
         
-        // Invoice/Quote Form
-        generateInvoice: "Genera Fattura",
-        generateInvoiceDesc: "Crea una fattura professionale in PDF",
-        generateQuote: "Genera Preventivo",
-        generateQuoteDesc: "Crea un preventivo professionale in PDF",
-        invoiceData: "Dati Fattura",
-        quoteData: "Dati Preventivo",
-        invoiceNumber: "Numero Fattura",
-        quoteNumber: "Numero Preventivo",
-        issueDate: "Data Emissione",
-        dueDate: "Scadenza",
-        validityDays: "Validità (giorni)",
-        senderData: "Dati Emittente",
-        companyData: "Dati Azienda",
-        clientData: "Dati Destinatario",
-        companyName: "Ragione Sociale / Nome",
-        vatNumber: "Partita IVA / VAT",
-        address: "Indirizzo",
-        city: "Città",
-        zip: "CAP",
-        phone: "Telefono",
-        email: "Email",
-        items: "Prodotti / Servizi",
-        description: "Descrizione",
-        quantity: "Quantità",
-        unitPrice: "Prezzo Unitario",
-        tax: "IVA",
-        total: "Totale",
-        addRow: "Aggiungi Riga",
-        summary: "Riepilogo",
-        subtotal: "Imponibile",
-        vatTotal: "IVA",
-        withholding: "Ritenuta d'acconto",
-        netTotal: "Totale",
-        totalQuote: "Totale Preventivo",
-        generatePDF: "Genera PDF",
-        sendEmail: "Invia via Email",
-        reset: "Cancella Tutto",
-        includeVat: "Includi IVA",
-        additionalNotes: "Note Aggiuntive",
-        quoteInfo: "Il preventivo non ha valore fiscale.",
-        
-        // VAT Calculator
-        vatCalculatorTitle: "Calcolatore IVA",
-        vatCalculatorSubtitle: "Calcola velocemente l'IVA",
-        fromNetToGross: "Da Netto a Lordo",
-        fromGrossToNet: "Da Lordo a Netto",
-        netAmount: "Importo Netto",
-        grossAmount: "Importo Lordo",
-        vatRateLabel: "Aliquota",
-        
-        // Withholding Calculator
-        withholdingCalculatorTitle: "Calcolo Ritenuta Fiscale",
-        withholdingCalculatorSubtitle: "Calcola la ritenuta per professionisti",
-        grossInvoiceAmount: "Importo Fattura Lordo",
-        withholdingRate: "Aliquota Ritenuta",
-        withholdingAmount: "Importo Ritenuta",
-        netToReceive: "Netto da Incassare",
-        
-        // Salary Calculator
-        salaryCalculatorTitle: "Calcolo Stipendio Netto",
-        salaryCalculatorSubtitle: "Scopri quanto guadagnerai al netto",
-        grossSalaryLabel: "Stipendio Lordo Annuo",
-        familyDeductions: "Detrazioni Familiari",
-        noDeductions: "Nessuna (Single)",
-        spouseDependent: "Coniuge a carico",
-        netYearlySalary: "Stipendio Netto Annuo",
-        netMonthlySalary: "Stipendio Netto Mensile",
-        deductionsDetail: "Dettaglio Trattenute",
-        inpsContributions: "Contributi INPS",
-        incomeTax: "Imposte",
-        taxDeductions: "Detrazioni Fiscali",
-        totalNetYearly: "Totale Netto Annuo",
-        
-        // TFR Calculator
-        tfrCalculatorTitle: "Calcolo TFR",
-        tfrCalculatorSubtitle: "Calcola il Trattamento di Fine Rapporto",
-        
-        // P.IVA Tax Calculator
-        pivaTaxTitle: "Calcolo Tasse P.IVA",
-        pivaTaxSubtitle: "Confronta Forfettario e Ordinario",
-        annualRevenue: "Fatturato Annuo",
-        businessCosts: "Costi Aziendali",
-        activityType: "Tipo di Attività",
-        flatRegime: "Regime Forfettario",
-        ordinaryRegime: "Regime Ordinario",
-        taxableIncome: "Reddito Imponibile",
-        totalTaxes: "Totale Tasse",
-        netAnnual: "Netto Annuo",
-        monthly: "Mensile:",
-        comparison: "Confronto",
-        savingsWithFlat: "Risparmio con Forfettario",
-        taxBurden: "Pressione Fiscale",
-        
-        // QR Generator
-        qrGeneratorTitle: "Generatore QR Code",
-        qrGeneratorSubtitle: "Crea codici QR gratuiti",
-        qrType: "Tipo di QR Code",
-        qrTypeUrl: "URL",
-        qrTypeText: "Testo",
-        qrTypeEmail: "Email",
-        qrTypePhone: "Telefono",
-        qrTypeSms: "SMS",
-        qrTypeWifi: "WiFi",
-        insertUrl: "Inserisci URL",
-        insertText: "Inserisci Testo",
-        emailRecipient: "Email Destinatario",
-        emailSubject: "Oggetto (opzionale)",
-        emailBody: "Messaggio (opzionale)",
-        phoneNumber: "Numero di Telefono",
-        smsMessage: "Messaggio",
-        wifiSsid: "Nome Rete (SSID)",
-        wifiPassword: "Password",
-        wifiEncryption: "Tipo Sicurezza",
-        wifiEncWpa: "WPA/WPA2",
-        wifiEncWep: "WEP",
-        wifiEncNone: "Nessuna",
-        qrSize: "Dimensione QR Code",
-        generateQr: "Genera QR Code",
-        qrPreview: "Anteprima QR Code",
-        qrPlaceholder: "Il QR code apparirà qui",
-        downloadPng: "Scarica PNG",
-        createNew: "Crea Nuovo",
-        
-        // VAT Rates by Country
-        ordinaryRateDesc: "Aliquota Ordinaria",
-        reducedRateDesc: "Aliquota Ridotta",
-        minimumRateDesc: "Aliquota Minima",
-        exemptDesc: "Esente IVA",
-        
-        de_standardRate: "Aliquota Standard",
-        de_reducedRate: "Aliquota Ridotta",
-        
-        fr_standardRate: "Aliquota Standard",
-        fr_intermediateRate: "Aliquota Intermedia",
-        fr_reducedRate: "Aliquota Ridotta",
-        fr_superReducedRate: "Aliquota Super Ridotta",
-        
-        es_generalRate: "Tipo General",
-        es_reducedRate: "Tipo Reducido",
-        es_superReducedRate: "Tipo Superreducido",
-        
-        gb_standardRate: "Standard Rate",
-        gb_reducedRate: "Reduced Rate",
-        gb_zeroRate: "Zero Rate",
-        
-        us_averageRate: "Sales Tax (Media)",
-        us_exemptRate: "Esente",
-        usSalesTaxNote: "Nota: La Sales Tax varia per stato",
-        
-        au_standardRate: "GST Standard",
-        au_exemptRate: "GST Free",
-        
         // Common
         calculate: "Calcola",
         clear: "Pulisci",
@@ -256,7 +122,67 @@ const TRANSLATIONS = {
         error: "Errore",
         success: "Successo",
         warning: "Attenzione",
-        info: "Info"
+        info: "Info",
+        
+        // Blog
+        blog: {
+            hero: {
+                title: "Guide e Risorse per Professionisti",
+                subtitle: "Articoli pratici, guide fiscali e consigli per gestire al meglio la tua attività professionale"
+            },
+            filter: {
+                all: "Tutti",
+                fiscal: "Fiscale",
+                invoicing: "Fatturazione",
+                vat: "Partita IVA",
+                guides: "Guide"
+            },
+            category: {
+                all: "Tutti",
+                fiscal: "Fiscale",
+                invoicing: "Fatturazione",
+                vat: "Partita IVA",
+                guides: "Guide",
+                work: "Lavoro"
+            },
+            featured: "In Evidenza",
+            latestArticles: "Ultimi Articoli",
+            readArticle: "Leggi l'articolo",
+            readMore: "Leggi di più",
+            comingSoon: "Prossimamente",
+            article1: {
+                title: "Ritenuta d'Acconto 2025: Calcolo e Guida Completa",
+                excerpt: "Tutto quello che devi sapere sulla ritenuta d'acconto: cos'è, come si calcola, chi deve applicarla e come inserirla correttamente in fattura.",
+                date: "26 Ottobre 2025",
+                readTime: "8 min"
+            },
+            article2: {
+                title: "Calcolo Stipendio Netto: Guida Completa 2025",
+                excerpt: "Come calcolare lo stipendio netto da lordo: INPS, IRPEF, detrazioni. Guida con esempi.",
+                date: "26 Ottobre 2025"
+            },
+            article3: {
+                title: "TFR: Calcolo, Liquidazione e Tassazione",
+                excerpt: "Tutto sul Trattamento di Fine Rapporto: come si calcola, quando spetta e come viene tassato.",
+                date: "26 Ottobre 2025"
+            },
+            article4: {
+                title: "Come Fare una Fattura Elettronica Gratis",
+                excerpt: "Guida passo-passo per creare fatture elettroniche professionali senza software costosi."
+            },
+            newsletter: {
+                title: "Rimani Aggiornato",
+                subtitle: "Ricevi le nostre guide e novità direttamente nella tua email. Niente spam, solo contenuti utili.",
+                emailPlaceholder: "La tua email",
+                subscribe: "Iscriviti",
+                noSpam: "Nessuna carta richiesta. Cancellati quando vuoi."
+            }
+        },
+        nav: {
+            home: "Home",
+            tools: "Strumenti",
+            blog: "Blog"
+        }
     },
     
     en: {
@@ -267,17 +193,35 @@ const TRANSLATIONS = {
         login: "Sign In",
         register: "Sign Up",
         logout: "Logout",
+        dashboard: "Dashboard",
         
         heroTitle: "Free Tools for Your Business",
         heroSubtitle: "Calculators, document generators and much more. All free.",
+        heroDescription: "Servizi Business offers professional tools for VAT, tax withholding, net salary and severance calculations. Create electronic invoices and quotes in PDF. All essential tools for freelancers, self-employed and small businesses in one place.",
         ctaStart: "Get Started",
         ctaLearnMore: "Learn More",
+        
+        // SEO Section
+        seoIntroTitle: "Business Tools Online: Simplify Your Business Management",
+        seoIntroPara1: "Welcome to Servizi Business, the platform that gathers all essential tools to manage your professional business. Whether you're a freelancer, self-employed or a small business, you'll find free calculators and professional document generators to save time and money.",
+        seoWhoIsThisFor: "Who Are These Tools For?",
+        seoTargetFreelance: "Freelancers: calculate tax withholding, VAT and create professional invoices",
+        seoTargetVAT: "Self-employed: manage taxes, quotes and tax documents",
+        seoTargetBusiness: "Small businesses: tools for invoicing, tax calculations and daily sales",
+        seoTargetEmployee: "Employees: calculate your net salary and severance pay",
+        seoTargetAccountant: "Accountants: speed up calculations for your clients",
+        seoWhyChooseUs: "Why Choose Servizi Business?",
+        seoFeature1Title: "100% Free",
+        seoFeature1Desc: "All basic tools are completely free, no hidden costs.",
+        seoFeature2Title: "Fast and Easy",
+        seoFeature2Desc: "Instant results without registration for basic calculators.",
+        seoFeature3Title: "Secure and GDPR",
+        seoFeature3Desc: "Your data is protected and processed in compliance with European regulations.",
         
         statsTools: "Free Tools",
         statsFree: "Free Forever",
         statsAvailable: "Always Available",
         
-        toolsTitle: "Available Tools",
         freeTools: "Free Calculators",
         freeToolsDesc: "No registration required. Use our calculators now!",
         ivaCalc: "VAT Calculator",
@@ -338,128 +282,6 @@ const TRANSLATIONS = {
         privacy: "Privacy Policy",
         terms: "Terms of Service",
         
-        generateInvoice: "Generate Invoice",
-        generateInvoiceDesc: "Create a professional PDF invoice",
-        generateQuote: "Generate Quote",
-        generateQuoteDesc: "Create a professional PDF quote",
-        invoiceData: "Invoice Data",
-        quoteData: "Quote Data",
-        invoiceNumber: "Invoice Number",
-        quoteNumber: "Quote Number",
-        issueDate: "Issue Date",
-        dueDate: "Due Date",
-        validityDays: "Validity (days)",
-        senderData: "Sender Data",
-        companyData: "Company Data",
-        clientData: "Client Data",
-        companyName: "Company Name",
-        vatNumber: "VAT Number",
-        address: "Address",
-        city: "City",
-        zip: "ZIP Code",
-        phone: "Phone",
-        email: "Email",
-        items: "Products / Services",
-        description: "Description",
-        quantity: "Quantity",
-        unitPrice: "Unit Price",
-        tax: "Tax",
-        total: "Total",
-        addRow: "Add Row",
-        summary: "Summary",
-        subtotal: "Subtotal",
-        vatTotal: "VAT",
-        withholding: "Withholding Tax",
-        netTotal: "Total",
-        totalQuote: "Quote Total",
-        generatePDF: "Generate PDF",
-        sendEmail: "Send via Email",
-        reset: "Clear All",
-        includeVat: "Include VAT",
-        additionalNotes: "Additional Notes",
-        quoteInfo: "The quote has no fiscal value.",
-        
-        vatCalculatorTitle: "VAT Calculator",
-        vatCalculatorSubtitle: "Quickly calculate VAT",
-        fromNetToGross: "Net to Gross",
-        fromGrossToNet: "Gross to Net",
-        netAmount: "Net Amount",
-        grossAmount: "Gross Amount",
-        vatRateLabel: "VAT Rate",
-        
-        withholdingCalculatorTitle: "Withholding Tax Calculator",
-        withholdingCalculatorSubtitle: "Calculate withholding for professionals",
-        grossInvoiceAmount: "Gross Invoice Amount",
-        withholdingRate: "Withholding Rate",
-        withholdingAmount: "Withholding Amount",
-        netToReceive: "Net to Receive",
-        
-        salaryCalculatorTitle: "Net Salary Calculator",
-        salaryCalculatorSubtitle: "Find out your net income",
-        grossSalaryLabel: "Gross Annual Salary",
-        familyDeductions: "Family Deductions",
-        noDeductions: "None (Single)",
-        spouseDependent: "Dependent Spouse",
-        netYearlySalary: "Net Annual Salary",
-        netMonthlySalary: "Net Monthly Salary",
-        deductionsDetail: "Deductions Detail",
-        inpsContributions: "Social Security",
-        incomeTax: "Income Tax",
-        taxDeductions: "Tax Deductions",
-        totalNetYearly: "Total Net Annual",
-        
-        tfrCalculatorTitle: "Severance Calculator",
-        tfrCalculatorSubtitle: "Calculate severance pay",
-        
-        pivaTaxTitle: "Tax Calculator",
-        pivaTaxSubtitle: "Compare tax regimes",
-        annualRevenue: "Annual Revenue",
-        businessCosts: "Business Costs",
-        activityType: "Activity Type",
-        flatRegime: "Flat Rate Regime",
-        ordinaryRegime: "Ordinary Regime",
-        taxableIncome: "Taxable Income",
-        totalTaxes: "Total Taxes",
-        netAnnual: "Net Annual",
-        monthly: "Monthly:",
-        comparison: "Comparison",
-        savingsWithFlat: "Savings with Flat Rate",
-        taxBurden: "Tax Burden",
-        
-        qrGeneratorTitle: "QR Code Generator",
-        qrGeneratorSubtitle: "Create free QR codes",
-        qrType: "QR Code Type",
-        qrTypeUrl: "URL",
-        qrTypeText: "Text",
-        qrTypeEmail: "Email",
-        qrTypePhone: "Phone",
-        qrTypeSms: "SMS",
-        qrTypeWifi: "WiFi",
-        insertUrl: "Enter URL",
-        insertText: "Enter Text",
-        emailRecipient: "Recipient Email",
-        emailSubject: "Subject (optional)",
-        emailBody: "Message (optional)",
-        phoneNumber: "Phone Number",
-        smsMessage: "Message",
-        wifiSsid: "Network Name (SSID)",
-        wifiPassword: "Password",
-        wifiEncryption: "Security Type",
-        wifiEncWpa: "WPA/WPA2",
-        wifiEncWep: "WEP",
-        wifiEncNone: "None",
-        qrSize: "QR Code Size",
-        generateQr: "Generate QR Code",
-        qrPreview: "QR Code Preview",
-        qrPlaceholder: "QR code will appear here",
-        downloadPng: "Download PNG",
-        createNew: "Create New",
-        
-        ordinaryRateDesc: "Standard Rate",
-        reducedRateDesc: "Reduced Rate",
-        minimumRateDesc: "Minimum Rate",
-        exemptDesc: "VAT Exempt",
-        
         calculate: "Calculate",
         clear: "Clear",
         download: "Download",
@@ -472,7 +294,66 @@ const TRANSLATIONS = {
         error: "Error",
         success: "Success",
         warning: "Warning",
-        info: "Info"
+        info: "Info",
+        
+        blog: {
+            hero: {
+                title: "Guides and Resources for Professionals",
+                subtitle: "Practical articles, tax guides and advice to best manage your professional business"
+            },
+            filter: {
+                all: "All",
+                fiscal: "Tax",
+                invoicing: "Invoicing",
+                vat: "VAT",
+                guides: "Guides"
+            },
+            category: {
+                all: "All",
+                fiscal: "Tax",
+                invoicing: "Invoicing",
+                vat: "VAT",
+                guides: "Guides",
+                work: "Work"
+            },
+            featured: "Featured",
+            latestArticles: "Latest Articles",
+            readArticle: "Read article",
+            readMore: "Read more",
+            comingSoon: "Coming soon",
+            article1: {
+                title: "Tax Withholding 2025: Complete Calculation Guide",
+                excerpt: "Everything you need to know about tax withholding: what it is, how to calculate it, who must apply it.",
+                date: "October 26, 2025",
+                readTime: "8 min"
+            },
+            article2: {
+                title: "Net Salary Calculation: Complete 2025 Guide",
+                excerpt: "How to calculate net salary from gross: INPS, IRPEF, deductions. Guide with examples.",
+                date: "October 26, 2025"
+            },
+            article3: {
+                title: "TFR: Calculation, Settlement and Taxation",
+                excerpt: "Everything about Severance Pay: how it's calculated, when it's due and how it's taxed.",
+                date: "October 26, 2025"
+            },
+            article4: {
+                title: "How to Create a Free Electronic Invoice",
+                excerpt: "Step-by-step guide to create professional electronic invoices without expensive software."
+            },
+            newsletter: {
+                title: "Stay Updated",
+                subtitle: "Receive our guides and news directly in your email. No spam, only useful content.",
+                emailPlaceholder: "Your email",
+                subscribe: "Subscribe",
+                noSpam: "No card required. Unsubscribe anytime."
+            }
+        },
+        nav: {
+            home: "Home",
+            tools: "Tools",
+            blog: "Blog"
+        }
     },
     
     de: {
@@ -480,11 +361,32 @@ const TRANSLATIONS = {
         features: "Dienste",
         tools: "Werkzeuge",
         aboutUs: "Über Uns",
+        login: "Anmelden",
+        register: "Registrieren",
+        logout: "Abmelden",
+        dashboard: "Dashboard",
         
         heroTitle: "Kostenlose Tools für Ihr Unternehmen",
         heroSubtitle: "Rechner, Dokumentengeneratoren und vieles mehr. Alles kostenlos.",
+        heroDescription: "Servizi Business bietet professionelle Tools für MwSt, Quellensteuer, Nettogehalt und Abfindungsberechnungen. Erstellen Sie elektronische Rechnungen und Angebote in PDF. Alle wesentlichen Tools für Freelancer, Selbstständige und kleine Unternehmen an einem Ort.",
         ctaStart: "Jetzt Starten",
         ctaLearnMore: "Mehr Erfahren",
+        
+        seoIntroTitle: "Business Tools Online: Vereinfachen Sie Ihr Geschäftsmanagement",
+        seoIntroPara1: "Willkommen bei Servizi Business, der Plattform mit allen wichtigen Tools zur Verwaltung Ihres Unternehmens. Ob Freelancer, Selbstständiger oder kleines Unternehmen, Sie finden kostenlose Rechner und Dokumentengeneratoren.",
+        seoWhoIsThisFor: "Für wen sind diese Tools?",
+        seoTargetFreelance: "Freelancer: Quellensteuer, MwSt berechnen und Rechnungen erstellen",
+        seoTargetVAT: "Selbstständige: Steuern, Angebote und Steuerdokumente verwalten",
+        seoTargetBusiness: "Kleine Unternehmen: Tools für Rechnungsstellung und Steuerberechnungen",
+        seoTargetEmployee: "Angestellte: Nettogehalt und Abfindung berechnen",
+        seoTargetAccountant: "Steuerberater: Berechnungen für Kunden beschleunigen",
+        seoWhyChooseUs: "Warum Servizi Business wählen?",
+        seoFeature1Title: "100% Kostenlos",
+        seoFeature1Desc: "Alle Basis-Tools sind komplett kostenlos, keine versteckten Kosten.",
+        seoFeature2Title: "Schnell und Einfach",
+        seoFeature2Desc: "Sofortige Ergebnisse ohne Registrierung.",
+        seoFeature3Title: "Sicher und DSGVO",
+        seoFeature3Desc: "Ihre Daten sind geschützt gemäß europäischen Vorschriften.",
         
         statsTools: "Kostenlose Tools",
         statsFree: "Für Immer Kostenlos",
@@ -496,6 +398,12 @@ const TRANSLATIONS = {
         ivaCalcDesc: "Berechnen Sie schnell die MwSt.",
         salaryCalc: "Gehaltsrechner",
         salaryCalcDesc: "Finden Sie Ihr Nettogehalt heraus.",
+        withholdingCalc: "Quellensteuerrechner",
+        withholdingCalcDesc: "Berechnen Sie die Quellensteuer für Fachleute.",
+        tfrCalc: "Abfindungsrechner",
+        tfrCalcDesc: "Berechnen Sie Ihre aufgelaufene Abfindung.",
+        taxCalc: "Steuerrechner",
+        taxCalcDesc: "Berechnen Sie zu zahlende Steuern.",
         qrGenerator: "QR-Code-Generator",
         qrGeneratorDesc: "Erstellen Sie kostenlose QR-Codes.",
         corrispettiviCalc: "Tagesverkäufe",
@@ -520,9 +428,15 @@ const TRANSLATIONS = {
         premiumDesc: "Erstellen Sie professionelle Rechnungen und Angebote",
         invoiceGenTitle: "Rechnungsgenerator",
         invoiceGenDesc: "Erstellen Sie professionelle PDF-Rechnungen.",
+        invoiceFeature1: "Professionelles PDF",
+        invoiceFeature2: "Mehrwährung",
+        invoiceFeature3: "Alle Länder",
         createInvoiceFree: "Rechnung Erstellen - Kostenlos",
         quoteGenTitle: "Angebotsgenerator",
         quoteGenDesc: "Erstellen Sie professionelle PDF-Angebote.",
+        quoteFeature1: "Professionelles PDF",
+        quoteFeature2: "Anpassbare Gültigkeit",
+        quoteFeature3: "Alle Länder",
         createQuoteFree: "Angebot Erstellen - Kostenlos",
         
         ctaTitle: "Bereit, Ihre Arbeit zu Vereinfachen?",
@@ -535,28 +449,81 @@ const TRANSLATIONS = {
         services: "Dienste",
         contacts: "Kontakte",
         allRightsReserved: "Alle Rechte vorbehalten",
-        
-        vatCalculatorTitle: "MwSt-Rechner",
-        fromNetToGross: "Netto zu Brutto",
-        fromGrossToNet: "Brutto zu Netto",
-        netAmount: "Nettobetrag",
-        grossAmount: "Bruttobetrag",
-        
-        generateInvoice: "Rechnung Erstellen",
-        generateQuote: "Angebot Erstellen",
-        invoiceNumber: "Rechnungsnummer",
-        companyName: "Firmenname",
-        vatNumber: "USt-IdNr",
-        address: "Adresse",
-        city: "Stadt",
-        zip: "PLZ",
-        description: "Beschreibung",
-        quantity: "Menge",
-        unitPrice: "Einzelpreis",
-        generatePDF: "PDF Erstellen",
+        privacy: "Datenschutz",
+        terms: "Nutzungsbedingungen",
         
         calculate: "Berechnen",
-        downloadPng: "PNG Herunterladen"
+        clear: "Löschen",
+        download: "Herunterladen",
+        save: "Speichern",
+        cancel: "Abbrechen",
+        confirm: "Bestätigen",
+        back: "Zurück",
+        next: "Weiter",
+        loading: "Laden...",
+        error: "Fehler",
+        success: "Erfolg",
+        warning: "Warnung",
+        info: "Info",
+        
+        blog: {
+            hero: {
+                title: "Leitfäden und Ressourcen für Fachleute",
+                subtitle: "Praktische Artikel, Steuerratgeber und Tipps zur optimalen Verwaltung Ihrer beruflichen Tätigkeit"
+            },
+            filter: {
+                all: "Alle",
+                fiscal: "Steuern",
+                invoicing: "Rechnungsstellung",
+                vat: "MwSt",
+                guides: "Anleitungen"
+            },
+            category: {
+                all: "Alle",
+                fiscal: "Steuern",
+                invoicing: "Rechnungsstellung",
+                vat: "MwSt",
+                guides: "Anleitungen",
+                work: "Arbeit"
+            },
+            featured: "Hervorgehoben",
+            latestArticles: "Neueste Artikel",
+            readArticle: "Artikel lesen",
+            readMore: "Mehr lesen",
+            comingSoon: "Demnächst",
+            article1: {
+                title: "Quellensteuer 2025: Vollständiger Berechnungsleitfaden",
+                excerpt: "Alles über Quellensteuer: was sie ist, wie man sie berechnet, wer sie anwenden muss.",
+                date: "26. Oktober 2025",
+                readTime: "8 Min."
+            },
+            article2: {
+                title: "Nettogehalt-Berechnung: Vollständiger Leitfaden 2025",
+                excerpt: "So berechnen Sie das Nettogehalt vom Brutto: INPS, IRPEF, Abzüge.",
+                date: "26. Oktober 2025"
+            },
+            article3: {
+                title: "TFR: Berechnung, Abfindung und Besteuerung",
+                excerpt: "Alles über Abfindung: wie sie berechnet wird, wann sie fällig ist.",
+                date: "26. Oktober 2025"
+            },
+            article4: {
+                title: "Wie erstelle ich eine kostenlose elektronische Rechnung",
+                excerpt: "Schritt-für-Schritt-Anleitung zur Erstellung professioneller elektronischer Rechnungen."
+            },
+            newsletter: {
+                title: "Bleiben Sie auf dem Laufenden",
+                subtitle: "Erhalten Sie unsere Leitfäden direkt per E-Mail. Kein Spam.",
+                emailPlaceholder: "Ihre E-Mail",
+                subscribe: "Abonnieren",
+                noSpam: "Keine Karte erforderlich. Jederzeit kündbar."
+            }
+        },
+        nav: {
+            home: "Startseite",
+            tools: "Werkzeuge",
+            blog: "Blog"
+        }
     },
     
     fr: {
@@ -564,11 +531,32 @@ const TRANSLATIONS = {
         features: "Services",
         tools: "Outils",
         aboutUs: "À Propos",
+        login: "Connexion",
+        register: "Inscription",
+        logout: "Déconnexion",
+        dashboard: "Tableau de bord",
         
         heroTitle: "Outils Gratuits pour Votre Entreprise",
         heroSubtitle: "Calculateurs, générateurs de documents et bien plus. Tout gratuit.",
+        heroDescription: "Servizi Business propose des outils professionnels pour la TVA, retenue à la source, salaire net et indemnité. Créez des factures et devis PDF. Tous les outils essentiels pour freelances, indépendants et PME en un seul endroit.",
         ctaStart: "Commencer",
         ctaLearnMore: "En Savoir Plus",
+        
+        seoIntroTitle: "Outils Business En Ligne: Simplifiez Votre Gestion",
+        seoIntroPara1: "Bienvenue sur Servizi Business, la plateforme qui rassemble tous les outils essentiels pour gérer votre activité professionnelle. Que vous soyez freelance, indépendant ou PME, trouvez des calculateurs gratuits.",
+        seoWhoIsThisFor: "Pour Qui Sont Ces Outils?",
+        seoTargetFreelance: "Freelances: calculez la retenue, TVA et créez des factures",
+        seoTargetVAT: "Indépendants: gérez taxes, devis et documents fiscaux",
+        seoTargetBusiness: "PME: outils pour facturation et calculs fiscaux",
+        seoTargetEmployee: "Employés: calculez salaire net et indemnité",
+        seoTargetAccountant: "Comptables: accélérez les calculs pour vos clients",
+        seoWhyChooseUs: "Pourquoi Choisir Servizi Business?",
+        seoFeature1Title: "100% Gratuit",
+        seoFeature1Desc: "Tous les outils de base sont gratuits, sans coûts cachés.",
+        seoFeature2Title: "Rapide et Facile",
+        seoFeature2Desc: "Résultats instantanés sans inscription.",
+        seoFeature3Title: "Sécurisé et RGPD",
+        seoFeature3Desc: "Vos données sont protégées conformément aux réglementations européennes.",
         
         statsTools: "Outils Gratuits",
         statsFree: "Gratuit Pour Toujours",
@@ -580,10 +568,16 @@ const TRANSLATIONS = {
         ivaCalcDesc: "Calculez rapidement la TVA.",
         salaryCalc: "Calculateur Salaire",
         salaryCalcDesc: "Découvrez votre salaire net.",
+        withholdingCalc: "Calculateur Retenue",
+        withholdingCalcDesc: "Calculez la retenue pour professionnels.",
+        tfrCalc: "Calculateur Indemnité",
+        tfrCalcDesc: "Calculez votre indemnité accumulée.",
+        taxCalc: "Calculateur Taxes",
+        taxCalcDesc: "Calculez les taxes à payer.",
         qrGenerator: "Générateur QR Code",
         qrGeneratorDesc: "Créez des QR codes gratuits.",
         corrispettiviCalc: "Ventes Quotidiennes",
-        corrispettiviCalcDesc: "Gérez les ventes quotidiennes avec calcul TVA automatique.",
+        corrispettiviCalcDesc: "Gérez les ventes avec calcul TVA automatique.",
         imgToPdfConverter: "Convertir Images en PDF",
         imgToPdfConverterDesc: "Transformez PNG, JPG, WebP en PDF professionnel.",
         useNow: "Utiliser maintenant",
@@ -604,9 +598,15 @@ const TRANSLATIONS = {
         premiumDesc: "Créez des factures et devis professionnels",
         invoiceGenTitle: "Générateur de Factures",
         invoiceGenDesc: "Créez des factures PDF professionnelles.",
+        invoiceFeature1: "PDF professionnel",
+        invoiceFeature2: "Multi-devises",
+        invoiceFeature3: "Tous les pays",
         createInvoiceFree: "Créer Facture - Gratuit",
         quoteGenTitle: "Générateur de Devis",
         quoteGenDesc: "Créez des devis PDF professionnels.",
+        quoteFeature1: "PDF professionnel",
+        quoteFeature2: "Validité personnalisable",
+        quoteFeature3: "Tous les pays",
         createQuoteFree: "Créer Devis - Gratuit",
         
         ctaTitle: "Prêt à Simplifier Votre Travail?",
@@ -619,20 +619,81 @@ const TRANSLATIONS = {
         services: "Services",
         contacts: "Contacts",
         allRightsReserved: "Tous droits réservés",
+        privacy: "Politique de Confidentialité",
+        terms: "Conditions d'Utilisation",
         
-        vatCalculatorTitle: "Calculateur TVA",
-        fromNetToGross: "HT vers TTC",
-        fromGrossToNet: "TTC vers HT",
+        calculate: "Calculer",
+        clear: "Effacer",
+        download: "Télécharger",
+        save: "Enregistrer",
+        cancel: "Annuler",
+        confirm: "Confirmer",
+        back: "Retour",
+        next: "Suivant",
+        loading: "Chargement...",
+        error: "Erreur",
+        success: "Succès",
+        warning: "Avertissement",
+        info: "Info",
         
-        generateInvoice: "Créer Facture",
-        generateQuote: "Créer Devis",
-        companyName: "Nom Société",
-        vatNumber: "Numéro TVA",
-        address: "Adresse",
-        city: "Ville",
-        description: "Description",
-        
-        calculate: "Calculer"
+        blog: {
+            hero: {
+                title: "Guides et Ressources pour Professionnels",
+                subtitle: "Articles pratiques, guides fiscaux et conseils pour mieux gérer votre activité"
+            },
+            filter: {
+                all: "Tous",
+                fiscal: "Fiscal",
+                invoicing: "Facturation",
+                vat: "TVA",
+                guides: "Guides"
+            },
+            category: {
+                all: "Tous",
+                fiscal: "Fiscal",
+                invoicing: "Facturation",
+                vat: "TVA",
+                guides: "Guides",
+                work: "Travail"
+            },
+            featured: "En Vedette",
+            latestArticles: "Derniers Articles",
+            readArticle: "Lire l'article",
+            readMore: "Lire plus",
+            comingSoon: "Prochainement",
+            article1: {
+                title: "Retenue à la Source 2025: Guide Complet",
+                excerpt: "Tout sur la retenue à la source: ce qu'elle est, comment la calculer.",
+                date: "26 Octobre 2025",
+                readTime: "8 min"
+            },
+            article2: {
+                title: "Calcul du Salaire Net: Guide Complet 2025",
+                excerpt: "Comment calculer le salaire net: INPS, IRPEF, déductions.",
+                date: "26 Octobre 2025"
+            },
+            article3: {
+                title: "TFR: Calcul, Liquidation et Imposition",
+                excerpt: "Tout sur l'indemnité de départ: comment elle est calculée.",
+                date: "26 Octobre 2025"
+            },
+            article4: {
+                title: "Comment Créer une Facture Électronique Gratuite",
+                excerpt: "Guide pour créer des factures électroniques professionnelles."
+            },
+            newsletter: {
+                title: "Restez Informé",
+                subtitle: "Recevez nos guides directement dans votre email. Pas de spam.",
+                emailPlaceholder: "Votre email",
+                subscribe: "S'abonner",
+                noSpam: "Aucune carte requise. Désabonnement à tout moment."
+            }
+        },
+        nav: {
+            home: "Accueil",
+            tools: "Outils",
+            blog: "Blog"
+        }
     },
     
     es: {
@@ -640,11 +701,32 @@ const TRANSLATIONS = {
         features: "Servicios",
         tools: "Herramientas",
         aboutUs: "Sobre Nosotros",
+        login: "Iniciar Sesión",
+        register: "Registrarse",
+        logout: "Cerrar Sesión",
+        dashboard: "Panel",
         
         heroTitle: "Herramientas Gratuitas para Tu Negocio",
         heroSubtitle: "Calculadoras, generadores de documentos y mucho más. Todo gratis.",
+        heroDescription: "Servizi Business ofrece herramientas profesionales para IVA, retención, salario neto e indemnización. Crea facturas y presupuestos PDF. Todas las herramientas esenciales para freelancers, autónomos y PYME en un solo lugar.",
         ctaStart: "Comenzar",
         ctaLearnMore: "Saber Más",
+        
+        seoIntroTitle: "Herramientas Business Online: Simplifica Tu Gestión",
+        seoIntroPara1: "Bienvenido a Servizi Business, la plataforma que reúne todas las herramientas esenciales para gestionar tu actividad profesional. Ya seas freelance, autónomo o PYME, encuentra calculadoras gratuitas.",
+        seoWhoIsThisFor: "¿Para Quién Son Estas Herramientas?",
+        seoTargetFreelance: "Freelances: calcula retención, IVA y crea facturas",
+        seoTargetVAT: "Autónomos: gestiona impuestos, presupuestos y documentos fiscales",
+        seoTargetBusiness: "PYME: herramientas para facturación y cálculos fiscales",
+        seoTargetEmployee: "Empleados: calcula salario neto e indemnización",
+        seoTargetAccountant: "Contadores: acelera cálculos para tus clientes",
+        seoWhyChooseUs: "¿Por Qué Elegir Servizi Business?",
+        seoFeature1Title: "100% Gratis",
+        seoFeature1Desc: "Todas las herramientas básicas son gratis, sin costos ocultos.",
+        seoFeature2Title: "Rápido y Fácil",
+        seoFeature2Desc: "Resultados instantáneos sin registro.",
+        seoFeature3Title: "Seguro y RGPD",
+        seoFeature3Desc: "Tus datos están protegidos según normativas europeas.",
         
         statsTools: "Herramientas Gratuitas",
         statsFree: "Gratis Para Siempre",
@@ -656,10 +738,16 @@ const TRANSLATIONS = {
         ivaCalcDesc: "Calcula rápidamente el IVA.",
         salaryCalc: "Calculadora Salario",
         salaryCalcDesc: "Descubre tu salario neto.",
+        withholdingCalc: "Calculadora Retención",
+        withholdingCalcDesc: "Calcula la retención para profesionales.",
+        tfrCalc: "Calculadora Indemnización",
+        tfrCalcDesc: "Calcula tu indemnización acumulada.",
+        taxCalc: "Calculadora Impuestos",
+        taxCalcDesc: "Calcula los impuestos a pagar.",
         qrGenerator: "Generador Código QR",
         qrGeneratorDesc: "Crea códigos QR gratis.",
         corrispettiviCalc: "Ventas Diarias",
-        corrispettiviCalcDesc: "Gestiona ventas diarias con cálculo IVA automático.",
+        corrispettiviCalcDesc: "Gestiona ventas con cálculo IVA automático.",
         imgToPdfConverter: "Convertir Imágenes a PDF",
         imgToPdfConverterDesc: "Transforma PNG, JPG, WebP en PDF profesional.",
         useNow: "Usar ahora",
@@ -680,9 +768,15 @@ const TRANSLATIONS = {
         premiumDesc: "Crea facturas y presupuestos profesionales",
         invoiceGenTitle: "Generador de Facturas",
         invoiceGenDesc: "Crea facturas PDF profesionales.",
+        invoiceFeature1: "PDF profesional",
+        invoiceFeature2: "Multi-moneda",
+        invoiceFeature3: "Todos los países",
         createInvoiceFree: "Crear Factura - Gratis",
         quoteGenTitle: "Generador de Presupuestos",
         quoteGenDesc: "Crea presupuestos PDF profesionales.",
+        quoteFeature1: "PDF profesional",
+        quoteFeature2: "Validez personalizable",
+        quoteFeature3: "Todos los países",
         createQuoteFree: "Crear Presupuesto - Gratis",
         
         ctaTitle: "¿Listo para Simplificar tu Trabajo?",
@@ -695,17 +789,81 @@ const TRANSLATIONS = {
         services: "Servicios",
         contacts: "Contactos",
         allRightsReserved: "Todos los derechos reservados",
+        privacy: "Política de Privacidad",
+        terms: "Términos de Servicio",
         
-        vatCalculatorTitle: "Calculadora IVA",
+        calculate: "Calcular",
+        clear: "Limpiar",
+        download: "Descargar",
+        save: "Guardar",
+        cancel: "Cancelar",
+        confirm: "Confirmar",
+        back: "Atrás",
+        next: "Siguiente",
+        loading: "Cargando...",
+        error: "Error",
+        success: "Éxito",
+        warning: "Advertencia",
+        info: "Info",
         
-        generateInvoice: "Crear Factura",
-        generateQuote: "Crear Presupuesto",
-        companyName: "Nombre Empresa",
-        vatNumber: "NIF/CIF",
-        address: "Dirección",
-        city: "Ciudad",
-        
-        calculate: "Calcular"
+        blog: {
+            hero: {
+                title: "Guías y Recursos para Profesionales",
+                subtitle: "Artículos prácticos, guías fiscales y consejos para gestionar mejor tu actividad"
+            },
+            filter: {
+                all: "Todos",
+                fiscal: "Fiscal",
+                invoicing: "Facturación",
+                vat: "IVA",
+                guides: "Guías"
+            },
+            category: {
+                all: "Todos",
+                fiscal: "Fiscal",
+                invoicing: "Facturación",
+                vat: "IVA",
+                guides: "Guías",
+                work: "Trabajo"
+            },
+            featured: "Destacado",
+            latestArticles: "Últimos Artículos",
+            readArticle: "Leer artículo",
+            readMore: "Leer más",
+            comingSoon: "Próximamente",
+            article1: {
+                title: "Retención de Impuestos 2025: Guía Completa",
+                excerpt: "Todo sobre la retención de impuestos: qué es, cómo calcularla.",
+                date: "26 de Octubre de 2025",
+                readTime: "8 min"
+            },
+            article2: {
+                title: "Cálculo de Salario Neto: Guía Completa 2025",
+                excerpt: "Cómo calcular el salario neto: INPS, IRPEF, deducciones.",
+                date: "26 de Octubre de 2025"
+            },
+            article3: {
+                title: "TFR: Cálculo, Liquidación e Impuestos",
+                excerpt: "Todo sobre la indemnización: cómo se calcula, cuándo se debe.",
+                date: "26 de Octubre de 2025"
+            },
+            article4: {
+                title: "Cómo Crear una Factura Electrónica Gratis",
+                excerpt: "Guía para crear facturas electrónicas profesionales."
+            },
+            newsletter: {
+                title: "Mantente Actualizado",
+                subtitle: "Recibe nuestras guías directamente en tu email. Sin spam.",
+                emailPlaceholder: "Tu email",
+                subscribe: "Suscribirse",
+                noSpam: "No se requiere tarjeta. Cancela cuando quieras."
+            }
+        },
+        nav: {
+            home: "Inicio",
+            tools: "Herramientas",
+            blog: "Blog"
+        }
     },
     
     hu: {
@@ -716,40 +874,55 @@ const TRANSLATIONS = {
         login: "Bejelentkezés",
         register: "Regisztráció",
         logout: "Kijelentkezés",
+        dashboard: "Irányítópult",
         
         heroTitle: "Ingyenes Eszközök az Ön Vállalkozásához",
         heroSubtitle: "Számológépek, dokumentumgenerátorok és még sok más. Minden ingyen.",
+        heroDescription: "A Servizi Business professzionális eszközöket kínál ÁFA, adóelőleg, nettó fizetés és végkielégítés számításához. Hozzon létre elektronikus számlákat és árajánlatokat PDF formátumban. Minden lényeges eszköz szabadúszók, egyéni vállalkozók és kisvállalatok számára egy helyen.",
         ctaStart: "Kezdjünk Neki",
         ctaLearnMore: "Tudjon Meg Többet",
+        
+        // SEO Section
+        seoIntroTitle: "Online Üzleti Eszközök: Egyszerűsítse Vállalkozásának Kezelését",
+        seoIntroPara1: "Üdvözöljük a Servizi Business oldalán, amely összegyűjti az összes lényeges eszközt vállalkozása kezeléséhez. Akár szabadúszó, egyéni vállalkozó vagy kisvállalat, ingyenes számológépeket és professzionális dokumentumgenerátorokat talál az idő és pénz megtakarítására.",
+        seoWhoIsThisFor: "Kinek Szólnak Ezek az Eszközök?",
+        seoTargetFreelance: "Szabadúszók: számítsa ki az adóelőleget, ÁFÁ-t és hozzon létre professzionális számlákat",
+        seoTargetVAT: "Egyéni vállalkozók: kezelje az adókat, árajánlatokat és adódokumentumokat",
+        seoTargetBusiness: "Kisvállalatok: eszközök számlázáshoz, adószámításhoz és napi eladásokhoz",
+        seoTargetEmployee: "Alkalmazottak: számítsa ki nettó fizetését és végkielégítését",
+        seoTargetAccountant: "Könyvelők: gyorsítsa fel az ügyfelei számításait",
+        seoWhyChooseUs: "Miért Válassza a Servizi Business-t?",
+        seoFeature1Title: "100% Ingyenes",
+        seoFeature1Desc: "Minden alapeszköz teljesen ingyenes, nincsenek rejtett költségek.",
+        seoFeature2Title: "Gyors és Egyszerű",
+        seoFeature2Desc: "Azonnali eredmények regisztráció nélkül az alapszámológépekhez.",
+        seoFeature3Title: "Biztonságos és GDPR",
+        seoFeature3Desc: "Az Ön adatai védve vannak és az európai előírásoknak megfelelően kerülnek kezelésre.",
         
         statsTools: "Ingyenes Eszközök",
         statsFree: "Örökre Ingyenes",
         statsAvailable: "Mindig Elérhető",
         
-        toolsTitle: "Elérhető Eszközök",
         freeTools: "Ingyenes Számológépek",
         freeToolsDesc: "Nincs szükség regisztrációra. Használja eszközeinket most!",
-        invoiceGenerator: "Számlakészítő",
-        quotesGenerator: "Árajánlatkészítő",
         ivaCalc: "ÁFA Számológép",
-        ivaCalcDesc: "Gyorsan számítsa ki az ÁFÁ-t bármilyen összegre.",
+        ivaCalcDesc: "Gyorsan számítsa ki az ÁFÁ-t.",
         salaryCalc: "Nettó Fizetés Számológép",
-        salaryCalcDesc: "Tudja meg, mennyit fog ténylegesen keresni.",
-        tfrCalc: "Végkielégítés Számológép",
+        salaryCalcDesc: "Tudja meg nettó fizetését.",
         withholdingCalc: "Adóelőleg Számológép",
-        withholdingCalcDesc: "Számítsa ki az adóelőleget szakemberek számára.",
-        tfrCalcDesc: "Számítsa ki felhalmozott végkielégítését.",
+        withholdingCalcDesc: "Számítsa ki az adóelőleget.",
+        tfrCalc: "Végkielégítés Számológép",
+        tfrCalcDesc: "Számítsa ki végkielégítését.",
         taxCalc: "Adószámítás",
         taxCalcDesc: "Számítsa ki a fizetendő adókat.",
         qrGenerator: "QR Kód Generátor",
         qrGeneratorDesc: "Hozzon létre ingyenes QR kódokat.",
         corrispettiviCalc: "Napi Eladások",
-        corrispettiviCalcDesc: "Kezelje a napi eladásokat automatikus ÁFA számítással.",
+        corrispettiviCalcDesc: "Kezelje az eladásokat automatikus ÁFA számítással.",
         imgToPdfConverter: "Képek Konvertálása PDF-be",
         imgToPdfConverterDesc: "Alakítsa át PNG, JPG, WebP fájlokat professzionális PDF-é.",
-        myInvoices: "Számláim",
         useNow: "Használja most",
-
+        
         testimonialsTitle: "Mit Mondanak Felhasználóink",
         testimonialsSubtitle: "Szakemberek ezrei bíznak eszközeinkben minden nap.",
         testimonial1Text: "A számlakészítő megmentette az életemet! Egyszerű, gyors és professzionális.",
@@ -788,152 +961,7 @@ const TRANSLATIONS = {
         contacts: "Kapcsolat",
         allRightsReserved: "Minden jog fenntartva",
         privacy: "Adatvédelmi Irányelvek",
-        terms: "Szolgáltatási Feltételek",
-        
-        generateInvoice: "Számla Készítése",
-        generateInvoiceDesc: "Hozzon létre professzionális PDF számlát",
-        generateQuote: "Árajánlat Készítése",
-        generateQuoteDesc: "Hozzon létre professzionális PDF árajánlatot",
-        invoiceData: "Számla Adatai",
-        quoteData: "Árajánlat Adatai",
-        invoiceNumber: "Számlaszám",
-        quoteNumber: "Árajánlat Száma",
-        issueDate: "Kiállítás Dátuma",
-        dueDate: "Fizetési Határidő",
-        validityDays: "Érvényesség (napok)",
-        senderData: "Küldő Adatai",
-        companyData: "Vállalat Adatai",
-        clientData: "Ügyfél Adatai",
-        companyName: "Cégnév / Név",
-        vatNumber: "Adószám",
-        address: "Cím",
-        city: "Város",
-        zip: "Irányítószám",
-        phone: "Telefon",
-        email: "E-mail",
-        items: "Termékek / Szolgáltatások",
-        description: "Leírás",
-        quantity: "Mennyiség",
-        unitPrice: "Egységár",
-        tax: "ÁFA",
-        total: "Összesen",
-        addRow: "Sor Hozzáadása",
-        summary: "Összegzés",
-        subtotal: "Részösszeg",
-        vatTotal: "ÁFA",
-        withholding: "Adóelőleg",
-        netTotal: "Összesen",
-        totalQuote: "Árajánlat Összege",
-        generatePDF: "PDF Készítése",
-        sendEmail: "Küldés E-mailben",
-        reset: "Minden Törlése",
-        includeVat: "ÁFA Tartalmazza",
-        additionalNotes: "További Megjegyzések",
-        quoteInfo: "Az árajánlatnak nincs adózási értéke.",
-        
-        vatCalculatorTitle: "ÁFA Számológép",
-        vatCalculatorSubtitle: "Gyorsan számítsa ki az ÁFÁ-t",
-        fromNetToGross: "Nettóról Bruttóra",
-        fromGrossToNet: "Bruttóról Nettóra",
-        netAmount: "Nettó Összeg",
-        grossAmount: "Bruttó Összeg",
-        vatRateLabel: "ÁFA Kulcs",
-        
-        withholdingCalculatorTitle: "Adóelőleg Számítás",
-        withholdingCalculatorSubtitle: "Számítsa ki az adóelőleget szakemberek számára",
-        grossInvoiceAmount: "Bruttó Számla Összeg",
-        withholdingRate: "Adóelőleg Kulcs",
-        withholdingAmount: "Adóelőleg Összege",
-        netToReceive: "Nettó Beérkező",
-        
-        salaryCalculatorTitle: "Nettó Fizetés Számítás",
-        salaryCalculatorSubtitle: "Tudja meg nettó jövedelmét",
-        grossSalaryLabel: "Bruttó Éves Fizetés",
-        familyDeductions: "Családi Kedvezmények",
-        noDeductions: "Nincs (Egyedülálló)",
-        spouseDependent: "Eltartott Házastárs",
-        netYearlySalary: "Nettó Éves Fizetés",
-        netMonthlySalary: "Nettó Havi Fizetés",
-        deductionsDetail: "Levonások Részletei",
-        inpsContributions: "Társadalombiztosítás",
-        incomeTax: "Jövedelemadó",
-        taxDeductions: "Adókedvezmények",
-        totalNetYearly: "Teljes Nettó Éves",
-        
-        tfrCalculatorTitle: "Végkielégítés Számítás",
-        tfrCalculatorSubtitle: "Számítsa ki végkielégítését",
-        
-        pivaTaxTitle: "Adószámítás",
-        pivaTaxSubtitle: "Hasonlítsa össze az adórendszereket",
-        annualRevenue: "Éves Bevétel",
-        businessCosts: "Üzleti Költségek",
-        activityType: "Tevékenység Típusa",
-        flatRegime: "Átalányos Rendszer",
-        ordinaryRegime: "Rendes Rendszer",
-        taxableIncome: "Adóköteles Jövedelem",
-        totalTaxes: "Összes Adó",
-        netAnnual: "Nettó Éves",
-        monthly: "Havi:",
-        comparison: "Összehasonlítás",
-        savingsWithFlat: "Megtakarítás Átalánnyal",
-        taxBurden: "Adóteher",
-        
-        qrGeneratorTitle: "QR Kód Generátor",
-        qrGeneratorSubtitle: "Hozzon létre ingyenes QR kódokat",
-        qrType: "QR Kód Típusa",
-        qrTypeUrl: "URL",
-        qrTypeText: "Szöveg",
-        qrTypeEmail: "E-mail",
-        qrTypePhone: "Telefon",
-        qrTypeSms: "SMS",
-        qrTypeWifi: "WiFi",
-        insertUrl: "Adja meg az URL-t",
-        insertText: "Adja meg a Szöveget",
-        emailRecipient: "Címzett E-mail",
-        emailSubject: "Tárgy (opcionális)",
-        emailBody: "Üzenet (opcionális)",
-        phoneNumber: "Telefonszám",
-        smsMessage: "Üzenet",
-        wifiSsid: "Hálózat Neve (SSID)",
-        wifiPassword: "Jelszó",
-        wifiEncryption: "Biztonsági Típus",
-        wifiEncWpa: "WPA/WPA2",
-        wifiEncWep: "WEP",
-        wifiEncNone: "Nincs",
-        qrSize: "QR Kód Mérete",
-        generateQr: "QR Kód Generálása",
-        qrPreview: "QR Kód Előnézet",
-        qrPlaceholder: "A QR kód itt jelenik meg",
-        downloadPng: "PNG Letöltése",
-        createNew: "Új Létrehozása",
-        
-        ordinaryRateDesc: "Általános Kulcs",
-        reducedRateDesc: "Csökkentett Kulcs",
-        minimumRateDesc: "Minimális Kulcs",
-        exemptDesc: "ÁFA Mentes",
-        
-        de_standardRate: "Általános Kulcs",
-        de_reducedRate: "Csökkentett Kulcs",
-        
-        fr_standardRate: "Általános Kulcs",
-        fr_intermediateRate: "Közepes Kulcs",
-        fr_reducedRate: "Csökkentett Kulcs",
-        fr_superReducedRate: "Szuper Csökkentett Kulcs",
-        
-        es_generalRate: "Általános Típus",
-        es_reducedRate: "Csökkentett Típus",
-        es_superReducedRate: "Szuper Csökkentett Típus",
-        
-        gb_standardRate: "Általános Kulcs",
-        gb_reducedRate: "Csökkentett Kulcs",
-        gb_zeroRate: "Nulla Kulcs",
-        
-        us_averageRate: "Forgalmi Adó (Átlag)",
-        us_exemptRate: "Mentes",
-        usSalesTaxNote: "Megjegyzés: A forgalmi adó államonként változik",
-        
-        au_standardRate: "GST Általános",
-        au_exemptRate: "GST Mentes",
+        terms: "Felhasználási Feltételek",
         
         calculate: "Számítás",
         clear: "Törlés",
@@ -947,7 +975,66 @@ const TRANSLATIONS = {
         error: "Hiba",
         success: "Sikeres",
         warning: "Figyelmeztetés",
-        info: "Információ"
+        info: "Információ",
+        
+        blog: {
+            hero: {
+                title: "Útmutatók és Források Szakembereknek",
+                subtitle: "Gyakorlati cikkek, adótanácsadók és tippek szakmai tevékenysége kezeléséhez"
+            },
+            filter: {
+                all: "Minden",
+                fiscal: "Adó",
+                invoicing: "Számlázás",
+                vat: "ÁFA",
+                guides: "Útmutatók"
+            },
+            category: {
+                all: "Minden",
+                fiscal: "Adó",
+                invoicing: "Számlázás",
+                vat: "ÁFA",
+                guides: "Útmutatók",
+                work: "Munka"
+            },
+            featured: "Kiemelt",
+            latestArticles: "Legújabb Cikkek",
+            readArticle: "Cikk olvasása",
+            readMore: "Tovább olvasom",
+            comingSoon: "Hamarosan",
+            article1: {
+                title: "Forrásadó 2025: Teljes Útmutató",
+                excerpt: "Minden a forrásadóról: mi az, hogyan kell kiszámítani.",
+                date: "2025. október 26.",
+                readTime: "8 perc"
+            },
+            article2: {
+                title: "Nettó Fizetés Számítása: Teljes Útmutató 2025",
+                excerpt: "Hogyan számítsuk ki a nettó fizetést: INPS, IRPEF, levonások.",
+                date: "2025. október 26."
+            },
+            article3: {
+                title: "TFR: Számítás, Kifizetés és Adózás",
+                excerpt: "Minden a végkielégítésről: hogyan számítják ki.",
+                date: "2025. október 26."
+            },
+            article4: {
+                title: "Hogyan Készítsünk Ingyenes Elektronikus Számlát",
+                excerpt: "Útmutató professzionális elektronikus számlák létrehozásához."
+            },
+            newsletter: {
+                title: "Maradjon Naprakész",
+                subtitle: "Kapja meg útmutatóinkat közvetlenül az e-mailjében. Nincs spam.",
+                emailPlaceholder: "Az Ön e-mailje",
+                subscribe: "Feliratkozás",
+                noSpam: "Nincs szükség kártyára. Bármikor leiratkozhat."
+            }
+        },
+        nav: {
+            home: "Főoldal",
+            tools: "Eszközök",
+            blog: "Blog"
+        }
     }
 };
 
@@ -976,35 +1063,53 @@ function setLanguage(lang) {
     // Traduci tutti gli elementi con data-i18n
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
-        if (TRANSLATIONS[lang][key]) {
+        const translation = getNestedTranslation(TRANSLATIONS[lang], key);
+        
+        if (translation) {
             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                element.placeholder = TRANSLATIONS[lang][key];
+                element.placeholder = translation;
             } else {
-                updateElementText(element, TRANSLATIONS[lang][key]);
+                updateElementText(element, translation);
             }
         }
     });
     
-    // ✅ NUOVA FUNZIONE: Traduci anche i placeholder con data-i18n-placeholder
+    // Traduci placeholder
     document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
         const key = element.getAttribute('data-i18n-placeholder');
-        if (TRANSLATIONS[lang][key]) {
-            element.placeholder = TRANSLATIONS[lang][key];
+        const translation = getNestedTranslation(TRANSLATIONS[lang], key);
+        if (translation) {
+            element.placeholder = translation;
         }
     });
     
     // Aggiorna pulsanti lingua
     document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.remove('active', 'bg-blue-600', 'text-white');
+        btn.classList.remove('active', 'bg-blue-600', 'text-white', 'border-blue-500');
         btn.classList.add('text-gray-700');
     });
     const activeBtn = document.querySelector(`[data-lang="${lang}"]`);
     if (activeBtn) {
-        activeBtn.classList.add('active', 'bg-blue-600', 'text-white');
+        activeBtn.classList.add('active', 'bg-blue-600', 'text-white', 'border-blue-500');
         activeBtn.classList.remove('text-gray-700');
     }
     
     console.log('✅ Language set to:', lang);
+}
+
+function getNestedTranslation(obj, path) {
+    const keys = path.split('.');
+    let result = obj;
+    
+    for (const key of keys) {
+        if (result && typeof result === 'object' && key in result) {
+            result = result[key];
+        } else {
+            return null;
+        }
+    }
+    
+    return result;
 }
 
 function updateElementText(element, newText) {
@@ -1026,7 +1131,7 @@ function updateElementText(element, newText) {
 }
 
 function t(key) {
-    return TRANSLATIONS[currentLanguage][key] || key;
+    return getNestedTranslation(TRANSLATIONS[currentLanguage], key) || key;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -1034,4 +1139,4 @@ document.addEventListener('DOMContentLoaded', function() {
     setLanguage(currentLanguage);
 });
 
-console.log('✅ i18n system loaded');
+console.log('✅ i18n system loaded with COMPLETE translations for 6 languages');
