@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guide e articoli per professionisti e partite IVA: calcoli fiscali, fatturazione, gestione aziendale. Consigli pratici e strumenti gratuiti.">
+    <meta name="keywords" content="guide fiscali, articoli partita iva, consulenza business, calcoli fiscali">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://servizi-business.com/blog/">
+    
+    <title>Blog e Guide per Professionisti | Servizi Business</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9F1LD82S0S"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9F1LD82S0S');
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="../i18n.js"></script>
+    <script src="blog-articles.js"></script>
+</head>
+<body class="bg-gray-50">
+    
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <a href="../index.html" class="flex items-center space-x-2">
+                    <i class="fas fa-calculator text-blue-600 text-2xl"></i>
+                    <span class="text-xl font-bold text-gray-800">Servizi Business</span>
+                </a>
+                <div class="flex items-center gap-6">
+                    <a href="../index.html" class="text-gray-600 hover:text-blue-600 transition" data-i18n="nav.home">Home</a>
+                    <a href="../index.html#calcolatori" class="text-gray-600 hover:text-blue-600 transition" data-i18n="nav.tools">Strumenti</a>
+                    <a href="index.html" class="text-blue-600 font-semibold" data-i18n="nav.blog">Blog</a>
+                    
+                    <!-- Language Selector -->
+                    <div class="flex items-center gap-2 ml-4">
+                        <button onclick="setLanguage('it')" class="lang-btn w-8 h-8 rounded-full overflow-hidden border-2 border-transparent hover:border-blue-500 transition" data-lang="it">
+                            <img src="https://flagcdn.com/w40/it.png" alt="Italiano" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="setLanguage('en')" class="lang-btn w-8 h-8 rounded-full overflow-hidden border-2 border-transparent hover:border-blue-500 transition" data-lang="en">
+                            <img src="https://flagcdn.com/w40/gb.png" alt="English" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="setLanguage('de')" class="lang-btn w-8 h-8 rounded-full overflow-hidden border-2 border-transparent hover:border-blue-500 transition" data-lang="de">
+                            <img src="https://flagcdn.com/w40/de.png" alt="Deutsch" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="setLanguage('fr')" class="lang-btn w-8 h-8 rounded-full overflow-hidden border-2 border-transparent hover:border-blue-500 transition" data-lang="fr">
+                            <img src="https://flagcdn.com/w40/fr.png" alt="Français" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="setLanguage('es')" class="lang-btn w-8 h-8 rounded-full overflow-hidden border-2 border-transparent hover:border-blue-500 transition" data-lang="es">
+                            <img src="https://flagcdn.com/w40/es.png" alt="Español" class="w-full h-full object-cover">
+                        </button>
+                        <button onclick="setLanguage('hu')" class="lang-btn w-8 h-8 rounded-full overflow-hidden border-2 border-transparent hover:border-blue-500 transition" data-lang="hu">
+                            <img src="https://flagcdn.com/w40/hu.png" alt="Magyar" class="w-full h-full object-cover">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4" data-i18n="blog.hero.title">Guide e Risorse per Professionisti</h1>
+            <p class="text-xl text-blue-100 max-w-2xl mx-auto" data-i18n="blog.hero.subtitle">
+                Articoli pratici, guide fiscali e consigli per gestire al meglio la tua attività professionale
+            </p>
+        </div>
+    </section>
+
+    <!-- Articles Grid -->
+    <main class="container mx-auto px-4 py-12">
+        
+        <!-- Filter Tags -->
+        <div class="flex flex-wrap gap-3 mb-8">
+            <button onclick="filterArticles('all')" class="filter-btn active px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold" data-category="all" data-i18n="blog.filter.all">Tutti</button>
+            <button onclick="filterArticles('fiscal')" class="filter-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition" data-category="fiscal" data-i18n="blog.filter.fiscal">Fiscale</button>
+            <button onclick="filterArticles('invoicing')" class="filter-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition" data-category="invoicing" data-i18n="blog.filter.invoicing">Fatturazione</button>
+            <button onclick="filterArticles('vat')" class="filter-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition" data-category="vat" data-i18n="blog.filter.vat">Partita IVA</button>
+            <button onclick="filterArticles('guides')" class="filter-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition" data-category="guides" data-i18n="blog.filter.guides">Guide</button>
+        </div>
+
+        <!-- Featured Article -->
+        <div class="mb-12" id="featuredSection">
+            <!-- Articolo in evidenza caricato dinamicamente -->
+        </div>
+
+        <!-- Articles List -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6" data-i18n="blog.latestArticles">Ultimi Articoli</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="articlesGrid">
+                <!-- Articoli caricati dinamicamente -->
+            </div>
+        </div>
+
+        <!-- Newsletter CTA -->
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 md:p-12 text-white text-center">
+            <i class="fas fa-envelope text-5xl mb-6"></i>
+            <h2 class="text-3xl font-bold mb-4" data-i18n="blog.newsletter.title">Rimani Aggiornato</h2>
+            <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto" data-i18n="blog.newsletter.subtitle">
+                Ricevi le nostre guide e novità direttamente nella tua email. Niente spam, solo contenuti utili.
+            </p>
+            <div class="max-w-md mx-auto flex gap-3">
+                <input type="email" placeholder="La tua email" class="flex-1 px-6 py-4 rounded-lg text-gray-900" data-i18n-placeholder="blog.newsletter.emailPlaceholder">
+                <button class="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold hover:bg-blue-50 transition" data-i18n="blog.newsletter.subscribe">
+                    Iscriviti
+                </button>
+            </div>
+            <p class="text-sm text-blue-200 mt-4" data-i18n="blog.newsletter.noSpam">Nessuna carta richiesta. Cancellati quando vuoi.</p>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 mt-16">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h4 class="text-xl font-bold mb-4">Servizi Business</h4>
+                    <p class="text-gray-400" data-i18n="footerTagline">Strumenti gratuiti per professionisti.</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4" data-i18n="usefulLinks">Link Utili</h4>
+                    <ul class="space-y-2">
+                        <li><a href="../index.html#calcolatori" class="text-gray-400 hover:text-white transition" data-i18n="calculators">Calcolatori</a></li>
+                        <li><a href="../index.html#servizi" class="text-gray-400 hover:text-white transition" data-i18n="services">Servizi</a></li>
+                        <li><a href="../privacy.html" class="text-gray-400 hover:text-white transition" data-i18n="privacy">Privacy Policy</a></li>
+                        <li><a href="../terms.html" class="text-gray-400 hover:text-white transition" data-i18n="terms">Termini di Servizio</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4" data-i18n="contacts">Contatti</h4>
+                    <p class="text-gray-400 mb-2"><i class="fas fa-envelope mr-2"></i> info@servizi-business.com</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
+                <p data-i18n="allRightsReserved">&copy; 2025 Servizi Business. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ✅ FILTRO ARTICOLI FUNZIONANTE
+        function filterArticles(category) {
+            console.log('🔍 Filtering by:', category);
+            
+            // Get all article elements
+            const articleCards = document.querySelectorAll('.article-card');
+            const featuredSection = document.getElementById('featuredSection');
+            const featuredArticle = featuredSection ? featuredSection.querySelector('[data-article-category]') : null;
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            // Update button styles
+            filterButtons.forEach(btn => {
+                const btnCategory = btn.getAttribute('data-category');
+                if (btnCategory === category) {
+                    btn.classList.remove('bg-gray-200', 'text-gray-700');
+                    btn.classList.add('bg-blue-600', 'text-white', 'active');
+                } else {
+                    btn.classList.remove('bg-blue-600', 'text-white', 'active');
+                    btn.classList.add('bg-gray-200', 'text-gray-700');
+                }
+            });
+            
+            // Filter articles
+            if (category === 'all') {
+                // Show all articles
+                articleCards.forEach(card => {
+                    card.style.display = 'block';
+                });
+                if (featuredSection) {
+                    featuredSection.style.display = 'block';
+                }
+            } else {
+                // Show only articles matching the category
+                articleCards.forEach(card => {
+                    const articleCategory = card.getAttribute('data-article-category');
+                    card.style.display = articleCategory === category ? 'block' : 'none';
+                });
+                
+                // Show/hide featured article
+                if (featuredSection && featuredArticle) {
+                    const featuredCategory = featuredArticle.getAttribute('data-article-category');
+                    featuredSection.style.display = featuredCategory === category ? 'block' : 'none';
+                }
+            }
+            
+            console.log('✅ Filter applied successfully');
+        }
+        
+        // Initialize language and load articles
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'it';
+            
+            // Renderizza articoli per la lingua corrente
+            renderBlogArticles(savedLang);
+            
+            // Poi applica le traduzioni
+            setLanguage(savedLang);
+            
+            console.log('✅ Blog page loaded with language:', savedLang);
+            console.log('✅ Articles rendered for language:', savedLang);
+        });
+        
+        // Override setLanguage per ricaricare articoli quando cambia lingua
+        const originalSetLanguage = window.setLanguage;
+        window.setLanguage = function(lang) {
+            // Renderizza articoli per la nuova lingua
+            renderBlogArticles(lang);
+            
+            // Applica traduzioni
+            if (originalSetLanguage) {
+                originalSetLanguage(lang);
+            }
+            
+            console.log('✅ Articles re-rendered for language:', lang);
+        };
+    </script>
+
+</body>
+</html>
