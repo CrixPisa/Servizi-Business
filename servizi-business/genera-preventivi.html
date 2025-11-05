@@ -16,57 +16,65 @@
 <body class="bg-gray-50">
     
     <!-- ============================================ -->
-    <!-- PROTEZIONE PAGINA - Sistema Auth -->
+    <!-- PROTEZIONE FUNZIONALITA' - Sistema Auth -->
     <!-- ============================================ -->
     <script>
-    (async function protectPage() {
-        document.body.style.opacity = '0';
-        
-        async function isUserLoggedIn() {
-            const localUser = localStorage.getItem('currentUser');
-            if (localUser) {
-                document.body.style.opacity = '1';
-                return true;
-            }
-            
-            if (typeof supabase !== 'undefined') {
-                try {
-                    const { data: { session } } = await supabase.auth.getSession();
-                    if (session) {
-                        const userData = {
-                            id: session.user.id,
-                            email: session.user.email,
-                            name: session.user.user_metadata?.name || session.user.email.split('@')[0]
-                        };
-                        localStorage.setItem('currentUser', JSON.stringify(userData));
-                        document.body.style.opacity = '1';
-                        return true;
-                    }
-                } catch (error) {
-                    console.warn('Supabase check failed:', error);
-                }
-            }
-            return false;
+    let userIsLoggedIn = false;
+    
+    (async function checkAuth() {
+        const localUser = localStorage.getItem('currentUser');
+        if (localUser) {
+            userIsLoggedIn = true;
+            return;
         }
         
-        const isLoggedIn = await isUserLoggedIn();
-        
-        if (!isLoggedIn) {
-            const wantsToRegister = confirm(
-                '⚠️ Devi essere registrato per accedere a questo servizio!\n\n' +
-                '✅ Registrazione GRATUITA in 30 secondi\n' +
-                '✅ Crea fatture e preventivi illimitati\n' +
-                '✅ Dashboard con storico documenti\n\n' +
-                'Vuoi registrarti ora?'
-            );
-            
-            if (wantsToRegister) {
-                window.location.href = 'login.html';
-            } else {
-                window.location.href = 'index.html';
+        if (typeof supabase !== 'undefined') {
+            try {
+                const { data: { session } } = await supabase.auth.getSession();
+                if (session) {
+                    userIsLoggedIn = true;
+                    const userData = {
+                        id: session.user.id,
+                        email: session.user.email,
+                        name: session.user.user_metadata?.name || session.user.email.split('@')[0]
+                    };
+                    localStorage.setItem('currentUser', JSON.stringify(userData));
+                    return;
+                }
+            } catch (error) {
+                console.warn('Supabase check failed:', error);
             }
+        }
+        
+        if (!userIsLoggedIn) {
+            showRegistrationBanner();
         }
     })();
+    
+    function showRegistrationBanner() {
+        const banner = document.createElement('div');
+        banner.innerHTML = `
+            <div style="position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 20px; box-shadow: 0 -4px 20px rgba(0,0,0,0.2); z-index: 9999; animation: slideUp 0.5s ease;">
+                <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <div style="font-size: 20px; font-weight: bold; margin-bottom: 8px;">⚠️ Registrazione Richiesta</div>
+                        <div style="font-size: 14px; opacity: 0.95;">✅ GRATIS • ✅ 30 secondi • ✅ Preventivi illimitati • ✅ Dashboard personale</div>
+                    </div>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="login.html" style="background: white; color: #10b981; padding: 12px 30px; border-radius: 8px; font-weight: bold; text-decoration: none; display: inline-block; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Registrati Gratis</a>
+                        <button onclick="this.closest('div').closest('div').closest('div').remove()" style="background: rgba(255,255,255,0.2); color: white; padding: 12px 20px; border: 1px solid white; border-radius: 8px; font-weight: bold; cursor: pointer;">Chiudi</button>
+                    </div>
+                </div>
+            </div>
+            <style>
+                @keyframes slideUp {
+                    from { transform: translateY(100%); }
+                    to { transform: translateY(0); }
+                }
+            </style>
+        `;
+        document.body.appendChild(banner);
+    }
     </script>
     <!-- ============================================ -->
     
