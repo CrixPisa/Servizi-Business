@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Termini di Servizio - Servizi Business Italia</title>
+    <title data-i18n="terms.pageTitle">Termini di Servizio - Servizi Business</title>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9F1LD82S0S"></script>
     <script>
@@ -17,22 +17,23 @@
     <script src="i18n.js"></script>
 </head>
 <body class="bg-gray-50">
-    <header class="bg-white shadow-sm">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between flex-wrap gap-4">
                 <a href="index.html" class="flex items-center space-x-2">
                     <i class="fas fa-calculator text-blue-600 text-2xl"></i>
                     <span class="text-xl font-bold text-gray-800">Servizi Business</span>
                 </a>
                 
                 <div class="flex items-center gap-4">
-                    <!-- Language Selector -->
+                    <!-- ✅ TUTTI I 6 BOTTONI LINGUA -->
                     <div class="flex items-center bg-gray-100 rounded-lg p-1">
                         <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="it">🇮🇹</button>
                         <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="en">🇺🇸</button>
                         <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="de">🇩🇪</button>
                         <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="fr">🇫🇷</button>
                         <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="es">🇪🇸</button>
+                        <button class="lang-btn px-3 py-1 rounded text-sm font-semibold transition" data-lang="hu">🇭🇺</button>
                     </div>
                     
                     <a href="index.html" class="text-gray-600 hover:text-blue-600 transition">
@@ -45,96 +46,105 @@
 
     <main class="container mx-auto px-4 py-12">
         <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-8">
-            <h1 class="text-3xl font-bold text-gray-800 mb-6">Termini di Servizio</h1>
-            <p class="text-sm text-gray-600 mb-8">Ultimo aggiornamento: 08 Ottobre 2025</p>
+            <h1 class="text-3xl font-bold text-gray-800 mb-6" data-i18n="terms.title">Termini di Servizio</h1>
+            <p class="text-sm text-gray-600 mb-8">
+                <span data-i18n="terms.lastUpdate">Ultimo aggiornamento</span>: 21 Ottobre 2025
+            </p>
 
+            <!-- 1. Accettazione dei Termini -->
             <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">1. Accettazione dei Termini</h2>
-                <p class="text-gray-700 mb-4">
-                    Accedendo e utilizzando Servizi Business Italia, accetti di essere vincolato da questi Termini di Servizio. Se non accetti questi termini, non utilizzare i nostri servizi.
+                <h2 class="text-2xl font-bold text-gray-800 mb-4" data-i18n="terms.intro.title">Accettazione dei Termini</h2>
+                <p class="text-gray-700 mb-4" data-i18n="terms.intro.text">
+                    Utilizzando Servizi Business, accetti i presenti Termini di Servizio. Se non li accetti, non utilizzare il sito.
                 </p>
             </section>
 
+            <!-- 2. Descrizione dei Servizi -->
             <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">2. Descrizione del Servizio</h2>
-                <p class="text-gray-700 mb-4">Servizi Business Italia offre:</p>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4" data-i18n="terms.services.title">Descrizione dei Servizi</h2>
+                <p class="text-gray-700 mb-4" data-i18n="terms.services.text">
+                    Servizi Business offre strumenti gratuiti per calcoli fiscali, generazione documenti e gestione attività professionali.
+                </p>
+            </section>
+
+            <!-- 3. Registrazione Account -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4" data-i18n="terms.registration.title">Registrazione Account</h2>
                 <ul class="list-disc list-inside text-gray-700 space-y-2">
-                    <li>Calcolatori online gratuiti (IVA, stipendio, TFR, etc.)</li>
-                    <li>Generatore di codici QR</li>
-                    <li>Generatore di fatture (registrazione richiesta)</li>
-                    <li>Dashboard per gestione fatture</li>
+                    <li data-i18n="terms.registration.required">La registrazione è necessaria solo per salvare documenti</li>
+                    <li data-i18n="terms.registration.responsibility">Sei responsabile della sicurezza del tuo account</li>
+                    <li data-i18n="terms.registration.accurate">Devi fornire informazioni accurate</li>
+                    <li data-i18n="terms.registration.notify">Notifica immediatamente accessi non autorizzati</li>
                 </ul>
             </section>
 
+            <!-- 4. Uso Accettabile -->
             <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">3. Registrazione Account</h2>
-                <p class="text-gray-700 mb-4">Per utilizzare alcuni servizi devi registrare un account. Ti impegni a:</p>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4" data-i18n="terms.usage.title">Uso Accettabile</h2>
+                <p class="text-gray-700 mb-4" data-i18n="terms.usage.allowed">Puoi usare il sito per scopi legali e professionali</p>
+                <p class="text-gray-700 mb-2"><strong data-i18n="terms.usage.prohibited">NON puoi:</strong></p>
                 <ul class="list-disc list-inside text-gray-700 space-y-2">
-                    <li>Fornire informazioni accurate e veritiere</li>
-                    <li>Mantenere la sicurezza della tua password</li>
-                    <li>Notificarci immediatamente di accessi non autorizzati</li>
-                    <li>Essere responsabile di tutte le attività sul tuo account</li>
+                    <li data-i18n="terms.usage.point1">Violare leggi</li>
+                    <li data-i18n="terms.usage.point2">Danneggiare il sito o gli utenti</li>
+                    <li data-i18n="terms.usage.point3">Usare bot o script per accesso automatico</li>
+                    <li data-i18n="terms.usage.point4">Copiare o redistribuire i contenuti</li>
                 </ul>
             </section>
 
+            <!-- 5. Proprietà Intellettuale -->
             <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">4. Uso Accettabile</h2>
-                <p class="text-gray-700 mb-4">Non è permesso:</p>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4" data-i18n="terms.property.title">Proprietà Intellettuale</h2>
+                <p class="text-gray-700" data-i18n="terms.property.text">
+                    Tutti i contenuti del sito sono protetti da copyright. Non puoi copiarli senza autorizzazione.
+                </p>
+            </section>
+
+            <!-- 6. Limitazione di Responsabilità -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4" data-i18n="terms.liability.title">Limitazione di Responsabilità</h2>
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded mb-4">
+                    <p class="text-yellow-900 mb-2">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                        <strong>Importante:</strong>
+                    </p>
+                    <ul class="list-disc list-inside text-yellow-900 space-y-2">
+                        <li data-i18n="terms.liability.asis">Il servizio è fornito 'così com'è'</li>
+                        <li data-i18n="terms.liability.noWarranty">Non garantiamo precisione assoluta dei calcoli</li>
+                        <li data-i18n="terms.liability.noLiability">Non siamo responsabili per danni derivanti dall'uso del sito</li>
+                        <li data-i18n="terms.liability.consult">Per decisioni importanti, consulta sempre un professionista</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 7. Sospensione e Cancellazione -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4" data-i18n="terms.termination.title">Sospensione e Cancellazione</h2>
                 <ul class="list-disc list-inside text-gray-700 space-y-2">
-                    <li>Utilizzare il servizio per attività illegali</li>
-                    <li>Tentare di violare la sicurezza del sito</li>
-                    <li>Utilizzare bot o script automatizzati</li>
-                    <li>Caricare malware o codice dannoso</li>
-                    <li>Interferire con il funzionamento del servizio</li>
-                    <li>Impersonare altre persone o entità</li>
+                    <li data-i18n="terms.termination.right">Ci riserviamo il diritto di sospendere o chiudere account che violano i termini</li>
+                    <li data-i18n="terms.termination.request">Puoi richiedere la cancellazione del tuo account in qualsiasi momento</li>
                 </ul>
             </section>
 
+            <!-- 8. Modifiche ai Termini -->
             <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">5. Contenuti Utente</h2>
-                <p class="text-gray-700 mb-4">
-                    Sei responsabile dei contenuti che crei utilizzando i nostri servizi (fatture, documenti, etc.). Mantieni la proprietà dei tuoi contenuti.
-                </p>
-                <p class="text-gray-700">
-                    Garantisci di avere tutti i diritti necessari sui contenuti che carichi e che non violano diritti di terzi.
+                <h2 class="text-2xl font-bold text-gray-800 mb-4" data-i18n="terms.changes.title">Modifiche ai Termini</h2>
+                <p class="text-gray-700" data-i18n="terms.changes.text">
+                    Possiamo modificare questi termini. Continuerai a usare il sito solo accettando le modifiche.
                 </p>
             </section>
 
+            <!-- 9. Legge Applicabile -->
             <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">6. Proprietà Intellettuale</h2>
-                <p class="text-gray-700 mb-4">
-                    Tutti i diritti di proprietà intellettuale del sito e dei servizi appartengono a Servizi Business Italia, inclusi:
-                </p>
-                <ul class="list-disc list-inside text-gray-700 space-y-2">
-                    <li>Design del sito</li>
-                    <li>Codice sorgente</li>
-                    <li>Contenuti e grafica</li>
-                    <li>Marchi e loghi</li>
-                </ul>
-            </section>
-
-            <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">7. Disclaimer</h2>
-                <p class="text-gray-700 mb-4">
-                    <strong>I servizi sono forniti "così come sono" senza garanzie di alcun tipo.</strong>
-                </p>
-                <p class="text-gray-700 mt-4">
-                    <strong>Importante:</strong> I calcolatori sono strumenti di stima. Per questioni fiscali o legali, consulta sempre un professionista qualificato.
+                <h2 class="text-2xl font-bold text-gray-800 mb-4" data-i18n="terms.law.title">Legge Applicabile</h2>
+                <p class="text-gray-700" data-i18n="terms.law.text">
+                    Questi termini sono regolati dalla legge italiana. Il foro competente è Pisa, Italia.
                 </p>
             </section>
 
+            <!-- 10. Contatti -->
             <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">8. Servizio Gratuito</h2>
-                <p class="text-gray-700">
-                    Attualmente tutti i servizi sono gratuiti. Ci riserviamo il diritto di introdurre servizi premium a pagamento in futuro, previa notifica agli utenti.
-                </p>
-            </section>
-
-            <section class="mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">9. Contatti</h2>
-                <p class="text-gray-700 mb-4">
-                    Per domande sui Termini di Servizio:
-                </p>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4" data-i18n="terms.contact.title">Contatti</h2>
+                <p class="text-gray-700 mb-4" data-i18n="terms.contact.text">Per domande sui termini, scrivici</p>
                 <div class="bg-blue-50 p-4 rounded-lg">
                     <p class="text-gray-800"><strong>Email:</strong> <a href="mailto:info@servizi-business.com" class="text-blue-600 hover:underline">info@servizi-business.com</a></p>
                 </div>
@@ -142,7 +152,7 @@
 
             <div class="mt-12 text-center">
                 <a href="index.html" class="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition font-semibold">
-                    <i class="fas fa-arrow-left mr-2"></i>Torna alla Home
+                    <i class="fas fa-arrow-left mr-2"></i><span data-i18n="home">Home</span>
                 </a>
             </div>
         </div>
@@ -150,10 +160,12 @@
 
     <footer class="bg-gray-800 text-white py-8 mt-12">
         <div class="container mx-auto px-4 text-center">
-            <p class="text-gray-400">&copy; 2025 Servizi Business Italia. Tutti i diritti riservati.</p>
+            <p class="text-gray-400">&copy; 2025 Servizi Business. <span data-i18n="aboutUs.footer.allRights">Tutti i diritti riservati</span>.</p>
             <div class="mt-4 space-x-4">
-                <a href="privacy.html" class="text-gray-400 hover:text-white transition">Privacy Policy</a>
-                <a href="terms.html" class="text-gray-400 hover:text-white transition">Termini di Servizio</a>
+                <a href="index.html" class="text-gray-400 hover:text-white transition" data-i18n="home">Home</a>
+                <a href="privacy.html" class="text-gray-400 hover:text-white transition" data-i18n="privacy.title">Privacy</a>
+                <a href="terms.html" class="text-gray-400 hover:text-white transition" data-i18n="terms.title">Terms</a>
+                <a href="chi-siamo.html" class="text-gray-400 hover:text-white transition" data-i18n="aboutUs.heroTitle">Chi Siamo</a>
             </div>
         </div>
     </footer>
@@ -171,7 +183,6 @@
     </style>
 
     <script>
-        // Language selector
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 setLanguage(this.dataset.lang);
