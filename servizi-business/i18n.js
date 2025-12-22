@@ -1,5 +1,4 @@
-// SISTEMA I18N COMPLETO - TUTTE LE LINGUE + CHI SIAMO, PRIVACY, TERMS
-// ✅ PRONTO DA CARICARE - Sostituisci il vecchio i18n.js con questo file
+// SISTEMA I18N COMPLETO - TUTTE LE LINGUE
 const TRANSLATIONS = {
     it: {
         // Header & Navigation
@@ -183,200 +182,6 @@ const TRANSLATIONS = {
             home: "Home",
             tools: "Strumenti",
             blog: "Blog"
-        },
-        
-        // ✅ NUOVE SEZIONI - CHI SIAMO, PRIVACY, TERMS
-        aboutUs: {
-            pageTitle: "Chi Siamo | Servizi Business",
-            metaDesc: "Chi siamo - Servizi Business, strumenti gratuiti per professionisti e aziende",
-            heroTitle: "Chi Siamo",
-            heroSubtitle: "Strumenti Gratuiti per Semplificare il Tuo Business",
-            mission: {
-                title: "La Nostra Mission",
-                intro: "nasce con un obiettivo semplice ma ambizioso:",
-                goal: "democratizzare l'accesso agli strumenti digitali per professionisti e piccole imprese",
-                belief: "Crediamo che ogni professionista, freelance o piccolo imprenditore debba poter accedere a strumenti di qualità",
-                noCosts: "senza costi proibitivi, senza registrazioni complicate, senza vincoli",
-                platform: "Per questo abbiamo creato una piattaforma completamente",
-                free: "gratuita",
-                easy: "facile da usare",
-                accessible: "accessibile a tutti"
-            },
-            values: {
-                title: "I Nostri Valori",
-                freeTitle: "Gratuità",
-                freeDesc: "Tutti i nostri strumenti sono e rimarranno sempre gratuiti. Nessun costo nascosto, nessun abbonamento.",
-                privacyTitle: "Privacy",
-                privacyDesc: "Rispettiamo la tua privacy. Nessun dato personale richiesto per usare i calcolatori.",
-                innovationTitle: "Innovazione",
-                innovationDesc: "Miglioriamo costantemente i nostri strumenti ascoltando le esigenze degli utenti."
-            },
-            offer: {
-                title: "Cosa Offriamo",
-                calc: "Calcolatori Fiscali",
-                calcDesc: "IVA, stipendio netto, ritenuta d'acconto, TFR e molto altro",
-                docs: "Generatori Documenti",
-                docsDesc: "Fatture, preventivi e documenti professionali in PDF",
-                daily: "Gestione Corrispettivi",
-                dailyDesc: "Registra vendite giornaliere ed esporta report per il commercialista",
-                multi: "Supporto Multi-Paese",
-                multiDesc: "Strumenti adattati per Italia, Spagna, Germania, Francia, UK, USA e Australia"
-            },
-            team: {
-                title: "Il Nostro Team",
-                intro: "Siamo un team di sviluppatori, designer e esperti fiscali uniti dalla passione per la tecnologia e dalla volontà di aiutare professionisti e piccole imprese.",
-                workFor: "Il nostro team lavora costantemente per:",
-                point1: "Mantenere gli strumenti sempre aggiornati con le normative fiscali vigenti",
-                point2: "Sviluppare nuove funzionalità basate sul feedback degli utenti",
-                point3: "Garantire la massima precisione dei calcoli",
-                point4: "Offrire un'esperienza utente eccellente su tutti i dispositivi"
-            },
-            legal: {
-                title: "Informazioni Legali",
-                dataController: "Titolare del Trattamento Dati",
-                vat: "Partita IVA",
-                headquarters: "Sede Operativa",
-                location: "Pisa, Italy",
-                contactsTitle: "Contatti",
-                email: "Email",
-                privacyTitle: "Privacy",
-                privacyText: "I dati degli utenti sono gestiti secondo il GDPR",
-                readPrivacy: "Leggi la Privacy Policy",
-                infrastructure: "Infrastrut
-
-tura",
-                dataStorage: "Dati conservati su Supabase (conformi GDPR)",
-                gdprInfo: "Informativa GDPR:",
-                gdprText: "Servizi Business raccoglie solo i dati strettamente necessari (email e password) per fornire i servizi di registrazione e salvataggio documenti. Tutti i dati sono trattati in conformità al Regolamento UE 2016/679 (GDPR)."
-            },
-            contact: {
-                title: "Hai Domande o Suggerimenti?",
-                subtitle: "Siamo sempre felici di ricevere feedback dai nostri utenti. Scrivici!",
-                discoverTools: "Scopri i Nostri Strumenti"
-            },
-            footer: {
-                allRights: "Tutti i diritti riservati"
-            }
-        },
-        
-        privacy: {
-            pageTitle: "Privacy Policy - Servizi Business",
-            title: "Privacy Policy",
-            lastUpdate: "Ultimo aggiornamento",
-            dataController: "Titolare del Trattamento",
-            intro: {
-                title: "Introduzione",
-                text: "Benvenuto su Servizi Business. Ci impegniamo a proteggere la tua privacy. Questa policy spiega come raccogliamo, utilizziamo e proteggiamo le tue informazioni."
-            },
-            dataCollection: {
-                title: "Dati che Raccogliamo",
-                intro: "Quando ti registri o usi i nostri servizi, raccogliamo:",
-                registration: "Dati di registrazione:",
-                registrationData: "Email e password (crittografata)",
-                optional: "Dati facoltativi:",
-                optionalData: "Nome, cognome, dati aziendali (solo se li inserisci tu per fatture/preventivi)",
-                usage: "Dati di utilizzo:",
-                usageData: "Informazioni su come usi il sito (tramite Google Analytics)",
-                cookies: "Cookie pubblicitari:",
-                cookiesData: "Google AdSense utilizza cookie per mostrare annunci personalizzati",
-                note: "Nota:",
-                noteText: "Per usare i calcolatori base NON serve registrazione. La registrazione è richiesta solo per salvare documenti (fatture, preventivi, corrispettivi)."
-            },
-            dataUsage: {
-                title: "Come Utilizziamo i Tuoi Dati",
-                point1: "Fornire e gestire i nostri servizi",
-                point2: "Creare e gestire il tuo account",
-                point3: "Generare fatture e documenti",
-                point4: "Migliorare l'esperienza utente",
-                point5: "Comunicazioni relative al servizio"
-            },
-            security: {
-                title: "Conservazione e Sicurezza Dati",
-                where: "Dove conserviamo i tuoi dati:",
-                storage: "Utilizziamo Supabase (infrastruttura cloud conforme GDPR) per archiviare in modo sicuro:",
-                account: "Account utente (email, password crittografata)",
-                documents: "Documenti salvati (fatture, preventivi, corrispettivi)"
-            },
-            rights: {
-                title: "I Tuoi Diritti (GDPR)",
-                access: "Accesso ai tuoi dati",
-                modify: "Modifica o cancellazione",
-                portability: "Portabilità dei dati",
-                objection: "Opposizione al trattamento",
-                exercise: "Per esercitare i tuoi diritti, contattaci"
-            },
-            cookies: {
-                title: "Cookie e Tracking",
-                essential: "Cookie essenziali: Per il funzionamento del sito",
-                analytics: "Google Analytics: Per statistiche anonime",
-                adsense: "Google AdSense: Per annunci pubblicitari personalizzati"
-            },
-            changes: {
-                title: "Modifiche alla Privacy Policy",
-                text: "Ci riserviamo il diritto di aggiornare questa policy. Ti informeremo di eventuali modifiche sostanziali."
-            },
-            contact: {
-                title: "Contatti",
-                text: "Per domande sulla privacy, scrivici"
-            }
-        },
-        
-        terms: {
-            pageTitle: "Termini di Servizio - Servizi Business",
-            title: "Termini di Servizio",
-            lastUpdate: "Ultimo aggiornamento",
-            intro: {
-                title: "Accettazione dei Termini",
-                text: "Utilizzando Servizi Business, accetti i presenti Termini di Servizio. Se non li accetti, non utilizzare il sito."
-            },
-            services: {
-                title: "Descrizione dei Servizi",
-                text: "Servizi Business offre strumenti gratuiti per calcoli fiscali, generazione documenti e gestione attività professionali."
-            },
-            registration: {
-                title: "Registrazione Account",
-                required: "La registrazione è necessaria solo per salvare documenti",
-                responsibility: "Sei responsabile della sicurezza del tuo account",
-                accurate: "Devi fornire informazioni accurate",
-                notify: "Notifica immediatamente accessi non autorizzati"
-            },
-            usage: {
-                title: "Uso Accettabile",
-                allowed: "Puoi usare il sito per scopi legali e professionali",
-                prohibited: "NON puoi:",
-                point1: "Violare leggi",
-                point2: "Danneggiare il sito o gli utenti",
-                point3: "Usare bot o script per accesso automatico",
-                point4: "Copiare o redistribuire i contenuti"
-            },
-            property: {
-                title: "Proprietà Intellettuale",
-                text: "Tutti i contenuti del sito sono protetti da copyright. Non puoi copiarli senza autorizzazione."
-            },
-            liability: {
-                title: "Limitazione di Responsabilità",
-                asis: "Il servizio è fornito 'così com'è'",
-                noWarranty: "Non garantiamo precisione assoluta dei calcoli",
-                noLiability: "Non siamo responsabili per danni derivanti dall'uso del sito",
-                consult: "Per decisioni importanti, consulta sempre un professionista"
-            },
-            termination: {
-                title: "Sospensione e Cancellazione",
-                right: "Ci riserviamo il diritto di sospendere o chiudere account che violano i termini",
-                request: "Puoi richiedere la cancellazione del tuo account in qualsiasi momento"
-            },
-            changes: {
-                title: "Modifiche ai Termini",
-                text: "Possiamo modificare questi termini. Continuerai a usare il sito solo accettando le modifiche."
-            },
-            law: {
-                title: "Legge Applicabile",
-                text: "Questi termini sono regolati dalla legge italiana. Il foro competente è Pisa, Italia."
-            },
-            contact: {
-                title: "Contatti",
-                text: "Per domande sui termini, scrivici"
-            }
         }
     },
     
@@ -389,11 +194,14 @@ tura",
         register: "Sign Up",
         logout: "Logout",
         dashboard: "Dashboard",
+        
         heroTitle: "Free Tools for Your Business",
         heroSubtitle: "Calculators, document generators and much more. All free.",
         heroDescription: "Servizi Business offers professional tools for VAT, tax withholding, net salary and severance calculations. Create electronic invoices and quotes in PDF. All essential tools for freelancers, self-employed and small businesses in one place.",
         ctaStart: "Get Started",
         ctaLearnMore: "Learn More",
+        
+        // SEO Section
         seoIntroTitle: "Business Tools Online: Simplify Your Business Management",
         seoIntroPara1: "Welcome to Servizi Business, the platform that gathers all essential tools to manage your professional business. Whether you're a freelancer, self-employed or a small business, you'll find free calculators and professional document generators to save time and money.",
         seoWhoIsThisFor: "Who Are These Tools For?",
@@ -409,9 +217,11 @@ tura",
         seoFeature2Desc: "Instant results without registration for basic calculators.",
         seoFeature3Title: "Secure and GDPR",
         seoFeature3Desc: "Your data is protected and processed in compliance with European regulations.",
+        
         statsTools: "Free Tools",
         statsFree: "Free Forever",
         statsAvailable: "Always Available",
+        
         freeTools: "Free Calculators",
         freeToolsDesc: "No registration required. Use our calculators now!",
         ivaCalc: "VAT Calculator",
@@ -431,6 +241,7 @@ tura",
         imgToPdfConverter: "Convert Images to PDF",
         imgToPdfConverterDesc: "Transform PNG, JPG, WebP into professional PDF.",
         useNow: "Use now",
+        
         testimonialsTitle: "What Our Users Say",
         testimonialsSubtitle: "Thousands of professionals trust our tools every day.",
         testimonial1Text: "The invoice generator saved my life! Simple, fast and professional.",
@@ -442,6 +253,7 @@ tura",
         testimonial3Text: "Time is money. Servizi Business allows me to calculate everything on the fly.",
         testimonial3Name: "Andrea Ferri",
         testimonial3Role: "Entrepreneur",
+        
         premiumServices: "Advanced Services",
         premiumDesc: "Create professional invoices and quotes",
         invoiceGenTitle: "Invoice Generator",
@@ -456,9 +268,11 @@ tura",
         quoteFeature2: "Customizable validity",
         quoteFeature3: "All countries",
         createQuoteFree: "Create Quote - Free",
+        
         ctaTitle: "Ready to Simplify Your Work?",
         ctaSubtitle: "Start using our free tools now!",
         ctaButton: "Explore Calculators",
+        
         footerTagline: "Free tools for professionals.",
         usefulLinks: "Useful Links",
         calculators: "Calculators",
@@ -467,6 +281,7 @@ tura",
         allRightsReserved: "All rights reserved",
         privacy: "Privacy Policy",
         terms: "Terms of Service",
+        
         calculate: "Calculate",
         clear: "Clear",
         download: "Download",
@@ -480,6 +295,7 @@ tura",
         success: "Success",
         warning: "Warning",
         info: "Info",
+        
         blog: {
             hero: {
                 title: "Guides and Resources for Professionals",
@@ -537,201 +353,689 @@ tura",
             home: "Home",
             tools: "Tools",
             blog: "Blog"
-        },
+        }
+    },
+    
+    de: {
+        home: "Startseite",
+        features: "Dienste",
+        tools: "Werkzeuge",
+        aboutUs: "Über Uns",
+        login: "Anmelden",
+        register: "Registrieren",
+        logout: "Abmelden",
+        dashboard: "Dashboard",
         
-        // ✅ CHI SIAMO, PRIVACY, TERMS
-        aboutUs: {
-            pageTitle: "About Us | Business Services",
-            metaDesc: "About us - Business Services, free tools for professionals and businesses",
-            heroTitle: "About Us",
-            heroSubtitle: "Free Tools to Simplify Your Business",
-            mission: {
-                title: "Our Mission",
-                intro: "was born with a simple but ambitious goal:",
-                goal: "democratize access to digital tools for professionals and small businesses",
-                belief: "We believe that every professional, freelancer or small entrepreneur should be able to access quality tools",
-                noCosts: "without prohibitive costs, without complicated registrations, without constraints",
-                platform: "That's why we created a completely",
-                free: "free",
-                easy: "easy to use",
-                accessible: "accessible to everyone"
+        heroTitle: "Kostenlose Tools für Ihr Unternehmen",
+        heroSubtitle: "Rechner, Dokumentengeneratoren und vieles mehr. Alles kostenlos.",
+        heroDescription: "Servizi Business bietet professionelle Tools für MwSt, Quellensteuer, Nettogehalt und Abfindungsberechnungen. Erstellen Sie elektronische Rechnungen und Angebote in PDF. Alle wesentlichen Tools für Freelancer, Selbstständige und kleine Unternehmen an einem Ort.",
+        ctaStart: "Jetzt Starten",
+        ctaLearnMore: "Mehr Erfahren",
+        
+        seoIntroTitle: "Business Tools Online: Vereinfachen Sie Ihr Geschäftsmanagement",
+        seoIntroPara1: "Willkommen bei Servizi Business, der Plattform mit allen wichtigen Tools zur Verwaltung Ihres Unternehmens. Ob Freelancer, Selbstständiger oder kleines Unternehmen, Sie finden kostenlose Rechner und Dokumentengeneratoren.",
+        seoWhoIsThisFor: "Für wen sind diese Tools?",
+        seoTargetFreelance: "Freelancer: Quellensteuer, MwSt berechnen und Rechnungen erstellen",
+        seoTargetVAT: "Selbstständige: Steuern, Angebote und Steuerdokumente verwalten",
+        seoTargetBusiness: "Kleine Unternehmen: Tools für Rechnungsstellung und Steuerberechnungen",
+        seoTargetEmployee: "Angestellte: Nettogehalt und Abfindung berechnen",
+        seoTargetAccountant: "Steuerberater: Berechnungen für Kunden beschleunigen",
+        seoWhyChooseUs: "Warum Servizi Business wählen?",
+        seoFeature1Title: "100% Kostenlos",
+        seoFeature1Desc: "Alle Basis-Tools sind komplett kostenlos, keine versteckten Kosten.",
+        seoFeature2Title: "Schnell und Einfach",
+        seoFeature2Desc: "Sofortige Ergebnisse ohne Registrierung.",
+        seoFeature3Title: "Sicher und DSGVO",
+        seoFeature3Desc: "Ihre Daten sind geschützt gemäß europäischen Vorschriften.",
+        
+        statsTools: "Kostenlose Tools",
+        statsFree: "Für Immer Kostenlos",
+        statsAvailable: "Immer Verfügbar",
+        
+        freeTools: "Kostenlose Rechner",
+        freeToolsDesc: "Keine Registrierung erforderlich. Nutzen Sie unsere Rechner jetzt!",
+        ivaCalc: "MwSt-Rechner",
+        ivaCalcDesc: "Berechnen Sie schnell die MwSt.",
+        salaryCalc: "Gehaltsrechner",
+        salaryCalcDesc: "Finden Sie Ihr Nettogehalt heraus.",
+        withholdingCalc: "Quellensteuerrechner",
+        withholdingCalcDesc: "Berechnen Sie die Quellensteuer für Fachleute.",
+        tfrCalc: "Abfindungsrechner",
+        tfrCalcDesc: "Berechnen Sie Ihre aufgelaufene Abfindung.",
+        taxCalc: "Steuerrechner",
+        taxCalcDesc: "Berechnen Sie zu zahlende Steuern.",
+        qrGenerator: "QR-Code-Generator",
+        qrGeneratorDesc: "Erstellen Sie kostenlose QR-Codes.",
+        corrispettiviCalc: "Tagesverkäufe",
+        corrispettiviCalcDesc: "Verwalten Sie tägliche Verkäufe mit automatischer MwSt-Berechnung.",
+        imgToPdfConverter: "Bilder in PDF umwandeln",
+        imgToPdfConverterDesc: "Verwandeln Sie PNG, JPG, WebP in professionelle PDF.",
+        useNow: "Jetzt verwenden",
+        
+        testimonialsTitle: "Was unsere Nutzer sagen",
+        testimonialsSubtitle: "Tausende von Fachleuten vertrauen täglich auf unsere Tools.",
+        testimonial1Text: "Der Rechnungsgenerator hat mein Leben gerettet! Einfach, schnell und professionell.",
+        testimonial1Name: "Marco Rossi",
+        testimonial1Role: "Grafikdesigner",
+        testimonial2Text: "Endlich eine Seite, die alle nützlichen Tools an einem Ort sammelt.",
+        testimonial2Name: "Giulia Bianchi",
+        testimonial2Role: "Angestellte",
+        testimonial3Text: "Zeit ist Geld. Servizi Business ermöglicht mir, alles im Handumdrehen zu berechnen.",
+        testimonial3Name: "Andrea Ferri",
+        testimonial3Role: "Unternehmer",
+        
+        premiumServices: "Erweiterte Dienste",
+        premiumDesc: "Erstellen Sie professionelle Rechnungen und Angebote",
+        invoiceGenTitle: "Rechnungsgenerator",
+        invoiceGenDesc: "Erstellen Sie professionelle PDF-Rechnungen.",
+        invoiceFeature1: "Professionelles PDF",
+        invoiceFeature2: "Mehrwährung",
+        invoiceFeature3: "Alle Länder",
+        createInvoiceFree: "Rechnung Erstellen - Kostenlos",
+        quoteGenTitle: "Angebotsgenerator",
+        quoteGenDesc: "Erstellen Sie professionelle PDF-Angebote.",
+        quoteFeature1: "Professionelles PDF",
+        quoteFeature2: "Anpassbare Gültigkeit",
+        quoteFeature3: "Alle Länder",
+        createQuoteFree: "Angebot Erstellen - Kostenlos",
+        
+        ctaTitle: "Bereit, Ihre Arbeit zu Vereinfachen?",
+        ctaSubtitle: "Beginnen Sie jetzt mit unseren kostenlosen Tools!",
+        ctaButton: "Rechner Erkunden",
+        
+        footerTagline: "Kostenlose Tools für Profis.",
+        usefulLinks: "Nützliche Links",
+        calculators: "Rechner",
+        services: "Dienste",
+        contacts: "Kontakte",
+        allRightsReserved: "Alle Rechte vorbehalten",
+        privacy: "Datenschutz",
+        terms: "Nutzungsbedingungen",
+        
+        calculate: "Berechnen",
+        clear: "Löschen",
+        download: "Herunterladen",
+        save: "Speichern",
+        cancel: "Abbrechen",
+        confirm: "Bestätigen",
+        back: "Zurück",
+        next: "Weiter",
+        loading: "Laden...",
+        error: "Fehler",
+        success: "Erfolg",
+        warning: "Warnung",
+        info: "Info",
+        
+        blog: {
+            hero: {
+                title: "Leitfäden und Ressourcen für Fachleute",
+                subtitle: "Praktische Artikel, Steuerratgeber und Tipps zur optimalen Verwaltung Ihrer beruflichen Tätigkeit"
             },
-            values: {
-                title: "Our Values",
-                freeTitle: "Free",
-                freeDesc: "All our tools are and will always remain free. No hidden costs, no subscriptions.",
-                privacyTitle: "Privacy",
-                privacyDesc: "We respect your privacy. No personal data required to use the calculators.",
-                innovationTitle: "Innovation",
-                innovationDesc: "We constantly improve our tools by listening to users' needs."
+            filter: {
+                all: "Alle",
+                fiscal: "Steuern",
+                invoicing: "Rechnungsstellung",
+                vat: "MwSt",
+                guides: "Anleitungen"
             },
-            offer: {
-                title: "What We Offer",
-                calc: "Tax Calculators",
-                calcDesc: "VAT, net salary, tax withholding, severance pay and much more",
-                docs: "Document Generators",
-                docsDesc: "Invoices, quotes and professional documents in PDF",
-                daily: "Daily Sales Management",
-                dailyDesc: "Record daily sales and export reports for accountant",
-                multi: "Multi-Country Support",
-                multiDesc: "Tools adapted for Italy, Spain, Germany, France, UK, USA and Australia"
+            category: {
+                all: "Alle",
+                fiscal: "Steuern",
+                invoicing: "Rechnungsstellung",
+                vat: "MwSt",
+                guides: "Anleitungen",
+                work: "Arbeit"
             },
-            team: {
-                title: "Our Team",
-                intro: "We are a team of developers, designers and tax experts united by passion for technology and the will to help professionals and small businesses.",
-                workFor: "Our team constantly works to:",
-                point1: "Keep tools always updated with current tax regulations",
-                point2: "Develop new features based on user feedback",
-                point3: "Ensure maximum calculation accuracy",
-                point4: "Offer excellent user experience on all devices"
+            featured: "Hervorgehoben",
+            latestArticles: "Neueste Artikel",
+            readArticle: "Artikel lesen",
+            readMore: "Mehr lesen",
+            comingSoon: "Demnächst",
+            article1: {
+                title: "Quellensteuer 2025: Vollständiger Berechnungsleitfaden",
+                excerpt: "Alles über Quellensteuer: was sie ist, wie man sie berechnet, wer sie anwenden muss.",
+                date: "26. Oktober 2025",
+                readTime: "8 Min."
             },
-            legal: {
-                title: "Legal Information",
-                dataController: "Data Controller",
-                vat: "VAT Number",
-                headquarters: "Headquarters",
-                location: "Pisa, Italy",
-                contactsTitle: "Contacts",
-                email: "Email",
-                privacyTitle: "Privacy",
-                privacyText: "User data is managed according to GDPR",
-                readPrivacy: "Read Privacy Policy",
-                infrastructure: "Infrastructure",
-                dataStorage: "Data stored on Supabase (GDPR compliant)",
-                gdprInfo: "GDPR Information:",
-                gdprText: "Business Services collects only strictly necessary data (email and password) to provide registration and document saving services. All data is processed in accordance with EU Regulation 2016/679 (GDPR)."
+            article2: {
+                title: "Nettogehalt-Berechnung: Vollständiger Leitfaden 2025",
+                excerpt: "So berechnen Sie das Nettogehalt vom Brutto: INPS, IRPEF, Abzüge.",
+                date: "26. Oktober 2025"
             },
-            contact: {
-                title: "Questions or Suggestions?",
-                subtitle: "We're always happy to receive feedback from our users. Write to us!",
-                discoverTools: "Discover Our Tools"
+            article3: {
+                title: "TFR: Berechnung, Abfindung und Besteuerung",
+                excerpt: "Alles über Abfindung: wie sie berechnet wird, wann sie fällig ist.",
+                date: "26. Oktober 2025"
             },
-            footer: {
-                allRights: "All rights reserved"
+            article4: {
+                title: "Wie erstelle ich eine kostenlose elektronische Rechnung",
+                excerpt: "Schritt-für-Schritt-Anleitung zur Erstellung professioneller elektronischer Rechnungen."
+            },
+            newsletter: {
+                title: "Bleiben Sie auf dem Laufenden",
+                subtitle: "Erhalten Sie unsere Leitfäden direkt per E-Mail. Kein Spam.",
+                emailPlaceholder: "Ihre E-Mail",
+                subscribe: "Abonnieren",
+                noSpam: "Keine Karte erforderlich. Jederzeit kündbar."
             }
         },
+        nav: {
+            home: "Startseite",
+            tools: "Werkzeuge",
+            blog: "Blog"
+        }
+    },
+    
+    fr: {
+        home: "Accueil",
+        features: "Services",
+        tools: "Outils",
+        aboutUs: "À Propos",
+        login: "Connexion",
+        register: "Inscription",
+        logout: "Déconnexion",
+        dashboard: "Tableau de bord",
         
-        privacy: {
-            pageTitle: "Privacy Policy - Business Services",
-            title: "Privacy Policy",
-            lastUpdate: "Last updated",
-            dataController: "Data Controller",
-            intro: {
-                title: "Introduction",
-                text: "Welcome to Business Services. We are committed to protecting your privacy. This policy explains how we collect, use and protect your information."
+        heroTitle: "Outils Gratuits pour Votre Entreprise",
+        heroSubtitle: "Calculateurs, générateurs de documents et bien plus. Tout gratuit.",
+        heroDescription: "Servizi Business propose des outils professionnels pour la TVA, retenue à la source, salaire net et indemnité. Créez des factures et devis PDF. Tous les outils essentiels pour freelances, indépendants et PME en un seul endroit.",
+        ctaStart: "Commencer",
+        ctaLearnMore: "En Savoir Plus",
+        
+        seoIntroTitle: "Outils Business En Ligne: Simplifiez Votre Gestion",
+        seoIntroPara1: "Bienvenue sur Servizi Business, la plateforme qui rassemble tous les outils essentiels pour gérer votre activité professionnelle. Que vous soyez freelance, indépendant ou PME, trouvez des calculateurs gratuits.",
+        seoWhoIsThisFor: "Pour Qui Sont Ces Outils?",
+        seoTargetFreelance: "Freelances: calculez la retenue, TVA et créez des factures",
+        seoTargetVAT: "Indépendants: gérez taxes, devis et documents fiscaux",
+        seoTargetBusiness: "PME: outils pour facturation et calculs fiscaux",
+        seoTargetEmployee: "Employés: calculez salaire net et indemnité",
+        seoTargetAccountant: "Comptables: accélérez les calculs pour vos clients",
+        seoWhyChooseUs: "Pourquoi Choisir Servizi Business?",
+        seoFeature1Title: "100% Gratuit",
+        seoFeature1Desc: "Tous les outils de base sont gratuits, sans coûts cachés.",
+        seoFeature2Title: "Rapide et Facile",
+        seoFeature2Desc: "Résultats instantanés sans inscription.",
+        seoFeature3Title: "Sécurisé et RGPD",
+        seoFeature3Desc: "Vos données sont protégées conformément aux réglementations européennes.",
+        
+        statsTools: "Outils Gratuits",
+        statsFree: "Gratuit Pour Toujours",
+        statsAvailable: "Toujours Disponible",
+        
+        freeTools: "Calculateurs Gratuits",
+        freeToolsDesc: "Pas d'inscription requise. Utilisez nos calculateurs maintenant!",
+        ivaCalc: "Calculateur TVA",
+        ivaCalcDesc: "Calculez rapidement la TVA.",
+        salaryCalc: "Calculateur Salaire",
+        salaryCalcDesc: "Découvrez votre salaire net.",
+        withholdingCalc: "Calculateur Retenue",
+        withholdingCalcDesc: "Calculez la retenue pour professionnels.",
+        tfrCalc: "Calculateur Indemnité",
+        tfrCalcDesc: "Calculez votre indemnité accumulée.",
+        taxCalc: "Calculateur Taxes",
+        taxCalcDesc: "Calculez les taxes à payer.",
+        qrGenerator: "Générateur QR Code",
+        qrGeneratorDesc: "Créez des QR codes gratuits.",
+        corrispettiviCalc: "Ventes Quotidiennes",
+        corrispettiviCalcDesc: "Gérez les ventes avec calcul TVA automatique.",
+        imgToPdfConverter: "Convertir Images en PDF",
+        imgToPdfConverterDesc: "Transformez PNG, JPG, WebP en PDF professionnel.",
+        useNow: "Utiliser maintenant",
+        
+        testimonialsTitle: "Ce que disent nos utilisateurs",
+        testimonialsSubtitle: "Des milliers de professionnels font confiance à nos outils chaque jour.",
+        testimonial1Text: "Le générateur de factures m'a sauvé la vie! Simple, rapide et professionnel.",
+        testimonial1Name: "Marco Rossi",
+        testimonial1Role: "Graphiste",
+        testimonial2Text: "Enfin un site qui rassemble tous les outils utiles en un seul endroit.",
+        testimonial2Name: "Giulia Bianchi",
+        testimonial2Role: "Employée",
+        testimonial3Text: "Le temps c'est de l'argent. Servizi Business me permet de tout calculer rapidement.",
+        testimonial3Name: "Andrea Ferri",
+        testimonial3Role: "Entrepreneur",
+        
+        premiumServices: "Services Avancés",
+        premiumDesc: "Créez des factures et devis professionnels",
+        invoiceGenTitle: "Générateur de Factures",
+        invoiceGenDesc: "Créez des factures PDF professionnelles.",
+        invoiceFeature1: "PDF professionnel",
+        invoiceFeature2: "Multi-devises",
+        invoiceFeature3: "Tous les pays",
+        createInvoiceFree: "Créer Facture - Gratuit",
+        quoteGenTitle: "Générateur de Devis",
+        quoteGenDesc: "Créez des devis PDF professionnels.",
+        quoteFeature1: "PDF professionnel",
+        quoteFeature2: "Validité personnalisable",
+        quoteFeature3: "Tous les pays",
+        createQuoteFree: "Créer Devis - Gratuit",
+        
+        ctaTitle: "Prêt à Simplifier Votre Travail?",
+        ctaSubtitle: "Commencez à utiliser nos outils gratuits maintenant!",
+        ctaButton: "Explorer les Calculateurs",
+        
+        footerTagline: "Outils gratuits pour professionnels.",
+        usefulLinks: "Liens Utiles",
+        calculators: "Calculateurs",
+        services: "Services",
+        contacts: "Contacts",
+        allRightsReserved: "Tous droits réservés",
+        privacy: "Politique de Confidentialité",
+        terms: "Conditions d'Utilisation",
+        
+        calculate: "Calculer",
+        clear: "Effacer",
+        download: "Télécharger",
+        save: "Enregistrer",
+        cancel: "Annuler",
+        confirm: "Confirmer",
+        back: "Retour",
+        next: "Suivant",
+        loading: "Chargement...",
+        error: "Erreur",
+        success: "Succès",
+        warning: "Avertissement",
+        info: "Info",
+        
+        blog: {
+            hero: {
+                title: "Guides et Ressources pour Professionnels",
+                subtitle: "Articles pratiques, guides fiscaux et conseils pour mieux gérer votre activité"
             },
-            dataCollection: {
-                title: "Data We Collect",
-                intro: "When you register or use our services, we collect:",
-                registration: "Registration data:",
-                registrationData: "Email and password (encrypted)",
-                optional: "Optional data:",
-                optionalData: "Name, surname, business data (only if you enter them for invoices/quotes)",
-                usage: "Usage data:",
-                usageData: "Information about how you use the site (via Google Analytics)",
-                cookies: "Advertising cookies:",
-                cookiesData: "Google AdSense uses cookies to show personalized ads",
-                note: "Note:",
-                noteText: "Registration is NOT required to use basic calculators. Registration is only required to save documents (invoices, quotes, sales)."
+            filter: {
+                all: "Tous",
+                fiscal: "Fiscal",
+                invoicing: "Facturation",
+                vat: "TVA",
+                guides: "Guides"
             },
-            dataUsage: {
-                title: "How We Use Your Data",
-                point1: "Provide and manage our services",
-                point2: "Create and manage your account",
-                point3: "Generate invoices and documents",
-                point4: "Improve user experience",
-                point5: "Service-related communications"
+            category: {
+                all: "Tous",
+                fiscal: "Fiscal",
+                invoicing: "Facturation",
+                vat: "TVA",
+                guides: "Guides",
+                work: "Travail"
             },
-            security: {
-                title: "Data Storage and Security",
-                where: "Where we store your data:",
-                storage: "We use Supabase (GDPR-compliant cloud infrastructure) to securely store:",
-                account: "User account (email, encrypted password)",
-                documents: "Saved documents (invoices, quotes, sales)"
+            featured: "En Vedette",
+            latestArticles: "Derniers Articles",
+            readArticle: "Lire l'article",
+            readMore: "Lire plus",
+            comingSoon: "Prochainement",
+            article1: {
+                title: "Retenue à la Source 2025: Guide Complet",
+                excerpt: "Tout sur la retenue à la source: ce qu'elle est, comment la calculer.",
+                date: "26 Octobre 2025",
+                readTime: "8 min"
             },
-            rights: {
-                title: "Your Rights (GDPR)",
-                access: "Access to your data",
-                modify: "Modification or deletion",
-                portability: "Data portability",
-                objection: "Objection to processing",
-                exercise: "To exercise your rights, contact us"
+            article2: {
+                title: "Calcul du Salaire Net: Guide Complet 2025",
+                excerpt: "Comment calculer le salaire net: INPS, IRPEF, déductions.",
+                date: "26 Octobre 2025"
             },
-            cookies: {
-                title: "Cookies and Tracking",
-                essential: "Essential cookies: For site functionality",
-                analytics: "Google Analytics: For anonymous statistics",
-                adsense: "Google AdSense: For personalized advertising"
+            article3: {
+                title: "TFR: Calcul, Liquidation et Imposition",
+                excerpt: "Tout sur l'indemnité de départ: comment elle est calculée.",
+                date: "26 Octobre 2025"
             },
-            changes: {
-                title: "Changes to Privacy Policy",
-                text: "We reserve the right to update this policy. We will inform you of any substantial changes."
+            article4: {
+                title: "Comment Créer une Facture Électronique Gratuite",
+                excerpt: "Guide pour créer des factures électroniques professionnelles."
             },
-            contact: {
-                title: "Contact",
-                text: "For privacy questions, write to us"
+            newsletter: {
+                title: "Restez Informé",
+                subtitle: "Recevez nos guides directement dans votre email. Pas de spam.",
+                emailPlaceholder: "Votre email",
+                subscribe: "S'abonner",
+                noSpam: "Aucune carte requise. Désabonnement à tout moment."
             }
         },
+        nav: {
+            home: "Accueil",
+            tools: "Outils",
+            blog: "Blog"
+        }
+    },
+    
+    es: {
+        home: "Inicio",
+        features: "Servicios",
+        tools: "Herramientas",
+        aboutUs: "Sobre Nosotros",
+        login: "Iniciar Sesión",
+        register: "Registrarse",
+        logout: "Cerrar Sesión",
+        dashboard: "Panel",
         
-        terms: {
-            pageTitle: "Terms of Service - Business Services",
-            title: "Terms of Service",
-            lastUpdate: "Last updated",
-            intro: {
-                title: "Acceptance of Terms",
-                text: "By using Business Services, you accept these Terms of Service. If you don't accept them, don't use the site."
+        heroTitle: "Herramientas Gratuitas para Tu Negocio",
+        heroSubtitle: "Calculadoras, generadores de documentos y mucho más. Todo gratis.",
+        heroDescription: "Servizi Business ofrece herramientas profesionales para IVA, retención, salario neto e indemnización. Crea facturas y presupuestos PDF. Todas las herramientas esenciales para freelancers, autónomos y PYME en un solo lugar.",
+        ctaStart: "Comenzar",
+        ctaLearnMore: "Saber Más",
+        
+        seoIntroTitle: "Herramientas Business Online: Simplifica Tu Gestión",
+        seoIntroPara1: "Bienvenido a Servizi Business, la plataforma que reúne todas las herramientas esenciales para gestionar tu actividad profesional. Ya seas freelance, autónomo o PYME, encuentra calculadoras gratuitas.",
+        seoWhoIsThisFor: "¿Para Quién Son Estas Herramientas?",
+        seoTargetFreelance: "Freelances: calcula retención, IVA y crea facturas",
+        seoTargetVAT: "Autónomos: gestiona impuestos, presupuestos y documentos fiscales",
+        seoTargetBusiness: "PYME: herramientas para facturación y cálculos fiscales",
+        seoTargetEmployee: "Empleados: calcula salario neto e indemnización",
+        seoTargetAccountant: "Contadores: acelera cálculos para tus clientes",
+        seoWhyChooseUs: "¿Por Qué Elegir Servizi Business?",
+        seoFeature1Title: "100% Gratis",
+        seoFeature1Desc: "Todas las herramientas básicas son gratis, sin costos ocultos.",
+        seoFeature2Title: "Rápido y Fácil",
+        seoFeature2Desc: "Resultados instantáneos sin registro.",
+        seoFeature3Title: "Seguro y RGPD",
+        seoFeature3Desc: "Tus datos están protegidos según normativas europeas.",
+        
+        statsTools: "Herramientas Gratuitas",
+        statsFree: "Gratis Para Siempre",
+        statsAvailable: "Siempre Disponible",
+        
+        freeTools: "Calculadoras Gratuitas",
+        freeToolsDesc: "Sin registro requerido. ¡Usa nuestras calculadoras ahora!",
+        ivaCalc: "Calculadora IVA",
+        ivaCalcDesc: "Calcula rápidamente el IVA.",
+        salaryCalc: "Calculadora Salario",
+        salaryCalcDesc: "Descubre tu salario neto.",
+        withholdingCalc: "Calculadora Retención",
+        withholdingCalcDesc: "Calcula la retención para profesionales.",
+        tfrCalc: "Calculadora Indemnización",
+        tfrCalcDesc: "Calcula tu indemnización acumulada.",
+        taxCalc: "Calculadora Impuestos",
+        taxCalcDesc: "Calcula los impuestos a pagar.",
+        qrGenerator: "Generador Código QR",
+        qrGeneratorDesc: "Crea códigos QR gratis.",
+        corrispettiviCalc: "Ventas Diarias",
+        corrispettiviCalcDesc: "Gestiona ventas con cálculo IVA automático.",
+        imgToPdfConverter: "Convertir Imágenes a PDF",
+        imgToPdfConverterDesc: "Transforma PNG, JPG, WebP en PDF profesional.",
+        useNow: "Usar ahora",
+        
+        testimonialsTitle: "Lo que dicen nuestros usuarios",
+        testimonialsSubtitle: "Miles de profesionales confían en nuestras herramientas cada día.",
+        testimonial1Text: "¡El generador de facturas me ha salvado la vida! Simple, rápido y profesional.",
+        testimonial1Name: "Marco Rossi",
+        testimonial1Role: "Diseñador Gráfico",
+        testimonial2Text: "Por fin un sitio que reúne todas las herramientas útiles en un solo lugar.",
+        testimonial2Name: "Giulia Bianchi",
+        testimonial2Role: "Empleada",
+        testimonial3Text: "El tiempo es oro. Servizi Business me permite calcular todo al vuelo.",
+        testimonial3Name: "Andrea Ferri",
+        testimonial3Role: "Empresario",
+        
+        premiumServices: "Servicios Avanzados",
+        premiumDesc: "Crea facturas y presupuestos profesionales",
+        invoiceGenTitle: "Generador de Facturas",
+        invoiceGenDesc: "Crea facturas PDF profesionales.",
+        invoiceFeature1: "PDF profesional",
+        invoiceFeature2: "Multi-moneda",
+        invoiceFeature3: "Todos los países",
+        createInvoiceFree: "Crear Factura - Gratis",
+        quoteGenTitle: "Generador de Presupuestos",
+        quoteGenDesc: "Crea presupuestos PDF profesionales.",
+        quoteFeature1: "PDF profesional",
+        quoteFeature2: "Validez personalizable",
+        quoteFeature3: "Todos los países",
+        createQuoteFree: "Crear Presupuesto - Gratis",
+        
+        ctaTitle: "¿Listo para Simplificar tu Trabajo?",
+        ctaSubtitle: "¡Empieza a usar nuestras herramientas gratuitas ahora!",
+        ctaButton: "Explorar Calculadoras",
+        
+        footerTagline: "Herramientas gratuitas para profesionales.",
+        usefulLinks: "Enlaces Útiles",
+        calculators: "Calculadoras",
+        services: "Servicios",
+        contacts: "Contactos",
+        allRightsReserved: "Todos los derechos reservados",
+        privacy: "Política de Privacidad",
+        terms: "Términos de Servicio",
+        
+        calculate: "Calcular",
+        clear: "Limpiar",
+        download: "Descargar",
+        save: "Guardar",
+        cancel: "Cancelar",
+        confirm: "Confirmar",
+        back: "Atrás",
+        next: "Siguiente",
+        loading: "Cargando...",
+        error: "Error",
+        success: "Éxito",
+        warning: "Advertencia",
+        info: "Info",
+        
+        blog: {
+            hero: {
+                title: "Guías y Recursos para Profesionales",
+                subtitle: "Artículos prácticos, guías fiscales y consejos para gestionar mejor tu actividad"
             },
-            services: {
-                title: "Service Description",
-                text: "Business Services offers free tools for tax calculations, document generation and professional activity management."
+            filter: {
+                all: "Todos",
+                fiscal: "Fiscal",
+                invoicing: "Facturación",
+                vat: "IVA",
+                guides: "Guías"
             },
-            registration: {
-                title: "Account Registration",
-                required: "Registration is only necessary to save documents",
-                responsibility: "You are responsible for the security of your account",
-                accurate: "You must provide accurate information",
-                notify: "Immediately notify unauthorized access"
+            category: {
+                all: "Todos",
+                fiscal: "Fiscal",
+                invoicing: "Facturación",
+                vat: "IVA",
+                guides: "Guías",
+                work: "Trabajo"
             },
-            usage: {
-                title: "Acceptable Use",
-                allowed: "You can use the site for legal and professional purposes",
-                prohibited: "You CANNOT:",
-                point1: "Violate laws",
-                point2: "Damage the site or users",
-                point3: "Use bots or scripts for automated access",
-                point4: "Copy or redistribute content"
+            featured: "Destacado",
+            latestArticles: "Últimos Artículos",
+            readArticle: "Leer artículo",
+            readMore: "Leer más",
+            comingSoon: "Próximamente",
+            article1: {
+                title: "Retención de Impuestos 2025: Guía Completa",
+                excerpt: "Todo sobre la retención de impuestos: qué es, cómo calcularla.",
+                date: "26 de Octubre de 2025",
+                readTime: "8 min"
             },
-            property: {
-                title: "Intellectual Property",
-                text: "All site content is copyright protected. You cannot copy it without authorization."
+            article2: {
+                title: "Cálculo de Salario Neto: Guía Completa 2025",
+                excerpt: "Cómo calcular el salario neto: INPS, IRPEF, deducciones.",
+                date: "26 de Octubre de 2025"
             },
-            liability: {
-                title: "Limitation of Liability",
-                asis: "The service is provided 'as is'",
-                noWarranty: "We don't guarantee absolute calculation accuracy",
-                noLiability: "We are not liable for damages arising from site use",
-                consult: "For important decisions, always consult a professional"
+            article3: {
+                title: "TFR: Cálculo, Liquidación e Impuestos",
+                excerpt: "Todo sobre la indemnización: cómo se calcula, cuándo se debe.",
+                date: "26 de Octubre de 2025"
             },
-            termination: {
-                title: "Suspension and Cancellation",
-                right: "We reserve the right to suspend or close accounts that violate terms",
-                request: "You can request account deletion at any time"
+            article4: {
+                title: "Cómo Crear una Factura Electrónica Gratis",
+                excerpt: "Guía para crear facturas electrónicas profesionales."
             },
-            changes: {
-                title: "Changes to Terms",
-                text: "We may modify these terms. You will only continue to use the site by accepting changes."
-            },
-            law: {
-                title: "Applicable Law",
-                text: "These terms are governed by Italian law. Competent court is Pisa, Italy."
-            },
-            contact: {
-                title: "Contact",
-                text: "For questions about terms, write to us"
+            newsletter: {
+                title: "Mantente Actualizado",
+                subtitle: "Recibe nuestras guías directamente en tu email. Sin spam.",
+                emailPlaceholder: "Tu email",
+                subscribe: "Suscribirse",
+                noSpam: "No se requiere tarjeta. Cancela cuando quieras."
             }
+        },
+        nav: {
+            home: "Inicio",
+            tools: "Herramientas",
+            blog: "Blog"
+        }
+    },
+    
+    hu: {
+        home: "Főoldal",
+        features: "Szolgáltatások",
+        tools: "Eszközök",
+        aboutUs: "Rólunk",
+        login: "Bejelentkezés",
+        register: "Regisztráció",
+        logout: "Kijelentkezés",
+        dashboard: "Irányítópult",
+        
+        heroTitle: "Ingyenes Eszközök az Ön Vállalkozásához",
+        heroSubtitle: "Számológépek, dokumentumgenerátorok és még sok más. Minden ingyen.",
+        heroDescription: "A Servizi Business professzionális eszközöket kínál ÁFA, adóelőleg, nettó fizetés és végkielégítés számításához. Hozzon létre elektronikus számlákat és árajánlatokat PDF formátumban. Minden lényeges eszköz szabadúszók, egyéni vállalkozók és kisvállalatok számára egy helyen.",
+        ctaStart: "Kezdjünk Neki",
+        ctaLearnMore: "Tudjon Meg Többet",
+        
+        // SEO Section
+        seoIntroTitle: "Online Üzleti Eszközök: Egyszerűsítse Vállalkozásának Kezelését",
+        seoIntroPara1: "Üdvözöljük a Servizi Business oldalán, amely összegyűjti az összes lényeges eszközt vállalkozása kezeléséhez. Akár szabadúszó, egyéni vállalkozó vagy kisvállalat, ingyenes számológépeket és professzionális dokumentumgenerátorokat talál az idő és pénz megtakarítására.",
+        seoWhoIsThisFor: "Kinek Szólnak Ezek az Eszközök?",
+        seoTargetFreelance: "Szabadúszók: számítsa ki az adóelőleget, ÁFÁ-t és hozzon létre professzionális számlákat",
+        seoTargetVAT: "Egyéni vállalkozók: kezelje az adókat, árajánlatokat és adódokumentumokat",
+        seoTargetBusiness: "Kisvállalatok: eszközök számlázáshoz, adószámításhoz és napi eladásokhoz",
+        seoTargetEmployee: "Alkalmazottak: számítsa ki nettó fizetését és végkielégítését",
+        seoTargetAccountant: "Könyvelők: gyorsítsa fel az ügyfelei számításait",
+        seoWhyChooseUs: "Miért Válassza a Servizi Business-t?",
+        seoFeature1Title: "100% Ingyenes",
+        seoFeature1Desc: "Minden alapeszköz teljesen ingyenes, nincsenek rejtett költségek.",
+        seoFeature2Title: "Gyors és Egyszerű",
+        seoFeature2Desc: "Azonnali eredmények regisztráció nélkül az alapszámológépekhez.",
+        seoFeature3Title: "Biztonságos és GDPR",
+        seoFeature3Desc: "Az Ön adatai védve vannak és az európai előírásoknak megfelelően kerülnek kezelésre.",
+        
+        statsTools: "Ingyenes Eszközök",
+        statsFree: "Örökre Ingyenes",
+        statsAvailable: "Mindig Elérhető",
+        
+        freeTools: "Ingyenes Számológépek",
+        freeToolsDesc: "Nincs szükség regisztrációra. Használja eszközeinket most!",
+        ivaCalc: "ÁFA Számológép",
+        ivaCalcDesc: "Gyorsan számítsa ki az ÁFÁ-t.",
+        salaryCalc: "Nettó Fizetés Számológép",
+        salaryCalcDesc: "Tudja meg nettó fizetését.",
+        withholdingCalc: "Adóelőleg Számológép",
+        withholdingCalcDesc: "Számítsa ki az adóelőleget.",
+        tfrCalc: "Végkielégítés Számológép",
+        tfrCalcDesc: "Számítsa ki végkielégítését.",
+        taxCalc: "Adószámítás",
+        taxCalcDesc: "Számítsa ki a fizetendő adókat.",
+        qrGenerator: "QR Kód Generátor",
+        qrGeneratorDesc: "Hozzon létre ingyenes QR kódokat.",
+        corrispettiviCalc: "Napi Eladások",
+        corrispettiviCalcDesc: "Kezelje az eladásokat automatikus ÁFA számítással.",
+        imgToPdfConverter: "Képek Konvertálása PDF-be",
+        imgToPdfConverterDesc: "Alakítsa át PNG, JPG, WebP fájlokat professzionális PDF-é.",
+        useNow: "Használja most",
+        
+        testimonialsTitle: "Mit Mondanak Felhasználóink",
+        testimonialsSubtitle: "Szakemberek ezrei bíznak eszközeinkben minden nap.",
+        testimonial1Text: "A számlakészítő megmentette az életemet! Egyszerű, gyors és professzionális.",
+        testimonial1Name: "Marco Rossi",
+        testimonial1Role: "Grafikus",
+        testimonial2Text: "Végre egy oldal, amely egyhelyen gyűjti össze az összes hasznos eszközt.",
+        testimonial2Name: "Giulia Bianchi",
+        testimonial2Role: "Alkalmazott",
+        testimonial3Text: "Az idő pénz. A Servizi Business lehetővé teszi, hogy mindent gyorsan kiszámoljak.",
+        testimonial3Name: "Andrea Ferri",
+        testimonial3Role: "Vállalkozó",
+        
+        premiumServices: "Fejlett Szolgáltatások",
+        premiumDesc: "Hozzon létre professzionális számlákat és árajánlatokat",
+        invoiceGenTitle: "Számlakészítő",
+        invoiceGenDesc: "Hozzon létre professzionális PDF számlákat.",
+        invoiceFeature1: "Professzionális PDF",
+        invoiceFeature2: "Többvalutás",
+        invoiceFeature3: "Minden ország",
+        createInvoiceFree: "Számla Létrehozása - Ingyenes",
+        quoteGenTitle: "Árajánlatkészítő",
+        quoteGenDesc: "Hozzon létre professzionális PDF árajánlatokat.",
+        quoteFeature1: "Professzionális PDF",
+        quoteFeature2: "Testreszabható érvényesség",
+        quoteFeature3: "Minden ország",
+        createQuoteFree: "Árajánlat Létrehozása - Ingyenes",
+        
+        ctaTitle: "Készen Áll a Munka Egyszerűsítésére?",
+        ctaSubtitle: "Kezdje el használni ingyenes eszközeinket most!",
+        ctaButton: "Számológépek Felfedezése",
+        
+        footerTagline: "Ingyenes eszközök szakembereknek.",
+        usefulLinks: "Hasznos Linkek",
+        calculators: "Számológépek",
+        services: "Szolgáltatások",
+        contacts: "Kapcsolat",
+        allRightsReserved: "Minden jog fenntartva",
+        privacy: "Adatvédelmi Irányelvek",
+        terms: "Felhasználási Feltételek",
+        
+        calculate: "Számítás",
+        clear: "Törlés",
+        download: "Letöltés",
+        save: "Mentés",
+        cancel: "Mégse",
+        confirm: "Megerősítés",
+        back: "Vissza",
+        next: "Következő",
+        loading: "Betöltés...",
+        error: "Hiba",
+        success: "Sikeres",
+        warning: "Figyelmeztetés",
+        info: "Információ",
+        
+        blog: {
+            hero: {
+                title: "Útmutatók és Források Szakembereknek",
+                subtitle: "Gyakorlati cikkek, adótanácsadók és tippek szakmai tevékenysége kezeléséhez"
+            },
+            filter: {
+                all: "Minden",
+                fiscal: "Adó",
+                invoicing: "Számlázás",
+                vat: "ÁFA",
+                guides: "Útmutatók"
+            },
+            category: {
+                all: "Minden",
+                fiscal: "Adó",
+                invoicing: "Számlázás",
+                vat: "ÁFA",
+                guides: "Útmutatók",
+                work: "Munka"
+            },
+            featured: "Kiemelt",
+            latestArticles: "Legújabb Cikkek",
+            readArticle: "Cikk olvasása",
+            readMore: "Tovább olvasom",
+            comingSoon: "Hamarosan",
+            article1: {
+                title: "Forrásadó 2025: Teljes Útmutató",
+                excerpt: "Minden a forrásadóról: mi az, hogyan kell kiszámítani.",
+                date: "2025. október 26.",
+                readTime: "8 perc"
+            },
+            article2: {
+                title: "Nettó Fizetés Számítása: Teljes Útmutató 2025",
+                excerpt: "Hogyan számítsuk ki a nettó fizetést: INPS, IRPEF, levonások.",
+                date: "2025. október 26."
+            },
+            article3: {
+                title: "TFR: Számítás, Kifizetés és Adózás",
+                excerpt: "Minden a végkielégítésről: hogyan számítják ki.",
+                date: "2025. október 26."
+            },
+            article4: {
+                title: "Hogyan Készítsünk Ingyenes Elektronikus Számlát",
+                excerpt: "Útmutató professzionális elektronikus számlák létrehozásához."
+            },
+            newsletter: {
+                title: "Maradjon Naprakész",
+                subtitle: "Kapja meg útmutatóinkat közvetlenül az e-mailjében. Nincs spam.",
+                emailPlaceholder: "Az Ön e-mailje",
+                subscribe: "Feliratkozás",
+                noSpam: "Nincs szükség kártyára. Bármikor leiratkozhat."
+            }
+        },
+        nav: {
+            home: "Főoldal",
+            tools: "Eszközök",
+            blog: "Blog"
         }
     }
-    // DE, FR, ES, HU continueranno nel prossimo file...
 };
 
 let currentLanguage = 'it';
@@ -739,8 +1043,10 @@ let currentLanguage = 'it';
 function detectLanguage() {
     const saved = localStorage.getItem('preferredLanguage');
     if (saved && TRANSLATIONS[saved]) return saved;
+    
     const browserLang = navigator.language || navigator.userLanguage;
     const langCode = browserLang.split('-')[0].toLowerCase();
+    
     if (TRANSLATIONS[langCode]) return langCode;
     return browserLang.startsWith('it') ? 'it' : 'en';
 }
@@ -750,11 +1056,15 @@ function setLanguage(lang) {
         console.warn('Language not supported:', lang);
         return;
     }
+    
     currentLanguage = lang;
     localStorage.setItem('preferredLanguage', lang);
+    
+    // Traduci tutti gli elementi con data-i18n
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
         const translation = getNestedTranslation(TRANSLATIONS[lang], key);
+        
         if (translation) {
             if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                 element.placeholder = translation;
@@ -763,6 +1073,8 @@ function setLanguage(lang) {
             }
         }
     });
+    
+    // Traduci placeholder
     document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
         const key = element.getAttribute('data-i18n-placeholder');
         const translation = getNestedTranslation(TRANSLATIONS[lang], key);
@@ -770,6 +1082,8 @@ function setLanguage(lang) {
             element.placeholder = translation;
         }
     });
+    
+    // Aggiorna pulsanti lingua
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.remove('active', 'bg-blue-600', 'text-white', 'border-blue-500');
         btn.classList.add('text-gray-700');
@@ -779,12 +1093,14 @@ function setLanguage(lang) {
         activeBtn.classList.add('active', 'bg-blue-600', 'text-white', 'border-blue-500');
         activeBtn.classList.remove('text-gray-700');
     }
+    
     console.log('✅ Language set to:', lang);
 }
 
 function getNestedTranslation(obj, path) {
     const keys = path.split('.');
     let result = obj;
+    
     for (const key of keys) {
         if (result && typeof result === 'object' && key in result) {
             result = result[key];
@@ -792,11 +1108,13 @@ function getNestedTranslation(obj, path) {
             return null;
         }
     }
+    
     return result;
 }
 
 function updateElementText(element, newText) {
     const textSpan = element.querySelector('span[data-i18n], [data-i18n]');
+    
     if (textSpan && textSpan !== element) {
         textSpan.textContent = newText;
     } else if (element.childNodes.length === 1 && element.childNodes[0].nodeType === 3) {
@@ -821,4 +1139,4 @@ document.addEventListener('DOMContentLoaded', function() {
     setLanguage(currentLanguage);
 });
 
-console.log('✅ i18n system loaded - IT, EN with aboutUs, privacy, terms | DE, FR, ES, HU PARTIAL');
+console.log('✅ i18n system loaded with COMPLETE translations for 6 languages');
